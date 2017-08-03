@@ -1,0 +1,536 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D0113F621E2F040500D668CC /* MainContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0113F611E2F040500D668CC /* MainContentViewController.swift */; };
+		D0113F651E2F140A00D668CC /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0113F641E2F140A00D668CC /* SidebarViewController.swift */; };
+		D0113F671E317DAB00D668CC /* HardwareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0113F661E317DAB00D668CC /* HardwareViewController.swift */; };
+		D0113F691E31919D00D668CC /* TunerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0113F681E31919D00D668CC /* TunerViewController.swift */; };
+		D022C62B1E29AD3D003FF574 /* RadioDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022C62A1E29AD3D003FF574 /* RadioDisplayViewController.swift */; };
+		D027D4971E6269EF0089051F /* AMDemodulatorBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027D4961E6269EF0089051F /* AMDemodulatorBlock.swift */; };
+		D027D4991E6391FC0089051F /* SquelchBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027D4981E6391FC0089051F /* SquelchBlock.swift */; };
+		D027D49D1E64EA8E0089051F /* FilterBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027D49C1E64EA8E0089051F /* FilterBlock.swift */; };
+		D027D4A11E67ABAE0089051F /* FFTBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027D4A01E67ABAE0089051F /* FFTBlock.swift */; };
+		D027D4A41E67C77A0089051F /* SpectrumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027D4A31E67C77A0089051F /* SpectrumViewController.swift */; };
+		D027D4A61E67C7980089051F /* AnalyzerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027D4A51E67C7980089051F /* AnalyzerView.swift */; };
+		D027D4A91E6E3BE90089051F /* SpectrogramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027D4A81E6E3BE90089051F /* SpectrogramView.swift */; };
+		D02AA8AF1E3C168500218374 /* SDRDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA8AE1E3C168500218374 /* SDRDevice.swift */; };
+		D02AA8B11E3D925900218374 /* waveSDRNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA8B01E3D925900218374 /* waveSDRNotifications.swift */; };
+		D05A11691E258D4000F2116D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05A11681E258D4000F2116D /* AppDelegate.swift */; };
+		D05A116B1E258D4000F2116D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D05A116A1E258D4000F2116D /* Assets.xcassets */; };
+		D05A116E1E258D4000F2116D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05A116C1E258D4000F2116D /* MainMenu.xib */; };
+		D05A117C1E258D9800F2116D /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05A117A1E258D9800F2116D /* MainWindowController.swift */; };
+		D05A117D1E258D9800F2116D /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05A117B1E258D9800F2116D /* MainWindowController.xib */; };
+		D05DE8531F3297620063B3CB /* enhanced_led_board-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D05DE8521F3297570063B3CB /* enhanced_led_board-7.ttf */; };
+		D061D37D1E4C3296006A4CEF /* Bool+toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D061D37C1E4C3296006A4CEF /* Bool+toggle.swift */; };
+		D081664D1E79F905002BF5CF /* ToneDecoderBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D081664C1E79F905002BF5CF /* ToneDecoderBlock.swift */; };
+		D09BB4681E58C843002DEC58 /* ComplexFilterBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB4671E58C843002DEC58 /* ComplexFilterBlock.swift */; };
+		D09BB46A1E58FEC9002DEC58 /* FMDemodulatorBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB4691E58FEC9002DEC58 /* FMDemodulatorBlock.swift */; };
+		D09BB46D1E5B7C31002DEC58 /* Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB46C1E5B7C31002DEC58 /* Samples.swift */; };
+		D09BB46F1E5B88F3002DEC58 /* FilterCoefficients.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB46E1E5B88F3002DEC58 /* FilterCoefficients.swift */; };
+		D0C407C91E8217E800FD0034 /* MixerBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C407C81E8217E800FD0034 /* MixerBlock.swift */; };
+		D0C6A0C91E2C99E600D05D4D /* LevelIndicatorWithSquelch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C6A0C81E2C99E600D05D4D /* LevelIndicatorWithSquelch.swift */; };
+		D0CCEA311E515E0F005C6DC0 /* Radio.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCEA301E515E0F005C6DC0 /* Radio.swift */; };
+		D0EDB2B61F31949D00B84C4B /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = D0EDB2B51F31949D00B84C4B /* Readme.md */; };
+		D0F098181E38525100355EB0 /* DVTRun_10_10.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0F098161E38525100355EB0 /* DVTRun_10_10.pdf */; };
+		D0F098191E38525100355EB0 /* DVTStop_10_10.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0F098171E38525100355EB0 /* DVTStop_10_10.pdf */; };
+		D0F098201E386BB300355EB0 /* librtlsdr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F0981E1E386BB300355EB0 /* librtlsdr.a */; };
+		D0F098211E386BB300355EB0 /* libusb-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F0981F1E386BB300355EB0 /* libusb-1.0.a */; };
+		D0F098291E38734D00355EB0 /* RTLSDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F098281E38734D00355EB0 /* RTLSDR.swift */; };
+		D0F0982C1E3882CF00355EB0 /* SoftwareDefinedRadio.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F0982B1E3882CF00355EB0 /* SoftwareDefinedRadio.swift */; };
+		D0F9183A1E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F918391E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D0113F611E2F040500D668CC /* MainContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContentViewController.swift; sourceTree = "<group>"; };
+		D0113F641E2F140A00D668CC /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
+		D0113F661E317DAB00D668CC /* HardwareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HardwareViewController.swift; sourceTree = "<group>"; };
+		D0113F681E31919D00D668CC /* TunerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunerViewController.swift; sourceTree = "<group>"; };
+		D022C62A1E29AD3D003FF574 /* RadioDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioDisplayViewController.swift; sourceTree = "<group>"; };
+		D027D4961E6269EF0089051F /* AMDemodulatorBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMDemodulatorBlock.swift; sourceTree = "<group>"; };
+		D027D4981E6391FC0089051F /* SquelchBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquelchBlock.swift; sourceTree = "<group>"; };
+		D027D49C1E64EA8E0089051F /* FilterBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterBlock.swift; sourceTree = "<group>"; };
+		D027D4A01E67ABAE0089051F /* FFTBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFTBlock.swift; sourceTree = "<group>"; };
+		D027D4A31E67C77A0089051F /* SpectrumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrumViewController.swift; sourceTree = "<group>"; };
+		D027D4A51E67C7980089051F /* AnalyzerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzerView.swift; sourceTree = "<group>"; };
+		D027D4A81E6E3BE90089051F /* SpectrogramView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrogramView.swift; sourceTree = "<group>"; };
+		D02AA8AE1E3C168500218374 /* SDRDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDRDevice.swift; sourceTree = "<group>"; };
+		D02AA8B01E3D925900218374 /* waveSDRNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = waveSDRNotifications.swift; sourceTree = "<group>"; };
+		D05A11651E258D4000F2116D /* waveSDR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = waveSDR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D05A11681E258D4000F2116D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D05A116A1E258D4000F2116D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D05A116D1E258D4000F2116D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D05A116F1E258D4000F2116D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D05A117A1E258D9800F2116D /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		D05A117B1E258D9800F2116D /* MainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindowController.xib; sourceTree = "<group>"; };
+		D05DE8521F3297570063B3CB /* enhanced_led_board-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "enhanced_led_board-7.ttf"; sourceTree = "<group>"; };
+		D061D37C1E4C3296006A4CEF /* Bool+toggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+toggle.swift"; sourceTree = "<group>"; };
+		D081664C1E79F905002BF5CF /* ToneDecoderBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToneDecoderBlock.swift; sourceTree = "<group>"; };
+		D09BB4671E58C843002DEC58 /* ComplexFilterBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplexFilterBlock.swift; sourceTree = "<group>"; };
+		D09BB4691E58FEC9002DEC58 /* FMDemodulatorBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMDemodulatorBlock.swift; sourceTree = "<group>"; };
+		D09BB46C1E5B7C31002DEC58 /* Samples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Samples.swift; sourceTree = "<group>"; };
+		D09BB46E1E5B88F3002DEC58 /* FilterCoefficients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCoefficients.swift; sourceTree = "<group>"; };
+		D0C407C81E8217E800FD0034 /* MixerBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixerBlock.swift; sourceTree = "<group>"; };
+		D0C6A0C81E2C99E600D05D4D /* LevelIndicatorWithSquelch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelIndicatorWithSquelch.swift; sourceTree = "<group>"; };
+		D0CCEA301E515E0F005C6DC0 /* Radio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Radio.swift; sourceTree = "<group>"; };
+		D0EDB2B51F31949D00B84C4B /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		D0F098161E38525100355EB0 /* DVTRun_10_10.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = DVTRun_10_10.pdf; sourceTree = "<group>"; };
+		D0F098171E38525100355EB0 /* DVTStop_10_10.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = DVTStop_10_10.pdf; sourceTree = "<group>"; };
+		D0F0981C1E386B6300355EB0 /* rtl-sdr_export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "rtl-sdr_export.h"; sourceTree = "<group>"; };
+		D0F0981D1E386B6300355EB0 /* rtl-sdr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "rtl-sdr.h"; sourceTree = "<group>"; };
+		D0F0981E1E386BB300355EB0 /* librtlsdr.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = librtlsdr.a; sourceTree = "<group>"; };
+		D0F0981F1E386BB300355EB0 /* libusb-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusb-1.0.a"; sourceTree = "<group>"; };
+		D0F098221E386CF900355EB0 /* waveSDR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "waveSDR-Bridging-Header.h"; sourceTree = "<group>"; };
+		D0F098281E38734D00355EB0 /* RTLSDR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTLSDR.swift; sourceTree = "<group>"; };
+		D0F0982B1E3882CF00355EB0 /* SoftwareDefinedRadio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoftwareDefinedRadio.swift; sourceTree = "<group>"; };
+		D0F918391E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteringSpacerToolbarItem.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D05A11621E258D4000F2116D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0F098211E386BB300355EB0 /* libusb-1.0.a in Frameworks */,
+				D0F098201E386BB300355EB0 /* librtlsdr.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D0113F631E2F135800D668CC /* SidebarView */ = {
+			isa = PBXGroup;
+			children = (
+				D0113F641E2F140A00D668CC /* SidebarViewController.swift */,
+				D0113F661E317DAB00D668CC /* HardwareViewController.swift */,
+				D0113F681E31919D00D668CC /* TunerViewController.swift */,
+			);
+			name = SidebarView;
+			sourceTree = "<group>";
+		};
+		D022C6251E272D75003FF574 /* MainWindow */ = {
+			isa = PBXGroup;
+			children = (
+				D05A117A1E258D9800F2116D /* MainWindowController.swift */,
+				D0113F611E2F040500D668CC /* MainContentViewController.swift */,
+				D0F918391E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift */,
+				D05A117B1E258D9800F2116D /* MainWindowController.xib */,
+				D05A116C1E258D4000F2116D /* MainMenu.xib */,
+			);
+			name = MainWindow;
+			sourceTree = "<group>";
+		};
+		D022C6261E272DA8003FF574 /* DisplayView */ = {
+			isa = PBXGroup;
+			children = (
+				D0C6A0C81E2C99E600D05D4D /* LevelIndicatorWithSquelch.swift */,
+				D022C62A1E29AD3D003FF574 /* RadioDisplayViewController.swift */,
+			);
+			name = DisplayView;
+			sourceTree = "<group>";
+		};
+		D027D4A21E67C7570089051F /* SpectrumView */ = {
+			isa = PBXGroup;
+			children = (
+				D027D4A31E67C77A0089051F /* SpectrumViewController.swift */,
+				D027D4A51E67C7980089051F /* AnalyzerView.swift */,
+				D027D4A81E6E3BE90089051F /* SpectrogramView.swift */,
+			);
+			name = SpectrumView;
+			sourceTree = "<group>";
+		};
+		D05A115C1E258D4000F2116D = {
+			isa = PBXGroup;
+			children = (
+				D0EDB2B51F31949D00B84C4B /* Readme.md */,
+				D05A11671E258D4000F2116D /* waveSDR */,
+				D05A11661E258D4000F2116D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D05A11661E258D4000F2116D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D05A11651E258D4000F2116D /* waveSDR.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D05A11671E258D4000F2116D /* waveSDR */ = {
+			isa = PBXGroup;
+			children = (
+				D0F098221E386CF900355EB0 /* waveSDR-Bridging-Header.h */,
+				D061D37C1E4C3296006A4CEF /* Bool+toggle.swift */,
+				D05A11681E258D4000F2116D /* AppDelegate.swift */,
+				D02AA8B01E3D925900218374 /* waveSDRNotifications.swift */,
+				D0F0982D1E395A1400355EB0 /* UI */,
+				D0F0982A1E38811700355EB0 /* SDR */,
+				D0F0981A1E386A2200355EB0 /* Resources */,
+				D05A116A1E258D4000F2116D /* Assets.xcassets */,
+				D05A116F1E258D4000F2116D /* Info.plist */,
+			);
+			path = waveSDR;
+			sourceTree = "<group>";
+		};
+		D08166501E7A0601002BF5CF /* DSP */ = {
+			isa = PBXGroup;
+			children = (
+				D027D4A01E67ABAE0089051F /* FFTBlock.swift */,
+				D0C407C81E8217E800FD0034 /* MixerBlock.swift */,
+				D09BB4671E58C843002DEC58 /* ComplexFilterBlock.swift */,
+				D09BB4691E58FEC9002DEC58 /* FMDemodulatorBlock.swift */,
+				D027D4961E6269EF0089051F /* AMDemodulatorBlock.swift */,
+				D027D4981E6391FC0089051F /* SquelchBlock.swift */,
+				D081664C1E79F905002BF5CF /* ToneDecoderBlock.swift */,
+				D027D49C1E64EA8E0089051F /* FilterBlock.swift */,
+				D09BB46E1E5B88F3002DEC58 /* FilterCoefficients.swift */,
+			);
+			name = DSP;
+			sourceTree = "<group>";
+		};
+		D0F0981A1E386A2200355EB0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D05DE8521F3297570063B3CB /* enhanced_led_board-7.ttf */,
+				D0F098161E38525100355EB0 /* DVTRun_10_10.pdf */,
+				D0F098171E38525100355EB0 /* DVTStop_10_10.pdf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D0F0981B1E386B3500355EB0 /* librtlsdr */ = {
+			isa = PBXGroup;
+			children = (
+				D0F0981E1E386BB300355EB0 /* librtlsdr.a */,
+				D0F0981F1E386BB300355EB0 /* libusb-1.0.a */,
+				D0F0981C1E386B6300355EB0 /* rtl-sdr_export.h */,
+				D0F0981D1E386B6300355EB0 /* rtl-sdr.h */,
+			);
+			name = librtlsdr;
+			sourceTree = "<group>";
+		};
+		D0F098261E3872B500355EB0 /* Hardware */ = {
+			isa = PBXGroup;
+			children = (
+				D02AA8AE1E3C168500218374 /* SDRDevice.swift */,
+				D0F098271E3872C200355EB0 /* RTLSDR */,
+			);
+			name = Hardware;
+			sourceTree = "<group>";
+		};
+		D0F098271E3872C200355EB0 /* RTLSDR */ = {
+			isa = PBXGroup;
+			children = (
+				D0F0981B1E386B3500355EB0 /* librtlsdr */,
+				D0F098281E38734D00355EB0 /* RTLSDR.swift */,
+			);
+			name = RTLSDR;
+			sourceTree = "<group>";
+		};
+		D0F0982A1E38811700355EB0 /* SDR */ = {
+			isa = PBXGroup;
+			children = (
+				D0F098261E3872B500355EB0 /* Hardware */,
+				D08166501E7A0601002BF5CF /* DSP */,
+				D0F0982B1E3882CF00355EB0 /* SoftwareDefinedRadio.swift */,
+				D0CCEA301E515E0F005C6DC0 /* Radio.swift */,
+				D09BB46C1E5B7C31002DEC58 /* Samples.swift */,
+			);
+			name = SDR;
+			sourceTree = "<group>";
+		};
+		D0F0982D1E395A1400355EB0 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D022C6251E272D75003FF574 /* MainWindow */,
+				D0113F631E2F135800D668CC /* SidebarView */,
+				D022C6261E272DA8003FF574 /* DisplayView */,
+				D027D4A21E67C7570089051F /* SpectrumView */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D05A11641E258D4000F2116D /* waveSDR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D05A11721E258D4000F2116D /* Build configuration list for PBXNativeTarget "waveSDR" */;
+			buildPhases = (
+				D05A11611E258D4000F2116D /* Sources */,
+				D05A11621E258D4000F2116D /* Frameworks */,
+				D05A11631E258D4000F2116D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = waveSDR;
+			productName = waveSDR;
+			productReference = D05A11651E258D4000F2116D /* waveSDR.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D05A115D1E258D4000F2116D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = GetOffMyHack;
+				TargetAttributes = {
+					D05A11641E258D4000F2116D = {
+						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = D05A11601E258D4000F2116D /* Build configuration list for PBXProject "waveSDR" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D05A115C1E258D4000F2116D;
+			productRefGroup = D05A11661E258D4000F2116D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D05A11641E258D4000F2116D /* waveSDR */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D05A11631E258D4000F2116D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D05DE8531F3297620063B3CB /* enhanced_led_board-7.ttf in Resources */,
+				D0EDB2B61F31949D00B84C4B /* Readme.md in Resources */,
+				D05A116B1E258D4000F2116D /* Assets.xcassets in Resources */,
+				D05A117D1E258D9800F2116D /* MainWindowController.xib in Resources */,
+				D0F098191E38525100355EB0 /* DVTStop_10_10.pdf in Resources */,
+				D05A116E1E258D4000F2116D /* MainMenu.xib in Resources */,
+				D0F098181E38525100355EB0 /* DVTRun_10_10.pdf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D05A11611E258D4000F2116D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D09BB46A1E58FEC9002DEC58 /* FMDemodulatorBlock.swift in Sources */,
+				D0C407C91E8217E800FD0034 /* MixerBlock.swift in Sources */,
+				D0113F671E317DAB00D668CC /* HardwareViewController.swift in Sources */,
+				D0113F691E31919D00D668CC /* TunerViewController.swift in Sources */,
+				D027D49D1E64EA8E0089051F /* FilterBlock.swift in Sources */,
+				D027D4A61E67C7980089051F /* AnalyzerView.swift in Sources */,
+				D0C6A0C91E2C99E600D05D4D /* LevelIndicatorWithSquelch.swift in Sources */,
+				D0113F651E2F140A00D668CC /* SidebarViewController.swift in Sources */,
+				D027D4A91E6E3BE90089051F /* SpectrogramView.swift in Sources */,
+				D0F0982C1E3882CF00355EB0 /* SoftwareDefinedRadio.swift in Sources */,
+				D0CCEA311E515E0F005C6DC0 /* Radio.swift in Sources */,
+				D061D37D1E4C3296006A4CEF /* Bool+toggle.swift in Sources */,
+				D027D4A41E67C77A0089051F /* SpectrumViewController.swift in Sources */,
+				D05A117C1E258D9800F2116D /* MainWindowController.swift in Sources */,
+				D0F098291E38734D00355EB0 /* RTLSDR.swift in Sources */,
+				D02AA8AF1E3C168500218374 /* SDRDevice.swift in Sources */,
+				D027D4A11E67ABAE0089051F /* FFTBlock.swift in Sources */,
+				D09BB46D1E5B7C31002DEC58 /* Samples.swift in Sources */,
+				D027D4971E6269EF0089051F /* AMDemodulatorBlock.swift in Sources */,
+				D0F9183A1E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift in Sources */,
+				D09BB46F1E5B88F3002DEC58 /* FilterCoefficients.swift in Sources */,
+				D022C62B1E29AD3D003FF574 /* RadioDisplayViewController.swift in Sources */,
+				D05A11691E258D4000F2116D /* AppDelegate.swift in Sources */,
+				D09BB4681E58C843002DEC58 /* ComplexFilterBlock.swift in Sources */,
+				D027D4991E6391FC0089051F /* SquelchBlock.swift in Sources */,
+				D0113F621E2F040500D668CC /* MainContentViewController.swift in Sources */,
+				D02AA8B11E3D925900218374 /* waveSDRNotifications.swift in Sources */,
+				D081664D1E79F905002BF5CF /* ToneDecoderBlock.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D05A116C1E258D4000F2116D /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D05A116D1E258D4000F2116D /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D05A11701E258D4000F2116D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D05A11711E258D4000F2116D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		D05A11731E258D4000F2116D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = waveSDR/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/waveSDR",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.getoffmyhack.waveSDR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "waveSDR/waveSDR-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "";
+			};
+			name = Debug;
+		};
+		D05A11741E258D4000F2116D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = waveSDR/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/waveSDR",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.getoffmyhack.waveSDR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "waveSDR/waveSDR-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D05A11601E258D4000F2116D /* Build configuration list for PBXProject "waveSDR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D05A11701E258D4000F2116D /* Debug */,
+				D05A11711E258D4000F2116D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D05A11721E258D4000F2116D /* Build configuration list for PBXNativeTarget "waveSDR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D05A11731E258D4000F2116D /* Debug */,
+				D05A11741E258D4000F2116D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D05A115D1E258D4000F2116D /* Project object */;
+}

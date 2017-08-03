@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController" customModule="waveSDR" customModuleProvider="target">
+            <connections>
+                <outlet property="centeringToolbarItem" destination="DRB-BH-rTb" id="6pb-jc-zCz"/>
+                <outlet property="deviceToolbarItem" destination="Sls-aL-ARn" id="avq-eb-aFN"/>
+                <outlet property="deviceToolbarLabel" destination="REy-dT-5n2" id="NA8-Nn-Qg7"/>
+                <outlet property="sidebarButton" destination="BS5-hN-P3h" id="vmY-ps-TKx"/>
+                <outlet property="startSDRButton" destination="jNN-lz-qWT" id="FjL-Lw-gaZ"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <rect key="contentRect" x="458" y="219" width="640" height="480"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="640" height="480"/>
+                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+            </view>
+            <toolbar key="toolbar" implicitIdentifier="59125616-0ABD-4C71-9F04-64A22287BDF4" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="regular" id="79Z-3a-SJd">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="7123E1E8-4DD5-4871-964E-F9FB60736DCF" label="Sidebar" paletteLabel="Sidebar" image="NSSidebarTemplate" id="ik7-Qf-cat">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="39" height="25"/>
+                        <size key="maxSize" width="40" height="27"/>
+                        <button key="view" verticalHuggingPriority="750" id="BS5-hN-P3h">
+                            <rect key="frame" x="4" y="14" width="40" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSSidebarTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c7d-Ya-VOd">
+                                <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="toggleSidebar:" target="-1" id="8M0-Bj-WMr"/>
+                            </connections>
+                        </button>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="D4y-P6-uP9"/>
+                    <toolbarItem implicitItemIdentifier="B553F1B3-A7D1-4342-997C-953498961A76" label="" paletteLabel="" id="Sls-aL-ARn">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="43" height="14"/>
+                        <size key="maxSize" width="200" height="17"/>
+                        <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="REy-dT-5n2">
+                            <rect key="frame" x="0.0" y="14" width="52" height="17"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Device" id="uKG-re-ltM">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="toolTip" keyPath="self.deviceLabelToolbarTooltip" id="Af2-r3-8Rc"/>
+                                <binding destination="-2" name="value" keyPath="self.stringForToolBarDeviceLabel" id="25b-Uy-l75"/>
+                            </connections>
+                        </textField>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="199B82DB-AED7-4C66-8568-8F55E631C79E" label="Run" paletteLabel="Run" image="DVTRun_10_10" id="mT4-y1-Tog">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="38" height="25"/>
+                        <size key="maxSize" width="40" height="28"/>
+                        <button key="view" verticalHuggingPriority="750" id="jNN-lz-qWT">
+                            <rect key="frame" x="0.0" y="14" width="38" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="DVTRun_10_10" imagePosition="overlaps" alignment="center" alternateImage="DVTStop_10_10" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ho4-QP-kdQ">
+                                <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="runStopButtonClicked:" target="-2" id="pGv-Vn-SNt"/>
+                                <binding destination="-2" name="enabled" keyPath="self.sdr.selectedDevice" id="pzr-GY-oXr">
+                                    <dictionary key="options">
+                                        <string key="NSValueTransformerName">NSIsNotNil</string>
+                                    </dictionary>
+                                </binding>
+                            </connections>
+                        </button>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Xcw-RI-E6J"/>
+                    <toolbarItem implicitItemIdentifier="955A18CE-03BB-4214-8893-6CCF124E81B8" label="Centering Space" paletteLabel="Centering Space" tag="-1" id="DRB-BH-rTb" customClass="CenteringSpacerToolbarItem" customModule="waveSDR" customModuleProvider="target">
+                        <size key="maxSize" width="0.0" height="10"/>
+                    </toolbarItem>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="ik7-Qf-cat"/>
+                    <toolbarItem reference="mT4-y1-Tog"/>
+                    <toolbarItem reference="DRB-BH-rTb"/>
+                    <toolbarItem reference="Sls-aL-ARn"/>
+                </defaultToolbarItems>
+            </toolbar>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="-20" y="27.5"/>
+        </window>
+    </objects>
+    <resources>
+        <image name="DVTRun_10_10" width="18" height="18"/>
+        <image name="DVTStop_10_10" width="18" height="18"/>
+        <image name="NSSidebarTemplate" width="15" height="12"/>
+    </resources>
+</document>
