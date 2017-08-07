@@ -12,6 +12,7 @@ Features:
 * AM Demodulator
 * FM Narrow Demodulator
 * FM Wide Demodulator (mono only)
-
+* Mixer Tuning
+* Swipe to tune
 
 
