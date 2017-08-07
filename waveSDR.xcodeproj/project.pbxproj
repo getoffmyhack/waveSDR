@@ -36,7 +36,7 @@
 		D0C407C91E8217E800FD0034 /* MixerBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C407C81E8217E800FD0034 /* MixerBlock.swift */; };
 		D0C6A0C91E2C99E600D05D4D /* LevelIndicatorWithSquelch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C6A0C81E2C99E600D05D4D /* LevelIndicatorWithSquelch.swift */; };
 		D0CCEA311E515E0F005C6DC0 /* Radio.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCEA301E515E0F005C6DC0 /* Radio.swift */; };
-		D0EDB2B61F31949D00B84C4B /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = D0EDB2B51F31949D00B84C4B /* Readme.md */; };
+		D0DA277A1F33848D00C8FC53 /* RadioBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DA27791F33848D00C8FC53 /* RadioBlock.swift */; };
 		D0F098181E38525100355EB0 /* DVTRun_10_10.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0F098161E38525100355EB0 /* DVTRun_10_10.pdf */; };
 		D0F098191E38525100355EB0 /* DVTStop_10_10.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0F098171E38525100355EB0 /* DVTStop_10_10.pdf */; };
 		D0F098201E386BB300355EB0 /* librtlsdr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F0981E1E386BB300355EB0 /* librtlsdr.a */; };
@@ -78,6 +78,7 @@
 		D0C407C81E8217E800FD0034 /* MixerBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixerBlock.swift; sourceTree = "<group>"; };
 		D0C6A0C81E2C99E600D05D4D /* LevelIndicatorWithSquelch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelIndicatorWithSquelch.swift; sourceTree = "<group>"; };
 		D0CCEA301E515E0F005C6DC0 /* Radio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Radio.swift; sourceTree = "<group>"; };
+		D0DA27791F33848D00C8FC53 /* RadioBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioBlock.swift; sourceTree = "<group>"; };
 		D0EDB2B51F31949D00B84C4B /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		D0F098161E38525100355EB0 /* DVTRun_10_10.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = DVTRun_10_10.pdf; sourceTree = "<group>"; };
 		D0F098171E38525100355EB0 /* DVTStop_10_10.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = DVTStop_10_10.pdf; sourceTree = "<group>"; };
@@ -240,6 +241,7 @@
 				D08166501E7A0601002BF5CF /* DSP */,
 				D0F0982B1E3882CF00355EB0 /* SoftwareDefinedRadio.swift */,
 				D0CCEA301E515E0F005C6DC0 /* Radio.swift */,
+				D0DA27791F33848D00C8FC53 /* RadioBlock.swift */,
 				D09BB46C1E5B7C31002DEC58 /* Samples.swift */,
 			);
 			name = SDR;
@@ -317,7 +319,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D05DE8531F3297620063B3CB /* enhanced_led_board-7.ttf in Resources */,
-				D0EDB2B61F31949D00B84C4B /* Readme.md in Resources */,
 				D05A116B1E258D4000F2116D /* Assets.xcassets in Resources */,
 				D05A117D1E258D9800F2116D /* MainWindowController.xib in Resources */,
 				D0F098191E38525100355EB0 /* DVTStop_10_10.pdf in Resources */,
@@ -352,6 +353,7 @@
 				D027D4A11E67ABAE0089051F /* FFTBlock.swift in Sources */,
 				D09BB46D1E5B7C31002DEC58 /* Samples.swift in Sources */,
 				D027D4971E6269EF0089051F /* AMDemodulatorBlock.swift in Sources */,
+				D0DA277A1F33848D00C8FC53 /* RadioBlock.swift in Sources */,
 				D0F9183A1E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift in Sources */,
 				D09BB46F1E5B88F3002DEC58 /* FilterCoefficients.swift in Sources */,
 				D022C62B1E29AD3D003FF574 /* RadioDisplayViewController.swift in Sources */,
