@@ -68,7 +68,6 @@ let averageDBUpdatedNotification:       String = "com.getoffmyhack.waveSDR.avera
 let averageDBUpdatedKey:                String = "com.getoffmyhack.waveSDR.averageDBUpdatedKey"
 let averageDBKey:                       String = "com.getoffmyhack.waveSDR.averageDBKey"
 
-
 let squelchPercentUpdatedNotification:  String = "com.getoffmyhack.waveSDR.squelchPercentUpdated"
 let squelchPercentUpdatedKey:           String = "com.getoffmyhack.waveSDR.squelchPercentUpdatedKey"
 let squelchPercentKey:                  String = "com.getoffmyhack.waveSDR.squelchPercentKey"

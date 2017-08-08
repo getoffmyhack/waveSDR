@@ -202,7 +202,7 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
         // start watchdog timer
         
         // set sample index to start dequeuing samples
-        self.sampleIndex = 0
+//        self.sampleIndex = 0
         
         
         self.isRunning = true
@@ -236,9 +236,9 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
     //--------------------------------------------------------------------------
     
     func dequeueSamples() {
-//        if self.isPaused == false {
+        if self.isPaused == false {
             dequeueSamplesWithIndex()
-//        }
+        }
         
     }
     
@@ -265,10 +265,10 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
         
         self.dequeueQueue.async {
 
-//            let rawSamples = self.sampleBuffer[self.sampleIndex]
-//            self.sampleIndex += 1
+            let rawSamples = self.sampleBuffer[self.sampleIndex]
+            self.sampleIndex += 1
             
-            let rawSamples = self.sampleBuffer.popLast()!
+//            let rawSamples = self.sampleBuffer.popLast()!
             
             // get samples count
             let sampleLength = vDSP_Length(rawSamples.count)
