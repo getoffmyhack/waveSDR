@@ -135,19 +135,19 @@ class AnalyzerView: NSView {
             let channelTextParagraphStyle = NSMutableParagraphStyle()
             channelTextParagraphStyle.alignment = .right
             
-            var channelTextAttributes: [String : Any]
+            var channelTextAttributes: [NSAttributedStringKey : Any]
 
             if(centered) {
                 channelTextAttributes = [
-                    NSFontAttributeName:            NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize()),
-                    NSParagraphStyleAttributeName:  channelTextParagraphStyle,
-                    NSForegroundColorAttributeName: NSColor.white.withAlphaComponent(1.00)
+                    NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):            NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize),
+                    NSAttributedStringKey(rawValue: NSAttributedStringKey.paragraphStyle.rawValue):  channelTextParagraphStyle,
+                    NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): NSColor.white.withAlphaComponent(1.00)
                 ]
             } else {
                 channelTextAttributes = [
-                    NSFontAttributeName:            NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize()),
-                    NSParagraphStyleAttributeName:  channelTextParagraphStyle,
-                    NSForegroundColorAttributeName: NSColor.white.withAlphaComponent(0.85)
+                    NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):            NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize),
+                    NSAttributedStringKey(rawValue: NSAttributedStringKey.paragraphStyle.rawValue):  channelTextParagraphStyle,
+                    NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): NSColor.white.withAlphaComponent(0.85)
                 ]
             }
             
@@ -364,20 +364,20 @@ class AnalyzerView: NSView {
 
     override func scrollWheel(with event: NSEvent) {
         
-        if(event.phase == .began) {
+        if(event.phase == NSEvent.Phase.began) {
             if(self.mouseLineTimer.isValid == true) {
                 self.mouseLineTimer.invalidate()
             }
             self.mouseInView = false
         }
         
-        if(event.momentumPhase == .began) {
+        if(event.momentumPhase == NSEvent.Phase.began) {
             if(self.mouseLineTimer.isValid == true) {
                 self.mouseLineTimer.invalidate()
             }
         }
         
-        if(event.phase == .ended || event.momentumPhase == .ended) {
+        if(event.phase == NSEvent.Phase.ended || event.momentumPhase == NSEvent.Phase.ended) {
             
             if(self.mouseLineTimer.isValid == true) {
                 self.mouseLineTimer.invalidate()
@@ -407,7 +407,7 @@ class AnalyzerView: NSView {
     //
     //--------------------------------------------------------------------------
 
-    func resumeMouseLineAfterScroll() {
+    @objc func resumeMouseLineAfterScroll() {
         
         let (frequency, snapLine) = self.delegate.getFrequencyAndSnapLineFor(point: mouseLocation, inView: self)
         let mouseOverChannel = Double(frequency) / 1000000.0

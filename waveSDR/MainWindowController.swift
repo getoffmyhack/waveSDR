@@ -15,11 +15,11 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var deviceToolbarLabel:      NSTextField!
     @IBOutlet weak var centeringToolbarItem:    CenteringSpacerToolbarItem!
     
-    var sdr: SoftwareDefinedRadio
+    @objc var sdr: SoftwareDefinedRadio
     
     var sidebarCollapsed: Bool      =   false
     
-    let deviceLabelToolbarTooltip   =   "Currently selected SDR device."
+    @objc let deviceLabelToolbarTooltip   =   "Currently selected SDR device."
     
     // create main content view controller
     var mainContentViewController   =   MainContentViewController()
@@ -41,11 +41,15 @@ class MainWindowController: NSWindowController {
     
     private var refreshTimer: Timer =   Timer()
 
-    private dynamic var stringForToolBarDeviceLabel: String = ""
+    @objc private dynamic var stringForToolBarDeviceLabel: String = ""
     
-    override var windowNibName: String! {
-        return "MainWindowController"
+    override var windowNibName: NSNib.Name? {
+        return NSNib.Name(rawValue: "MainWindowController")
     }
+    
+//    override var windowNibName: String! {
+//        return "MainWindowController"
+//    }
     
     //--------------------------------------------------------------------------
     //
@@ -210,7 +214,7 @@ class MainWindowController: NSWindowController {
         // sidebar collapsed state --- there should be a better way to do this
         notify.addObserver( self,
                     selector: #selector(updateSidebarButton),
-                        name: NSNotification.Name.NSSplitViewDidResizeSubviews,
+                        name: NSSplitView.didResizeSubviewsNotification,
                       object: nil)
         
         //
@@ -354,7 +358,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedFrequencyUpdatedNotification(_ notification: Notification) {
+    @objc func observedFrequencyUpdatedNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let updatedFrequency = userInfo[frequencyUpdatedKey] as! Int
@@ -371,7 +375,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedSampleRateUpdatedNotification(_ notification: Notification) {
+    @objc func observedSampleRateUpdatedNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let sampleRate = userInfo[sampleRateUpdatedKey] as! Int
@@ -388,7 +392,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedCorrectionUpdatedNotification(_ notification: Notification) {
+    @objc func observedCorrectionUpdatedNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let correction = userInfo[correctionUpdatedKey] as! Int
@@ -405,7 +409,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedSquelchUpdatedNotification(_ notification: Notification) {
+    @objc func observedSquelchUpdatedNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let squelch = userInfo[squelchUpdatedKey] as! Float
@@ -422,7 +426,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedSdrDeviceSelectedNotification(_ notification: Notification) {
+    @objc func observedSdrDeviceSelectedNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let device = userInfo[sdrDeviceSelectedKey] as! SDRDevice
@@ -449,7 +453,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedTunerAutoGainUpdatedNotification(_ notification: Notification) {
+    @objc func observedTunerAutoGainUpdatedNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let autoGain = userInfo[tunerAutoGainUpdatedKey] as! Bool
@@ -466,7 +470,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedTunerGainUpdatedNotification(_ notification: Notification) {
+    @objc func observedTunerGainUpdatedNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let gain = userInfo[tunerGainUpdatedKey] as! Int
@@ -483,7 +487,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedDemodModeUpdatedNotification(_ notification: Notification) {
+    @objc func observedDemodModeUpdatedNotification(_ notification: Notification) {
         
 //        self.refreshTimer.invalidate()
         
@@ -512,7 +516,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedMixerChangeRequestNotification(_ notification: Notification) {
+    @objc func observedMixerChangeRequestNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let newFrequency = userInfo[mixerChangeRequestKey] as! Int
@@ -528,7 +532,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedFrequencyChangeRequestNotification(_ notification: Notification) {
+    @objc func observedFrequencyChangeRequestNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let newFrequency = userInfo[frequencyChangeRequestKey] as! Int
@@ -542,7 +546,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedSDRPauseRequestNotification(_ notification: Notification) {
+    @objc func observedSDRPauseRequestNotification(_ notification: Notification) {
         
         if self.sdr.isRunning {
             self.sdr.isPaused.toggle()
@@ -555,7 +559,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedSDRLiveRequestRequestNotification(_ notification: Notification) {
+    @objc func observedSDRLiveRequestRequestNotification(_ notification: Notification) {
         
         if self.sdr.isRunning == true {
             self.sdr.goLive()
@@ -576,7 +580,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedAverageDBUpdatedNotification(_ notification: Notification) {
+    @objc func observedAverageDBUpdatedNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let db = userInfo[averageDBUpdatedKey] as! Float
@@ -595,7 +599,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedSquelchPercentUpdated(_ notification: Notification) {
+    @objc func observedSquelchPercentUpdated(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let percent = userInfo[squelchPercentUpdatedKey] as! Int
@@ -613,7 +617,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedFFTSamplesUpdatedNotification(_ notification: Notification) {
+    @objc func observedFFTSamplesUpdatedNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let fftSamples = userInfo[fftSamplesUpdatedKey] as! [Float]
@@ -631,7 +635,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func observedToneDecoderUpdatedNotification(_ notification: Notification) {
+    @objc func observedToneDecoderUpdatedNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let tone = userInfo[toneDecoderUpdatedKey] as! Double
@@ -653,12 +657,12 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
     
-    func updateSidebarButton(notification: NSNotification) {
+    @objc func updateSidebarButton(notification: NSNotification) {
         
         if(sidebarSplitViewItem.isCollapsed == true) {
-            sidebarButton.state = NSOffState
+            sidebarButton.state = NSControl.StateValue.off // NSOffState
         } else {
-            sidebarButton.state = NSOnState
+            sidebarButton.state = NSControl.StateValue.on  // NSOnState
         }
         
     }
@@ -677,8 +681,8 @@ class MainWindowController: NSWindowController {
         
         
         // use standard system font and size (as default in IB) as attributes
-        let labelAttributes: [String : Any] = [
-            NSFontAttributeName : NSFont.systemFont(ofSize: NSFont.systemFontSize())
+        let labelAttributes: [NSAttributedStringKey : Any] = [
+            NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue) : NSFont.systemFont(ofSize: NSFont.systemFontSize)
         ]
 
         // get size of attributed string as displayed in toolbar device label
@@ -701,7 +705,7 @@ class MainWindowController: NSWindowController {
     //
     //--------------------------------------------------------------------------
 
-    func updateDisplays() {
+    @objc func updateDisplays() {
 //        self.radioDisplayViewController.signalValue = self.sdr.getStatusFor(key: averageDBKey) as! Float
 //        self.radioDisplayViewController.squelchPercent = String(format: "@ %3d%%", self.sdr.getStatusFor(key: squelchPercentKey) as! Int)
 //        self.radioDisplayViewController.tone            = self.sdr.getStatusFor(key: toneDecoderKey) as! Double
@@ -749,6 +753,7 @@ class MainWindowController: NSWindowController {
 
     
 }
+
 
 
 

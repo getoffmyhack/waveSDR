@@ -28,23 +28,23 @@ class HardwareViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
 
-    dynamic var sampleRateList:         [Int]       = []
-    dynamic var selectedSampleRate:     Int         = 0 {
+    @objc dynamic var sampleRateList:         [Int]       = []
+    @objc dynamic var selectedSampleRate:     Int         = 0 {
         didSet {
             let userInfo: [String : Any] = [sampleRateUpdatedKey : self.selectedSampleRate]
             notify.post(name: Notification.Name(rawValue: sampleRateUpdatedNotification), object: self, userInfo: userInfo)
         }
     }
     
-    dynamic var correctionValue:        Int         = 0 {
+    @objc dynamic var correctionValue:        Int         = 0 {
         didSet {
             let userInfo: [String : Any] = [correctionUpdatedKey : self.correctionValue]
             notify.post(name: Notification.Name(rawValue: correctionUpdatedNotification), object: self, userInfo: userInfo)
         }
     }
     
-    dynamic      var deviceList:        [SDRDevice] = []
-    dynamic weak var selectedDevice:    SDRDevice? {
+    @objc dynamic      var deviceList:        [SDRDevice] = []
+    @objc dynamic weak var selectedDevice:    SDRDevice? {
         didSet {
             let userInfo: [String : Any] = [sdrDeviceSelectedKey: self.selectedDevice!]
             notify.post(name: Notification.Name(rawValue: sdrDeviceSelectedNotification), object: self, userInfo: userInfo)
@@ -56,7 +56,7 @@ class HardwareViewController: NSViewController {
         }
     }
     
-    dynamic var isRunning: Bool = false
+    @objc dynamic var isRunning: Bool = false
     
     //--------------------------------------------------------------------------
     //
@@ -142,8 +142,8 @@ class HardwareViewController: NSViewController {
     let sdrListPopUp:               NSPopUpButton   = {
         let control = NSPopUpButton()
         control.controlSize = .small
-        control.font = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize())
-        control.setContentCompressionResistancePriority(NSLayoutPriorityDefaultLow, for: NSLayoutConstraintOrientation.horizontal)
+        control.font = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
+        control.setContentCompressionResistancePriority(NSLayoutConstraint.Priority.defaultLow, for: NSLayoutConstraint.Orientation.horizontal)
         return control
     }()
     
@@ -181,7 +181,7 @@ class HardwareViewController: NSViewController {
     let sampleRatePopUp:            NSPopUpButton   = {
         let control         = NSPopUpButton()
         control.controlSize = .small
-        control.font        = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize())
+        control.font        = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
         return control
     }()
     
@@ -226,7 +226,7 @@ class HardwareViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
     
-    override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
@@ -312,19 +312,19 @@ class HardwareViewController: NSViewController {
         //
         //----------------------------------------------------------------------
 
-        sdrHeaderStackView.addView(     sdrHeaderLabel,     in: .leading)
-        sdrPopUpStackView.addView(      sdrListPopUp,       in: .leading)
-        separatorStackView.addView(     separatorLine,      in: .leading)
-        detailsHeaderStackView.addView( detailsHeaderLabel, in: .leading)
+        sdrHeaderStackView.addView(     sdrHeaderLabel,     in: NSStackView.Gravity.leading)
+        sdrPopUpStackView.addView(      sdrListPopUp,       in: NSStackView.Gravity.leading)
+        separatorStackView.addView(     separatorLine,      in: NSStackView.Gravity.leading)
+        detailsHeaderStackView.addView( detailsHeaderLabel, in: NSStackView.Gravity.leading)
         
         sampleRateStackView.setViews(
             [sampleRateLabel, sampleRatePopUp],
-            in: .leading
+            in: NSStackView.Gravity.leading
         )
         
         correctionStackView.setViews(
             [correctionLabel, correctionTextField, correctionStepper, correctionPPMLabel],
-            in: .leading
+            in: NSStackView.Gravity.leading
         )
         
         //----------------------------------------------------------------------
@@ -431,24 +431,24 @@ class HardwareViewController: NSViewController {
     
     func setupBindings() {
         
-        let sdrListContentOptions: [String : Any] = [NSNullPlaceholderBindingOption         : "No SDR Devices Found"]
-        let isNotNillEnableOption: [String : Any] = [NSValueTransformerNameBindingOption    : NSValueTransformerName.isNotNilTransformerName]
-        let negateBooleanOption:   [String : Any] = [NSValueTransformerNameBindingOption    : NSValueTransformerName.negateBooleanTransformerName]
+        let sdrListContentOptions: [NSBindingOption : Any] = [NSBindingOption(rawValue: NSBindingOption.nullPlaceholder.rawValue)         : "No SDR Devices Found"]
+        let isNotNillEnableOption: [NSBindingOption : Any] = [NSBindingOption(rawValue: NSBindingOption.valueTransformerName.rawValue)    : NSValueTransformerName.isNotNilTransformerName]
+        let negateBooleanOption:   [NSBindingOption : Any] = [NSBindingOption(rawValue: NSBindingOption.valueTransformerName.rawValue)    : NSValueTransformerName.negateBooleanTransformerName]
 
-        sdrListPopUp.bind(          NSContentBinding,           to: self, withKeyPath: "deviceList",            options: sdrListContentOptions)
-        sdrListPopUp.bind(          NSSelectedObjectBinding,    to: self, withKeyPath: "selectedDevice",        options: nil)
-        sdrListPopUp.bind(          NSEnabledBinding,           to: self, withKeyPath: "selectedDevice",        options: isNotNillEnableOption)
-        sdrListPopUp.bind(          NSEnabledBinding,           to: self, withKeyPath: "isRunning",             options: negateBooleanOption)
+        sdrListPopUp.bind(          NSBindingName.content,           to: self, withKeyPath: "deviceList",            options: sdrListContentOptions)
+        sdrListPopUp.bind(          NSBindingName.selectedObject,    to: self, withKeyPath: "selectedDevice",        options: nil)
+        sdrListPopUp.bind(          NSBindingName.enabled,           to: self, withKeyPath: "selectedDevice",        options: isNotNillEnableOption)
+        sdrListPopUp.bind(          NSBindingName.enabled,           to: self, withKeyPath: "isRunning",             options: negateBooleanOption)
         
-        sampleRatePopUp.bind(       NSContentBinding,           to: self, withKeyPath: "sampleRateList",        options: nil)
-        sampleRatePopUp.bind(       NSSelectedObjectBinding,    to: self, withKeyPath: "selectedSampleRate",    options: nil)
-        sampleRatePopUp.bind(       NSEnabledBinding,           to: self, withKeyPath: "selectedDevice",        options: isNotNillEnableOption)
+        sampleRatePopUp.bind(       NSBindingName.content,           to: self, withKeyPath: "sampleRateList",        options: nil)
+        sampleRatePopUp.bind(       NSBindingName.selectedObject,    to: self, withKeyPath: "selectedSampleRate",    options: nil)
+        sampleRatePopUp.bind(       NSBindingName.enabled,           to: self, withKeyPath: "selectedDevice",        options: isNotNillEnableOption)
         
-        correctionTextField.bind(   NSValueBinding,             to: self, withKeyPath: "correctionValue",       options: nil)
-        correctionTextField.bind(   NSEnabledBinding,           to: self, withKeyPath: "selectedDevice",        options: isNotNillEnableOption)
+        correctionTextField.bind(   NSBindingName.value,             to: self, withKeyPath: "correctionValue",       options: nil)
+        correctionTextField.bind(   NSBindingName.enabled,           to: self, withKeyPath: "selectedDevice",        options: isNotNillEnableOption)
 
-        correctionStepper.bind(     NSValueBinding,             to: self, withKeyPath: "correctionValue",       options: nil)
-        correctionStepper.bind(     NSEnabledBinding,           to: self, withKeyPath: "selectedDevice",        options: isNotNillEnableOption)
+        correctionStepper.bind(     NSBindingName.value,             to: self, withKeyPath: "correctionValue",       options: nil)
+        correctionStepper.bind(     NSBindingName.enabled,           to: self, withKeyPath: "selectedDevice",        options: isNotNillEnableOption)
 
     }
     
@@ -510,7 +510,7 @@ class HardwareViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
 
-    func observedSdrDeviceListNotifcaiton(_ notification: Notification) {
+    @objc func observedSdrDeviceListNotifcaiton(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let sdrDeviceArray = userInfo[sdrDeviceListKey] as! [SDRDevice]
@@ -532,7 +532,7 @@ class HardwareViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
     
-    func observedSDRStartedNotification(_ notification: Notification) {
+    @objc func observedSDRStartedNotification(_ notification: Notification) {
         
         self.isRunning = true
         
@@ -546,7 +546,7 @@ class HardwareViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
     
-    func observedSDRStoppedNotification(_ notification: Notification) {
+    @objc func observedSDRStoppedNotification(_ notification: Notification) {
         
         self.isRunning = false
         

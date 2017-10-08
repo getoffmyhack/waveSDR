@@ -59,7 +59,7 @@ class SpectrogramView: NSView {
         
         let image = self.delegate.getSpectrogramImage()
 
-        if let graphicsContext = NSGraphicsContext.current()?.cgContext {
+        if let graphicsContext = NSGraphicsContext.current?.cgContext {
             graphicsContext.draw(image, in: self.bounds)
         }
     }

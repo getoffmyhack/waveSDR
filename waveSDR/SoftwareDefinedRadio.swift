@@ -15,7 +15,7 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
     
     var workQueue:          DispatchQueue = DispatchQueue(label: "SoftwareDefinedRadio.WorkQueue")
 
-    dynamic var selectedDevice: SDRDevice? {
+    @objc dynamic var selectedDevice: SDRDevice? {
         didSet {
             oldValue?.delegate = nil
             selectedDevice!.delegate = self
@@ -131,7 +131,7 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
     let audioPlayerNode:	AVAudioPlayerNode	= AVAudioPlayerNode()
     
     // Use standard non-interleaved PCM audio.
-    let audioFormat:		AVAudioFormat		= AVAudioFormat(standardFormatWithSampleRate: 48000.0, channels: 1)
+    let audioFormat:		AVAudioFormat		= AVAudioFormat(standardFormatWithSampleRate: 48000.0, channels: 1)!
     
     // audio buffer
     let audioBuffer:		AVAudioPCMBuffer	= AVAudioPCMBuffer()
@@ -324,7 +324,7 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
     //
     //--------------------------------------------------------------------------
     
-    func observedAVAudioEngineConfigurationChangeNotification(_ notification: Notification) {
+    @objc func observedAVAudioEngineConfigurationChangeNotification(_ notification: Notification) {
         
         Swift.print("audio engine config changed!!")
 
@@ -400,7 +400,7 @@ extension SoftwareDefinedRadio {
         var audioBuffer:		AVAudioPCMBuffer
         var audioBufferData:	UnsafeMutablePointer<Float>
         
-        audioBuffer = AVAudioPCMBuffer(pcmFormat: self.audioFormat, frameCapacity: AVAudioFrameCount(samples.count))
+        audioBuffer = AVAudioPCMBuffer(pcmFormat: self.audioFormat, frameCapacity: AVAudioFrameCount(samples.count))!
         audioBuffer.frameLength = AVAudioFrameCount(samples.count)
         
         audioBufferData = (audioBuffer.floatChannelData?[0])!

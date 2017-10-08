@@ -21,7 +21,7 @@ class SidebarViewController: NSViewController {
     //--------------------------------------------------------------------------
     
     var lastSelectedIndex:              Int = 0
-    var selectedIndex:                  Int = 0 {
+    @objc var selectedIndex:                  Int = 0 {
         didSet {
             
             let oldView = childViewControllers[lastSelectedIndex].view
@@ -43,7 +43,7 @@ class SidebarViewController: NSViewController {
     static var headerFontSize:  CGFloat = 10.0
     static var headerFont:      NSFont  = NSFont.boldSystemFont(ofSize: headerFontSize)
     
-    static var labelFontSize:   CGFloat = NSFont.smallSystemFontSize()
+    static var labelFontSize:   CGFloat = NSFont.smallSystemFontSize
     static var labelFont:       NSFont  = NSFont.systemFont(ofSize: labelFontSize)
 
     //--------------------------------------------------------------------------
@@ -135,7 +135,7 @@ class SidebarViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
     
-    override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
 
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
@@ -220,7 +220,7 @@ class SidebarViewController: NSViewController {
         
         selectionStackView.setViews(    [selectionPopUp],   in: .center)
         separatorLineStackView.setViews([separatorLine],    in: .center)
-        containerViewStackView.setViews([containerView],    in: .leading)
+        containerViewStackView.setViews([containerView],    in: NSStackView.Gravity.leading)
         bottomLineStackView.setViews(   [bottomLine],       in: .center)
         
         sidebarStackView.setViews(
@@ -272,8 +272,8 @@ class SidebarViewController: NSViewController {
     
     func setupBindings(){
         
-        selectionPopUp.bind(NSContentBinding,       to: self, withKeyPath: "childViewControllers",  options: nil)
-        selectionPopUp.bind(NSSelectedIndexBinding, to: self, withKeyPath: "selectedIndex",         options: nil)
+        selectionPopUp.bind(NSBindingName.content,       to: self, withKeyPath: "childViewControllers",  options: nil)
+        selectionPopUp.bind(NSBindingName.selectedIndex, to: self, withKeyPath: "selectedIndex",         options: nil)
 
     }
     

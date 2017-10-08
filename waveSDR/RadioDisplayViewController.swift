@@ -30,9 +30,9 @@ class RadioDisplayViewController: NSViewController {
         }
     }
     
-    dynamic var selectedDeviceName: String  = "No SDR Device Selected"
+    @objc dynamic var selectedDeviceName: String  = "No SDR Device Selected"
     
-    dynamic var displayFrequency:   Int = 0
+    @objc dynamic var displayFrequency:   Int = 0
     
     var tunedFrequency:             Int = 0 {
         didSet {
@@ -52,14 +52,14 @@ class RadioDisplayViewController: NSViewController {
         }
     }
     
-    dynamic var tone:               Double  = 0.0
-    dynamic var channelName:        String  = ""
-    dynamic var minDBFSValue:       Double  = -128.0
-    dynamic var maxDBFSValue:       Double  =    0.0
-    dynamic var signalValue:        Float   = -128.0
+    @objc dynamic var tone:               Double  = 0.0
+    @objc dynamic var channelName:        String  = ""
+    @objc dynamic var minDBFSValue:       Double  = -128.0
+    @objc dynamic var maxDBFSValue:       Double  =    0.0
+    @objc dynamic var signalValue:        Float   = -128.0
 
-    dynamic var squelchPercent:     String  = "@ 100%"
-    dynamic var squelchValue:       Float   = 0.00 {
+    @objc dynamic var squelchPercent:     String  = "@ 100%"
+    @objc dynamic var squelchValue:       Float   = 0.00 {
         didSet {
     
             // update level indicator
@@ -71,10 +71,10 @@ class RadioDisplayViewController: NSViewController {
         }
     }
     
-    dynamic var gainSliderMin:      Int     = 0
-    dynamic var gainSliderMax:      Int     = 0
-    dynamic var gainSliderString:   String  = "0.0"
-    dynamic var gainSliderRawValue: Int     = 0 {
+    @objc dynamic var gainSliderMin:      Int     = 0
+    @objc dynamic var gainSliderMax:      Int     = 0
+    @objc dynamic var gainSliderString:   String  = "0.0"
+    @objc dynamic var gainSliderRawValue: Int     = 0 {
         didSet {
             if(gainSliderRawValue == gainSliderMax) {
                 
@@ -196,7 +196,7 @@ class RadioDisplayViewController: NSViewController {
     var displayStackView:           NSStackView = {
         let stackView           = NSStackView()
         stackView.wantsLayer    = true
-        stackView.distribution  = NSStackViewDistribution.fillEqually
+        stackView.distribution  = NSStackView.Distribution.fillEqually
         stackView.spacing       = 8.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -297,12 +297,12 @@ class RadioDisplayViewController: NSViewController {
         let label       = NSTextField(labelWithString: "")
         label.textColor = displayFontColor
         label.font      = displayFont
-        label.setContentCompressionResistancePriority(NSLayoutPriorityDefaultLow, for: .horizontal)
+        label.setContentCompressionResistancePriority(NSLayoutConstraint.Priority.defaultLow, for: .horizontal)
         return label
     }()
     
     var channelNameLabel:           NSTextField = {
-        let fontManager = NSFontManager.shared()
+        let fontManager = NSFontManager.shared
         let font        = fontManager.convert(NSFont.userFixedPitchFont(ofSize: 15.0)!, toHaveTrait: .italicFontMask)
         let label       = NSTextField(labelWithString: "")
         label.textColor = displayFontColor
@@ -460,7 +460,7 @@ class RadioDisplayViewController: NSViewController {
     
     var signalLevelIndicator:       LevelIndicatorWithSquelch   = {
         let signal                  = LevelIndicatorWithSquelch()
-        signal.levelIndicatorStyle  = .continuousCapacityLevelIndicatorStyle
+        signal.levelIndicatorStyle  = .continuousCapacity
         signal.criticalValue        = -10.0
         signal.warningValue         = -30.0
         signal.canDrawConcurrently  = true
@@ -473,7 +473,7 @@ class RadioDisplayViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
     
-    override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
                 
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
@@ -569,7 +569,7 @@ class RadioDisplayViewController: NSViewController {
         
         func configInfoStackViewClippingAndDetatching(_ stackView: NSStackView) {
             
-            stackView.setClippingResistancePriority(NSLayoutPriorityDefaultLow - 1, for: .horizontal)
+            stackView.setClippingResistancePriority(NSLayoutConstraint.Priority(rawValue: NSLayoutConstraint.Priority.RawValue(Int(NSLayoutConstraint.Priority.defaultLow.rawValue) - 1)), for: .horizontal)
 
             
 //            for myView in stackView.views {
@@ -594,36 +594,36 @@ class RadioDisplayViewController: NSViewController {
         configInfoStackViewClippingAndDetatching(squelchStackView)
         
         // build stack view that contains all labels for signal data
-        signalStackView.addView(signalDisplayLabel,             in: .leading)
-        signalStackView.addView(signalValueDisplayLabel,        in: .leading)
-        signalStackView.addView(signalDBFSDisplayLabel,         in: .leading)
+        signalStackView.addView(signalDisplayLabel,             in: NSStackView.Gravity.leading)
+        signalStackView.addView(signalValueDisplayLabel,        in: NSStackView.Gravity.leading)
+        signalStackView.addView(signalDBFSDisplayLabel,         in: NSStackView.Gravity.leading)
         configInfoStackViewClippingAndDetatching(signalStackView)
 
         // build stack view that contains all labels for gain setting
-        gainStackView.addView(gainDisplayLabel,                 in: .leading)
-        gainStackView.addView(gainValueDisplayLabel,            in: .leading)
-        gainStackView.addView(gainDBDisplayLabel,               in: .leading)
+        gainStackView.addView(gainDisplayLabel,                 in: NSStackView.Gravity.leading)
+        gainStackView.addView(gainValueDisplayLabel,            in: NSStackView.Gravity.leading)
+        gainStackView.addView(gainDBDisplayLabel,               in: NSStackView.Gravity.leading)
         configInfoStackViewClippingAndDetatching(gainStackView)
         
-        toneStackView.addView(toneDisplayLabel, in: .leading)
-        toneStackView.addView(toneValueDisplayLabel, in: .leading)
-        toneStackView.addView(toneHZDisplayLabel, in: .leading)
+        toneStackView.addView(toneDisplayLabel, in: NSStackView.Gravity.leading)
+        toneStackView.addView(toneValueDisplayLabel, in: NSStackView.Gravity.leading)
+        toneStackView.addView(toneHZDisplayLabel, in: NSStackView.Gravity.leading)
         configInfoStackViewClippingAndDetatching(toneStackView)
 
         // build stack view for the signal indicator
-        signalLevelStackView.addView(signalLevelIndicator,      in: .leading)
+        signalLevelStackView.addView(signalLevelIndicator,      in: NSStackView.Gravity.leading)
         
         // build stack view which conatins the squelch, signal, gain and level indicator stackviews
-        infoDisplayStackView.addView(gainStackView,             in: .leading)
-        infoDisplayStackView.addView(signalStackView,           in: .leading)
-        infoDisplayStackView.addView(squelchStackView,          in: .leading)
-        infoDisplayStackView.addView(toneStackView,             in: .leading)
+        infoDisplayStackView.addView(gainStackView,             in: NSStackView.Gravity.leading)
+        infoDisplayStackView.addView(signalStackView,           in: NSStackView.Gravity.leading)
+        infoDisplayStackView.addView(squelchStackView,          in: NSStackView.Gravity.leading)
+        infoDisplayStackView.addView(toneStackView,             in: NSStackView.Gravity.leading)
         
         // combine frequency and infoDisplay stackViews into complete displayStackView
         displayStackView.addView(frequencyStackView,            in: .center)
         displayStackView.addView(infoDisplayStackView,          in: .center)
 
-        displayStackView.setClippingResistancePriority(NSLayoutPriorityWindowSizeStayPut - 1, for: .horizontal)
+        displayStackView.setClippingResistancePriority(NSLayoutConstraint.Priority(rawValue: NSLayoutConstraint.Priority.RawValue(Int(NSLayoutConstraint.Priority.windowSizeStayPut.rawValue) - 1)), for: .horizontal)
 
         
         //
@@ -791,27 +791,27 @@ class RadioDisplayViewController: NSViewController {
 
     func setupBindings() {
         
-        frequencyLabel.bind(                NSValueBinding,     to: self, withKeyPath: "displayFrequency",      options: nil)
-        deviceLabel.bind(                   NSValueBinding,     to: self, withKeyPath: "selectedDeviceName",    options: nil)
+        frequencyLabel.bind(                NSBindingName.value,     to: self, withKeyPath: "displayFrequency",      options: nil)
+        deviceLabel.bind(                   NSBindingName.value,     to: self, withKeyPath: "selectedDeviceName",    options: nil)
         
-        squelchValueDisplayLabel.bind(      NSValueBinding,     to: self, withKeyPath: "squelchValue",          options: nil)
-        squelchPercentDisplayLabel.bind(    NSValueBinding,     to: self, withKeyPath: "squelchPercent",        options: nil)
-        gainValueDisplayLabel.bind(         NSValueBinding,     to: self, withKeyPath: "gainSliderString",      options: nil)
-        signalValueDisplayLabel.bind(       NSValueBinding,     to: self, withKeyPath: "signalValue",           options: nil)
-        toneValueDisplayLabel.bind(         NSValueBinding,     to: self, withKeyPath: "tone",                  options: nil)
-        channelNameLabel.bind(              NSValueBinding,     to: self, withKeyPath: "channelName",           options: nil)
+        squelchValueDisplayLabel.bind(      NSBindingName.value,     to: self, withKeyPath: "squelchValue",          options: nil)
+        squelchPercentDisplayLabel.bind(    NSBindingName.value,     to: self, withKeyPath: "squelchPercent",        options: nil)
+        gainValueDisplayLabel.bind(         NSBindingName.value,     to: self, withKeyPath: "gainSliderString",      options: nil)
+        signalValueDisplayLabel.bind(       NSBindingName.value,     to: self, withKeyPath: "signalValue",           options: nil)
+        toneValueDisplayLabel.bind(         NSBindingName.value,     to: self, withKeyPath: "tone",                  options: nil)
+        channelNameLabel.bind(              NSBindingName.value,     to: self, withKeyPath: "channelName",           options: nil)
         
-        gainSlider.bind(                    NSMinValueBinding,  to: self, withKeyPath: "gainSliderMin",         options: nil)
-        gainSlider.bind(                    NSMaxValueBinding,  to: self, withKeyPath: "gainSliderMax",         options: nil)
-        gainSlider.bind(                    NSValueBinding,     to: self, withKeyPath: "gainSliderRawValue",    options: nil)
+        gainSlider.bind(                    NSBindingName.minValue,  to: self, withKeyPath: "gainSliderMin",         options: nil)
+        gainSlider.bind(                    NSBindingName.maxValue,  to: self, withKeyPath: "gainSliderMax",         options: nil)
+        gainSlider.bind(                    NSBindingName.value,     to: self, withKeyPath: "gainSliderRawValue",    options: nil)
         
-        squelchSlider.bind(                 NSMinValueBinding,  to: self, withKeyPath: "minDBFSValue",          options: nil)
-        squelchSlider.bind(                 NSMaxValueBinding,  to: self, withKeyPath: "maxDBFSValue",          options: nil)
-        squelchSlider.bind(                 NSValueBinding,     to: self, withKeyPath: "squelchValue",          options: nil)
+        squelchSlider.bind(                 NSBindingName.minValue,  to: self, withKeyPath: "minDBFSValue",          options: nil)
+        squelchSlider.bind(                 NSBindingName.maxValue,  to: self, withKeyPath: "maxDBFSValue",          options: nil)
+        squelchSlider.bind(                 NSBindingName.value,     to: self, withKeyPath: "squelchValue",          options: nil)
 
-        signalLevelIndicator.bind(          NSMinValueBinding,  to: self, withKeyPath: "minDBFSValue",          options: nil)
-        signalLevelIndicator.bind(          NSMaxValueBinding,  to: self, withKeyPath: "maxDBFSValue",          options: nil)
-        signalLevelIndicator.bind(          NSValueBinding,     to: self, withKeyPath: "signalValue",           options: nil)
+        signalLevelIndicator.bind(          NSBindingName.minValue,  to: self, withKeyPath: "minDBFSValue",          options: nil)
+        signalLevelIndicator.bind(          NSBindingName.maxValue,  to: self, withKeyPath: "maxDBFSValue",          options: nil)
+        signalLevelIndicator.bind(          NSBindingName.value,     to: self, withKeyPath: "signalValue",           options: nil)
 
     }
     
@@ -914,7 +914,7 @@ class RadioDisplayViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
     
-    func observedSdrDeviceSelectedNotification(_ notification: Notification) {
+    @objc func observedSdrDeviceSelectedNotification(_ notification: Notification) {
                 
         if let userInfo = notification.userInfo {
             let device = userInfo[sdrDeviceSelectedKey] as! SDRDevice
@@ -929,7 +929,7 @@ class RadioDisplayViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
     
-    func observedMixerChangeRequestNotification(_ notification: Notification) {
+    @objc func observedMixerChangeRequestNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let newFrequency = userInfo[mixerChangeRequestKey] as! Int
@@ -943,7 +943,7 @@ class RadioDisplayViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
     
-    func observedConverterUpdatedNotification(_ notification: Notification) {
+    @objc func observedConverterUpdatedNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let converter = userInfo[converterUpdatedKey] as! Int
@@ -960,7 +960,7 @@ class RadioDisplayViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
     
-    func observedSdrDeviceInitalizedNotification(_ notification: Notification) {
+    @objc func observedSdrDeviceInitalizedNotification(_ notification: Notification) {
         
             // configure gain slider
             configureGainSlider()
@@ -975,7 +975,7 @@ class RadioDisplayViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
     
-    func observedFrequencyUpdatedNotification(_ notification: Notification) {
+    @objc func observedFrequencyUpdatedNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let updatedFrequency = userInfo[frequencyUpdatedKey] as! Int

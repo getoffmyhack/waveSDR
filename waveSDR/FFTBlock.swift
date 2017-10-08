@@ -93,8 +93,9 @@ class FFTBlock: RadioBlock {
             vDSP_fft_zip(self.fftSetup, &inSamples, vDSP_Stride(1), vDSP_Length(log2(Float(self.fftSize))), FFTDirection(kFFTDirection_Forward))
             
             // normalize fft results ?????
-            var normalize: Float = 1.0/Float32(self.fftSize)
-            var normalizeComplex = DSPSplitComplex(realp: &normalize, imagp: &normalize)
+            var normalizeReal: Float = 1.0/Float32(self.fftSize)
+            var normalizeImag: Float = 1.0/Float32(self.fftSize)
+            var normalizeComplex = DSPSplitComplex(realp: &normalizeReal, imagp: &normalizeImag)
             vDSP_zvzsml(&inSamples, vDSP_Stride(1), &normalizeComplex, &inSamples, vDSP_Stride(1), vDSP_Length(self.fftSize))
             
             // get magnitudes
@@ -107,7 +108,8 @@ class FFTBlock: RadioBlock {
             // In order to avoid taking log10 of zero, an adjusting factor is added in to make the minimum value equal -128dB
             var minDB: Float32 = 1.5849e-13
             //        var minDB: Float32 = 0.0000000001  // min value equeal to -100dBFS
-            vDSP_vsadd(&magnitudes, 1, &minDB, &magnitudes, 1, vDSP_Length(self.fftSize))
+            let inMagnitudes = magnitudes
+            vDSP_vsadd(inMagnitudes, 1, &minDB, &magnitudes, 1, vDSP_Length(self.fftSize))
             
             // convert to dbFS
             var dbScale: Float32 = 1

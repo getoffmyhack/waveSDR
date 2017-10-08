@@ -29,7 +29,7 @@ class TunerViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
     
-    dynamic var tunedFrequency: Int         = 0 {
+    @objc dynamic var tunedFrequency: Int         = 0 {
 
         didSet(previousFrequency) {
             
@@ -88,8 +88,8 @@ class TunerViewController: NSViewController {
         return formatter
     }()
     
-    var demodModeList:          [String]    = ["AM", "NFM", "WFM"]
-    var demodSelected:          Int         = 1 {
+    @objc var demodModeList:          [String]    = ["AM", "NFM", "WFM"]
+    @objc var demodSelected:          Int         = 1 {
         didSet {
             let userInfo: [String : Any] = [demodModeUpdatedKey: self.demodModeList[self.demodSelected] ]
             notify.post(name: Notification.Name(rawValue: demodModeUpdatedNotification), object: self, userInfo: userInfo)
@@ -103,17 +103,17 @@ class TunerViewController: NSViewController {
         }
     }
     
-    var stepBaseList:           [String]    = [ "Hz", "kHz", "MHz" ]
-    var stepSizeList:           [Double]    = [1.0, 2.5, 5.0, 6.25, 7.5, 8.33, 10.0, 12.5, 15.0, 20.0, 25.0, 50.0, 100.0]
+    @objc var stepBaseList:           [String]    = [ "Hz", "kHz", "MHz" ]
+    @objc var stepSizeList:           [Double]    = [1.0, 2.5, 5.0, 6.25, 7.5, 8.33, 10.0, 12.5, 15.0, 20.0, 25.0, 50.0, 100.0]
     var stepBase:               Int         = 1000
     
-    var selectedStepSize:       Double         = 1.0 {
+    @objc var selectedStepSize:       Double         = 1.0 {
         didSet {
             frequencyStep = Double(stepBase) * selectedStepSize
         }
     }
     
-    var selectedStepBase:       String      = "kHz" {
+    @objc var selectedStepBase:       String      = "kHz" {
         didSet {
             switch selectedStepBase {
             case "Hz":
@@ -129,7 +129,7 @@ class TunerViewController: NSViewController {
         }
     }
 
-    var converterFrequency: Int             = 0 {
+    @objc var converterFrequency: Int             = 0 {
         didSet {
             let userInfo: [String : Any] = [converterUpdatedKey: converterFrequency]
             notify.post(name: Notification.Name(rawValue: converterUpdatedNotification), object: self, userInfo: userInfo)
@@ -261,7 +261,7 @@ class TunerViewController: NSViewController {
     var frequencyTextField:     NSTextField = {
         let field           = NSTextField()
         field.controlSize   = .small
-        field.font          = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize())
+        field.font          = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
         field.alignment     = .right
         return field
     }()
@@ -289,7 +289,7 @@ class TunerViewController: NSViewController {
         let control         = NSPopUpButton()
         control.controlSize = .small
         control.alignment   = .center
-        control.font        = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize())
+        control.font        = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
         control.translatesAutoresizingMaskIntoConstraints = false
         return control
     }()
@@ -298,7 +298,7 @@ class TunerViewController: NSViewController {
         let control         = NSPopUpButton()
         control.controlSize = .small
         control.alignment   = .center
-        control.font        = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize())
+        control.font        = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
         control.translatesAutoresizingMaskIntoConstraints = false
         return control
     }()
@@ -318,11 +318,11 @@ class TunerViewController: NSViewController {
     
     var tuneDownButton:         NSButton      = {
         let button = NSButton()
-        button.setButtonType(NSButtonType.momentaryPushIn)
-        button.bezelStyle   = NSBezelStyle.rounded
+        button.setButtonType(NSButton.ButtonType.momentaryPushIn)
+        button.bezelStyle   = NSButton.BezelStyle.rounded
         button.controlSize  = .small
         button.title        = "-"
-        button.font         = NSFont.systemFont(ofSize: NSFont.systemFontSize())
+        button.font         = NSFont.systemFont(ofSize: NSFont.systemFontSize)
         button.alignment    = NSTextAlignment.center
         button.isContinuous = true
         
@@ -331,11 +331,11 @@ class TunerViewController: NSViewController {
 
     var tuneUpButton:           NSButton      = {
         let button = NSButton()
-        button.setButtonType(NSButtonType.momentaryPushIn)
-        button.bezelStyle   = NSBezelStyle.rounded
+        button.setButtonType(NSButton.ButtonType.momentaryPushIn)
+        button.bezelStyle   = NSButton.BezelStyle.rounded
         button.controlSize  = .small
         button.title        = "+"
-        button.font         = NSFont.systemFont(ofSize: NSFont.systemFontSize())
+        button.font         = NSFont.systemFont(ofSize: NSFont.systemFontSize)
         button.alignment    = NSTextAlignment.center
         button.isContinuous = true
         return button
@@ -358,7 +358,7 @@ class TunerViewController: NSViewController {
         let control         = NSPopUpButton()
         control.alignment   = .center
         control.controlSize = .small
-        control.font        = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize())
+        control.font        = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
         return control
     }()
     
@@ -378,7 +378,7 @@ class TunerViewController: NSViewController {
     var converterTextField:     NSTextField = {
         let field           = NSTextField()
         field.controlSize   = .small
-        field.font          = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize())
+        field.font          = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
         field.alignment     = .right
         
         return field
@@ -397,7 +397,7 @@ class TunerViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
     
-    override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
@@ -487,22 +487,22 @@ class TunerViewController: NSViewController {
         //
         //----------------------------------------------------------------------
         
-        vfoHeaderStackView.setViews([vfoHeaderLabel], in: .leading)
+        vfoHeaderStackView.setViews([vfoHeaderLabel], in: NSStackView.Gravity.leading)
         
         frequencyStackView.setViews(
             [frequencyLabel, frequencyTextField, frequencyHzLabel],
-            in: .leading
+            in: NSStackView.Gravity.leading
         )
         
-        stepStackView.setViews([stepLabel, stepSizePopUp, stepBasePopUp], in: .leading)
+        stepStackView.setViews([stepLabel, stepSizePopUp, stepBasePopUp], in: NSStackView.Gravity.leading)
         
-        tuneStackView.setViews([tuneLabel, tuneDownButton, tuneUpButton], in: .leading)
+        tuneStackView.setViews([tuneLabel, tuneDownButton, tuneUpButton], in: NSStackView.Gravity.leading)
         
-        demodStackView.setViews([demodLabel, demodSelction], in: .leading)
+        demodStackView.setViews([demodLabel, demodSelction], in: NSStackView.Gravity.leading)
         
         converterStackView.setViews(
             [converterLabel, converterTextField, converterHzLabel],
-            in: .leading
+            in: NSStackView.Gravity.leading
         )
         converterStackView.isHidden = true
         
@@ -604,20 +604,20 @@ class TunerViewController: NSViewController {
     
     func setupBindings() {
 
-        frequencyTextField.bind(    NSValueBinding,         to: self, withKeyPath: "tunedFrequency",    options: nil)
-        stepSizePopUp.bind(         NSContentValuesBinding, to: self, withKeyPath: "stepSizeList",      options: nil)
-        stepSizePopUp.bind(         NSSelectedValueBinding, to: self, withKeyPath: "selectedStepSize",  options: nil)
-        stepBasePopUp.bind(         NSContentValuesBinding, to: self, withKeyPath: "stepBaseList",      options: nil)
-        stepBasePopUp.bind(         NSSelectedValueBinding, to: self, withKeyPath: "selectedStepBase",  options: nil)
-        demodSelction.bind(         NSContentBinding,       to: self, withKeyPath: "demodModeList",     options: nil)
-        demodSelction.bind(         NSSelectedIndexBinding, to: self, withKeyPath: "demodSelected",     options: nil)
-        converterTextField.bind(    NSValueBinding,         to: self, withKeyPath: "converterFrequency",options: nil)
+        frequencyTextField.bind(    NSBindingName.value,         to: self, withKeyPath: "tunedFrequency",    options: nil)
+        stepSizePopUp.bind(         NSBindingName.contentValues, to: self, withKeyPath: "stepSizeList",      options: nil)
+        stepSizePopUp.bind(         NSBindingName.selectedValue, to: self, withKeyPath: "selectedStepSize",  options: nil)
+        stepBasePopUp.bind(         NSBindingName.contentValues, to: self, withKeyPath: "stepBaseList",      options: nil)
+        stepBasePopUp.bind(         NSBindingName.selectedValue, to: self, withKeyPath: "selectedStepBase",  options: nil)
+        demodSelction.bind(         NSBindingName.content,       to: self, withKeyPath: "demodModeList",     options: nil)
+        demodSelction.bind(         NSBindingName.selectedIndex, to: self, withKeyPath: "demodSelected",     options: nil)
+        converterTextField.bind(    NSBindingName.value,         to: self, withKeyPath: "converterFrequency",options: nil)
 
-        let tuneDownOptions: [String : Any] = [NSSelectorNameBindingOption : "frequencyStepDown"]
-        tuneDownButton.bind(NSTargetBinding, to: self, withKeyPath: "self", options: tuneDownOptions)
+        let tuneDownOptions: [NSBindingOption : Any] = [NSBindingOption(rawValue: NSBindingOption.selectorName.rawValue) : "frequencyStepDown"]
+        tuneDownButton.bind(NSBindingName.target, to: self, withKeyPath: "self", options: tuneDownOptions)
 
-        let tuneUpOptions: [String : Any] = [NSSelectorNameBindingOption : "frequencyStepUp"]
-        tuneUpButton.bind(NSTargetBinding, to: self, withKeyPath: "self", options: tuneUpOptions)
+        let tuneUpOptions: [NSBindingOption : Any] = [NSBindingOption(rawValue: NSBindingOption.selectorName.rawValue) : "frequencyStepUp"]
+        tuneUpButton.bind(NSBindingName.target, to: self, withKeyPath: "self", options: tuneUpOptions)
     }
     
     //--------------------------------------------------------------------------
@@ -681,7 +681,7 @@ class TunerViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
 
-    func frequencyStepDown() {
+    @objc func frequencyStepDown() {
         
         // create an Int value of proposed new frequency
         let newFrequency = self.tunedFrequency - Int(self.frequencyStep)
@@ -697,7 +697,7 @@ class TunerViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
 
-    func frequencyStepUp() {
+    @objc func frequencyStepUp() {
         
         // create an Int value of proposed new frequency
         let newFrequency = self.tunedFrequency + Int(self.frequencyStep)
@@ -720,7 +720,7 @@ class TunerViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
 
-    func observedSdrDeviceSelectedNotification(_ notification: Notification) {
+    @objc func observedSdrDeviceSelectedNotification(_ notification: Notification) {
                 
         if let userInfo = notification.userInfo {
             let device = userInfo[sdrDeviceSelectedKey] as! SDRDevice

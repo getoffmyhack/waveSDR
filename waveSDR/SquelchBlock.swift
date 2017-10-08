@@ -80,12 +80,16 @@ class SquelchBlock: RadioBlock {
         // In order to avoid taking log10 of zero, an adjusting factor is added in to make the minimum value equal -128dB
         var adjustDB128: Float32 = 1.5849e-13
         //        var kAdjust0DB: Float32 = 0.0000000001  // min value equeal to -100dBFS
-        vDSP_vsadd(&magnitudes, vDSP_Stride(1), &adjustDB128, &magnitudes, vDSP_Stride(1), vDSP_Length(samples.count))
+        
+        let inMagnitudes = magnitudes
+        vDSP_vsadd(inMagnitudes, vDSP_Stride(1), &adjustDB128, &magnitudes, vDSP_Stride(1), vDSP_Length(samples.count))
         
         // convert to dBFS: C = α * log10(A/dbScale); α = 20 if flag = 1; α = 10 if flag = 0
         let flag:           UInt32  = 0
         var zeroReference:  Float32 = 1.0
-        vDSP_vdbcon(&magnitudes, vDSP_Stride(1), &zeroReference, &magnitudes, vDSP_Stride(1), vDSP_Length(samples.count), flag)
+        
+        let inMagnitudes2 = magnitudes
+        vDSP_vdbcon(inMagnitudes2, vDSP_Stride(1), &zeroReference, &magnitudes, vDSP_Stride(1), vDSP_Length(samples.count), flag)
 
         // compute average db value
         self.averageDB = magnitudes.reduce(0, +) / Float(magnitudes.count)
@@ -98,7 +102,8 @@ class SquelchBlock: RadioBlock {
         }
 
         // squelch samples if db < squelch value
-        vDSP_vthres(&magnitudes, vDSP_Stride(1), &self.squelch, &magnitudes, vDSP_Stride(1), vDSP_Length(samples.count))
+        let inMagnitudes3 = magnitudes
+        vDSP_vthres(inMagnitudes3, vDSP_Stride(1), &self.squelch, &magnitudes, vDSP_Stride(1), vDSP_Length(samples.count))
         
         // loop through checking for 0 values 
         var squelchCount: Int = 0

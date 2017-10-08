@@ -112,7 +112,7 @@ class CenteringSpacerToolbarItem: NSToolbarItem {
     //
     //--------------------------------------------------------------------------
 
-    override init(itemIdentifier: String) {
+    override init(itemIdentifier: NSToolbarItem.Identifier) {
     
         super.init(itemIdentifier: itemIdentifier)
         initCenteringSpacerItem()
@@ -167,14 +167,14 @@ class CenteringSpacerToolbarItemView: NSView {
         NotificationCenter.default.addObserver(
             self,
             selector:   #selector(windowResized),
-            name:       NSNotification.Name.NSWindowDidResize,
+            name:       NSWindow.didResizeNotification,
             object:     self.window
         )
         
         NotificationCenter.default.addObserver(
             self,
             selector:   #selector(windowResized),
-            name:       NSNotification.Name.NSWindowDidEnterFullScreen,
+            name:       NSWindow.didEnterFullScreenNotification,
             object:     self.window
         )
         
@@ -187,7 +187,7 @@ class CenteringSpacerToolbarItemView: NSView {
     //
     //--------------------------------------------------------------------------
     
-    func windowResized() {
+    @objc func windowResized() {
 
         self.centeringSpacerItem.updateWidth()
         

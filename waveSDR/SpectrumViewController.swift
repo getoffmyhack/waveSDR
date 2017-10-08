@@ -144,7 +144,7 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
     //
     //--------------------------------------------------------------------------
     
-    override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
@@ -213,14 +213,14 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
         NotificationCenter.default.addObserver(
             self,
             selector:   #selector(observedAnalyzerViewFrameDidChage),
-            name:       Notification.Name.NSViewFrameDidChange,
+            name:       NSView.frameDidChangeNotification,
             object:     self.analyzerView
         )
         
         NotificationCenter.default.addObserver(
             self,
             selector:   #selector(observedSpectrogramViewFrameDidChage),
-            name:       Notification.Name.NSViewFrameDidChange,
+            name:       NSView.frameDidChangeNotification,
             object:     self.spectrogramView
         )
         
@@ -659,7 +659,7 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
     //
     //--------------------------------------------------------------------------
     
-    func observedFrequencyUpdatedNotification(_ notification: Notification) {
+    @objc func observedFrequencyUpdatedNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let updatedFrequency = userInfo[frequencyUpdatedKey] as! Int
@@ -676,7 +676,7 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
     //
     //--------------------------------------------------------------------------
     
-    func observedFrequencyStepUpdatedNotification(_ notification: Notification) {
+    @objc func observedFrequencyStepUpdatedNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let updatedFrequencyStep = userInfo[frequencyStepUpdatedKey] as! Double
@@ -693,7 +693,7 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
     //
     //--------------------------------------------------------------------------
     
-    func observedSampleRateUpdatedNotification(_ notification: Notification) {
+    @objc func observedSampleRateUpdatedNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
             let sampleRate  = userInfo[sampleRateUpdatedKey] as! Int
@@ -708,7 +708,7 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
     //
     //--------------------------------------------------------------------------
     
-    func observedSDRStartedNotification(_ notification: Notification) {
+    @objc func observedSDRStartedNotification(_ notification: Notification) {
         
         self.refreshTimer = Timer.init(
             timeInterval:   1.0/60.0,
@@ -729,7 +729,7 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
     //
     //--------------------------------------------------------------------------
     
-    func observedSDRStoppedNotification(_ notification: Notification) {
+    @objc func observedSDRStoppedNotification(_ notification: Notification) {
         self.refreshTimer.invalidate()
         self._isRunning = false
     }
@@ -740,16 +740,16 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
     //
     //--------------------------------------------------------------------------
     
-    func observedAnalyzerViewFrameDidChage() {
+    @objc func observedAnalyzerViewFrameDidChage() {
         
         // setup tracking area
         self.analyzerView.removeTrackingArea(analyzerTrackingArea)
         
-        let trackingAreaOptions: NSTrackingAreaOptions = [
-            .mouseMoved,
-            .mouseEnteredAndExited,
-            .activeInActiveApp,
-            .cursorUpdate
+        let trackingAreaOptions: NSTrackingArea.Options = [
+            NSTrackingArea.Options.mouseMoved,
+            NSTrackingArea.Options.mouseEnteredAndExited,
+            NSTrackingArea.Options.activeInActiveApp,
+            NSTrackingArea.Options.cursorUpdate
         ]
         
         analyzerTrackingArea = NSTrackingArea(rect: self.analyzerView.bounds, options: trackingAreaOptions, owner: self.analyzerView, userInfo: nil)
@@ -763,14 +763,16 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
     //
     //--------------------------------------------------------------------------
 
-    func observedSpectrogramViewFrameDidChage() {
+    @objc func observedSpectrogramViewFrameDidChage() {
+        
+        // get dimensions of spectrogramView
+        let viewHeight = self.spectrogramView.bounds.height
+        let viewWidth  = self.spectrogramView.bounds.width
         
         // drop onto work queue to serialize access to instance vars
         workQueue.async {
             
-            // get dimensions of spectrogramView
-            let viewHeight = self.spectrogramView.bounds.height
-            let viewWidth  = self.spectrogramView.bounds.width
+            
             
             // the number of pixels per line of the image will be equal to or
             // the next higer power of 2 value larger than the width of the view
@@ -983,7 +985,7 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
     //
     //--------------------------------------------------------------------------
 
-    func refreshViews() {
+    @objc func refreshViews() {
         self.analyzerView.updateView()
         self.spectrogramView.updateView()
     }

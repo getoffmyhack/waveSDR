@@ -176,10 +176,10 @@ class ToneDecoderBlock: RadioBlock {
                 self.delayTwo[j] = self.delayOne[j]
                 self.delayOne[j] = self.output[j]
                 
-                self.power[j] =
-                    self.delayTwo[j] * self.delayTwo[j] +
-                    self.delayOne[j] * self.delayOne[j] -
-                    self.coefficients[j] * self.delayOne[j] * self.delayTwo[j]
+                let delayTwoSquared = self.delayTwo[j] * self.delayTwo[j]
+                let delayOneSquared = self.delayOne[j] * self.delayOne[j]
+                
+                self.power[j] = delayTwoSquared + delayOneSquared - self.coefficients[j] * self.delayOne[j] * self.delayTwo[j]
             }
             
         }

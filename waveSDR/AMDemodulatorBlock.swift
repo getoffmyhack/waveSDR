@@ -66,8 +66,9 @@ class AMDemodulatorBlock: RadioBlock {
         // process samples
         vDSP_zvabs(&inSamples, vDSP_Stride(1), &output, vDSP_Stride(1), vDSP_Length(samples.count))
         
+        let input = output
         // apply amGain
-        vDSP_vsmul(&output, vDSP_Stride(1), &amGain, &output, vDSP_Stride(1), vDSP_Length(samples.count))
+        vDSP_vsmul(input, vDSP_Stride(1), &amGain, &output, vDSP_Stride(1), vDSP_Length(samples.count))
         
         // update samples struct
         samples.audio = output
