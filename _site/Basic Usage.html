@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <meta name="description" content="waveSDR : A macOS native desktop RTLSDR Software Defined Radio application.
+">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="/waveSDR/assets/css/style.css?v=3932844d872df5a72f58e8b00aec3266345ef768">
+
+<!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>Basic Usage | waveSDR</title>
+<meta property="og:title" content="Basic Usage" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A macOS native desktop RTLSDR Software Defined Radio application." />
+<meta property="og:description" content="A macOS native desktop RTLSDR Software Defined Radio application." />
+<link rel="canonical" href="http://localhost:4000/waveSDR/Basic%20Usage.html" />
+<meta property="og:url" content="http://localhost:4000/waveSDR/Basic%20Usage.html" />
+<meta property="og:site_name" content="waveSDR" />
+<script type="application/ld+json">
+{"name":null,"description":"A macOS native desktop RTLSDR Software Defined Radio application.","author":null,"@type":"WebPage","url":"http://localhost:4000/waveSDR/Basic%20Usage.html","publisher":null,"image":null,"headline":"Basic Usage","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="http://github.com/getoffmyhack/waveSDR">View on GitHub</a>
+
+          <h1 id="project_title">waveSDR</h1>
+          <h2 id="project_tagline">A macOS native desktop RTLSDR Software Defined Radio application.
+</h2>
+
+          
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <blockquote>
+  <p><em>This documentation, like the application itself, is in a very early stage.  Things will be constantly changing and I will attempt to keep updated and grow the documentation as I continue developing waveSDR.  Also, this documentation should be considered incomplete</em></p>
+</blockquote>
+
+<ul>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#main-screen">Main Screen</a>
+    <ul>
+      <li><a href="#sidebar">Sidebar</a>
+        <ul>
+          <li><a href="#hardware">Hardware</a></li>
+          <li><a href="#tuner">Tuner</a></li>
+        </ul>
+      </li>
+      <li><a href="#main-display">Main Display</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="overview">Overview</h1>
+
+<p>waveSDR started as means for me to learn several new programming topics including macOS desktop application programming, Apple’s Swift language and DSP techniques. Therefore, most all UI design decisions are based off of what I feel were best suited for my usage and abilities as I learn the Cocoa frameworks.  This may or may not be the best or most user friendly way of doing things, and as I continue to develop waveSDR, controls and displays may drastically change from one minor revision to another as I keep experimenting with new features.  With that said, I will most likely continue with the current UI scheme, where, as described below, there will be a sidebar which will contain most of the “radio time” controls, a main section which contains the “radio display”, the “spectrum display”, and as I continue to add features, will include other displays such as a channel / memory list, and other features that I will add.</p>
+
+<h1 id="main-screen">Main Screen</h1>
+
+<p>waveSDR has several distinct UI sections which are either display areas or control areas, and in some cases, both display and control areas :).  The most obvious sections are the sidebar and the main display.  The sidebar has multiple sets of controls, selected via a drop down menu.  The main display currently contains the “radio” view and the “spectrum” view.  The radio view contains the display of the radio indications such as frequency, squelch level, current signal strength, etc. and also contains the most used controls for the overall radio.  The spectrum display contains the analyzer and the spectrogram views.</p>
+
+<p><a href="/waveSDR/assets/images/overview-ss-1440w.png"><img src="/waveSDR/assets/images/overview-ss-600w.png" alt="image" /></a></p>
+
+<h2 id="sidebar">Sidebar</h2>
+
+<p>The sidebar is where most of the controls are located, currently, there are only the most basic controls needed for operation.  The sidebar controls are grouped by their functions and include Hardware controls and Tuner controls.  More controls will be added in future versions such as DSP, Scanner and Audio controls, to name a few.</p>
+
+<h3 id="hardware">Hardware</h3>
+
+<p>The Hardware controls are used to select the SDR hardware device and aspects of the device itself.  Currently, waveSDR only supports the RTLSDR device, but I fully intend to add more devices are the applications matures.</p>
+
+<p>Upon selecting the SDR device, the configuration options allow changing the sample rate and the frequency correction.  Right now, the sample rates of 960000 and 2400000 samples per second are the only options available.  This is due to limitations in my current DSP implementation, and will change in a future version.  The frequency correction is passed to the RTLSDR driver and is used to “fine tune” the device.</p>
+
+<h3 id="tuner">Tuner</h3>
+
+<p>The Tuner controls are used to tune the radio to specific frequencies using the selected demod mode.  Also included are controls for changing the step size and buttons for stepping through frequencies either up or down.</p>
+
+<p>The <strong>Frequency</strong> input is used to change the center frequency of the SDR device.  Input can be in one of two formats, the first being the raw frequency in Hertz, input without any additional characters.  The frequency can also be entered by using the ‘.’ character as the thousand separater.  For example, if you want to tune to 146.940 MHz, it could be entered as 146940000, or 146.940.000.</p>
+
+<p>The <strong>Step</strong> control is used to adjust the change in frequency while using the <strong>Tune</strong> controls.  The <strong>Step</strong> size also controls the the frequency line while the mouse is within the spectrum analyzer.</p>
+
+
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        
+        <p class="copyright">waveSDR maintained by <a href="http://github.com/getoffmyhack">getoffmyhack</a></p>
+        
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>
