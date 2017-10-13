@@ -179,6 +179,7 @@ GEM
     minitest (5.10.3)
     multipart-post (2.0.0)
     net-dns (0.8.0)
+    netrc (0.11.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
     octokit (4.7.0)
@@ -214,7 +215,9 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   jekyll-feed (~> 0.6)
+  jekyll-github-metadata
   minima (~> 2.0)
+  netrc
   tzinfo-data
 
 BUNDLED WITH

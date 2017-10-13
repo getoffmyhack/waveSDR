@@ -17,20 +17,12 @@ github_username:  getoffmyhack
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-slate
+theme: jekyll-theme-midnight
 plugins:
   - jekyll-feed
+  - jekyll-github-metadata
 
 imagepath: '/assets/images'
 
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+repository: getoffmyhack/waveSDR
+
