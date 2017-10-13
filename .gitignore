@@ -87,3 +87,5 @@ fastlane/screenshots
 fastlane/test_output
 
 # End of https://www.gitignore.io/api/swift,macos
+
+github-api-test.md
