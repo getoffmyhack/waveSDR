@@ -106,16 +106,17 @@ class AnalyzerView: NSView {
             if(centered) {
                 let frequencyLineColor = NSColor.white.withAlphaComponent(1.0)
                 frequencyLineColor.set()
+                frequencyLine.lineWidth = 1.5
             } else {
                 let frequencyLineColor = NSColor.white.withAlphaComponent(0.6)
                 frequencyLineColor.set()
+                frequencyLine.lineWidth = 1.0
             }
             
             frequencyLine.move(to: NSPoint(x: mouseLocation.x, y:  0 ))
             frequencyLine.line(to: NSPoint(x: mouseLocation.x, y: mouseLocation.y - 2.0))
             frequencyLine.move(to: NSPoint(x: mouseLocation.x, y: mouseLocation.y + 2.0))
             frequencyLine.line(to: NSPoint(x: mouseLocation.x, y: self.bounds.height   ))
-            frequencyLine.lineWidth = 1.0
             frequencyLine.stroke()
             
             let crossLineMargin: CGFloat = 10.0

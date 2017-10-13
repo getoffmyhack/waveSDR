@@ -61,6 +61,7 @@
 		D027D4A81E6E3BE90089051F /* SpectrogramView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrogramView.swift; sourceTree = "<group>"; };
 		D02AA8AE1E3C168500218374 /* SDRDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDRDevice.swift; sourceTree = "<group>"; };
 		D02AA8B01E3D925900218374 /* waveSDRNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = waveSDRNotifications.swift; sourceTree = "<group>"; };
+		D049FBA91F8F157600C69135 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 		D05A11651E258D4000F2116D /* waveSDR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = waveSDR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05A11681E258D4000F2116D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D05A116A1E258D4000F2116D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -149,6 +150,7 @@
 		D05A115C1E258D4000F2116D = {
 			isa = PBXGroup;
 			children = (
+				D049FBA91F8F157600C69135 /* screenshot.png */,
 				D0EDB2B51F31949D00B84C4B /* Readme.md */,
 				D05A11671E258D4000F2116D /* waveSDR */,
 				D05A11661E258D4000F2116D /* Products */,

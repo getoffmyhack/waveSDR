@@ -44,7 +44,7 @@ class MainWindowController: NSWindowController {
     @objc private dynamic var stringForToolBarDeviceLabel: String = ""
     
     override var windowNibName: NSNib.Name? {
-        return NSNib.Name(rawValue: "MainWindowController")
+        return NSNib.Name("MainWindowController")
     }
     
 //    override var windowNibName: String! {

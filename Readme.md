@@ -4,6 +4,8 @@ A macOS native desktop Software Defined Radio application using the RTL-SDR USB 
 
 **NB**:  This is purely experimental software.  I am using this application as a platform for teaching myself macOS desktop application programming as well as DSP techniques.  As it is, there are numerous sections of code where improvement is needed.
 
+![Screenshot](screenshot.png)
+
 Features:
 
 * RTL-SDR hardware
@@ -14,5 +16,3 @@ Features:
 * FM Wide Demodulator (mono only)
 * Mixer Tuning
 * Swipe to tune
-
-
