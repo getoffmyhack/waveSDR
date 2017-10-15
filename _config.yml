@@ -23,6 +23,7 @@ plugins:
   - jekyll-github-metadata
 
 imagepath: '/assets/images'
+screenshotpath: '/assets/screenshots'
 
 repository: getoffmyhack/waveSDR
 

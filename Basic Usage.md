@@ -34,6 +34,8 @@ waveSDR has several distinct UI sections which are either display areas or contr
 
 ## Toolbar
 
+***
+
 The toolbar contains the application controls.  The first button is the standard "Hide / Show Sidebar", while the second button starts and stops the data stream from the RTLSDR device.
 
 ## Sidebar

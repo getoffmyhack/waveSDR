@@ -1,0 +1,21 @@
+
+
+- name: 960000sps 
+  image: 650w
+  description: "Full Screen, No Sidebar, 960000 samples per second."
+
+- name: tonedecode
+  image: 650w
+  description: "Note the <strong><em>Tone: 103.50 Hz</em></strong> decoded from a local amatuer repeater."
+
+- name: fmbroadcast
+  image: 650w
+  description: "FM Broadcast reception showing multiple stations."
+
+- name: minimode
+  image: full
+  description: "Minimode - The window reduced to its smallest size."
+
+- name: screenshot
+  image: 650w
+  description: "Busy evening in the public service band."

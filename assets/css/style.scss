@@ -13,3 +13,19 @@
 #header nav li.menu {
     float: left;
 }
+
+a, figure {
+    display: inline-block;
+}
+
+figure.screenshot {
+    border-color: #353535;
+    border-style: solid;
+    border-width: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+
+    figcaption {
+        text-align: center;
+    }
+}
