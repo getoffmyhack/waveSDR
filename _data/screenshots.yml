@@ -6,7 +6,7 @@
 
 - name: tonedecode
   image: 650w
-  description: "Note the <strong><em>Tone: 103.50 Hz</em></strong> decoded from a local amatuer repeater."
+  description: "Note the <strong><em>Tone: 103.50 Hz</em></strong> decoded from a local amateur repeater."
 
 - name: fmbroadcast
   image: 650w

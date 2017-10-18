@@ -6,7 +6,7 @@ order: 1
 ---
 # Basic Usage
 
->*This documentation, like the application itself, is in a very early stage.  Things will be constantly changing and I will attempt to keep updated and grow the documentation as I continue developing waveSDR.  Also, this documentation should be considered incomplete.*
+>*This documentation, like the application itself, is in a very early stage.  Things will be constantly changing and I will attempt to keep updated and grow the documentation as I continue developing waveSDR.  This documentation should also be considered incomplete.*
 
 * [Overview](#overview)
 * [Main Window](#main-window)

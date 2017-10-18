@@ -10,6 +10,10 @@ title: waveSDR
 <iframe width="560" height="420" src="http://www.youtube.com/embed/oHg5SJYRHA0?color=white&theme=light"></iframe>
 -->
 
+>Welcome to **waveSDR**, a macOS native desktop RTLSDR software defined radio application, written in Swift.  This is a work-in-progress and as it stands, is in a very early stage.  Although the first release appears to be quite stable, there may be plenty of unseen problems.  Also note, I am designing and writing this application as a means to better learn several different programming concepts.  With that said, there are many areas with "conflicting" code where I solve the same problem by experimenting with different methods and concepts and many areas where the overall design is still in experimental stage.  Please view the technical documentation for an overview of code design and concepts.
+
+>This site is also in it's earliest stages and will be updated (or completely changed) as I continue to work on both the application and this project site.
+
 ![waveSDR]({{ site.baseurl }}{{ site.imagepath }}/screenshot.png)
 
 ## Releases
