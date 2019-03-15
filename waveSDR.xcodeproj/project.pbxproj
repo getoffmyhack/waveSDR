@@ -21,6 +21,7 @@
 		D027D4A91E6E3BE90089051F /* SpectrogramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027D4A81E6E3BE90089051F /* SpectrogramView.swift */; };
 		D02AA8AF1E3C168500218374 /* SDRDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA8AE1E3C168500218374 /* SDRDevice.swift */; };
 		D02AA8B11E3D925900218374 /* waveSDRNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA8B01E3D925900218374 /* waveSDRNotifications.swift */; };
+		D032940B223B3648006A6ED0 /* librtlsdr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D032940A223B3648006A6ED0 /* librtlsdr.a */; };
 		D05A11691E258D4000F2116D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05A11681E258D4000F2116D /* AppDelegate.swift */; };
 		D05A116B1E258D4000F2116D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D05A116A1E258D4000F2116D /* Assets.xcassets */; };
 		D05A116E1E258D4000F2116D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05A116C1E258D4000F2116D /* MainMenu.xib */; };
@@ -39,7 +40,6 @@
 		D0DA277A1F33848D00C8FC53 /* RadioBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DA27791F33848D00C8FC53 /* RadioBlock.swift */; };
 		D0F098181E38525100355EB0 /* DVTRun_10_10.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0F098161E38525100355EB0 /* DVTRun_10_10.pdf */; };
 		D0F098191E38525100355EB0 /* DVTStop_10_10.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0F098171E38525100355EB0 /* DVTStop_10_10.pdf */; };
-		D0F098201E386BB300355EB0 /* librtlsdr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F0981E1E386BB300355EB0 /* librtlsdr.a */; };
 		D0F098211E386BB300355EB0 /* libusb-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F0981F1E386BB300355EB0 /* libusb-1.0.a */; };
 		D0F098291E38734D00355EB0 /* RTLSDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F098281E38734D00355EB0 /* RTLSDR.swift */; };
 		D0F0982C1E3882CF00355EB0 /* SoftwareDefinedRadio.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F0982B1E3882CF00355EB0 /* SoftwareDefinedRadio.swift */; };
@@ -61,6 +61,7 @@
 		D027D4A81E6E3BE90089051F /* SpectrogramView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrogramView.swift; sourceTree = "<group>"; };
 		D02AA8AE1E3C168500218374 /* SDRDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDRDevice.swift; sourceTree = "<group>"; };
 		D02AA8B01E3D925900218374 /* waveSDRNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = waveSDRNotifications.swift; sourceTree = "<group>"; };
+		D032940A223B3648006A6ED0 /* librtlsdr.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = librtlsdr.a; sourceTree = "<group>"; };
 		D049FBA91F8F157600C69135 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 		D05A11651E258D4000F2116D /* waveSDR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = waveSDR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05A11681E258D4000F2116D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,7 +86,6 @@
 		D0F098171E38525100355EB0 /* DVTStop_10_10.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = DVTStop_10_10.pdf; sourceTree = "<group>"; };
 		D0F0981C1E386B6300355EB0 /* rtl-sdr_export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "rtl-sdr_export.h"; sourceTree = "<group>"; };
 		D0F0981D1E386B6300355EB0 /* rtl-sdr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "rtl-sdr.h"; sourceTree = "<group>"; };
-		D0F0981E1E386BB300355EB0 /* librtlsdr.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = librtlsdr.a; sourceTree = "<group>"; };
 		D0F0981F1E386BB300355EB0 /* libusb-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusb-1.0.a"; sourceTree = "<group>"; };
 		D0F098221E386CF900355EB0 /* waveSDR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "waveSDR-Bridging-Header.h"; sourceTree = "<group>"; };
 		D0F098281E38734D00355EB0 /* RTLSDR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTLSDR.swift; sourceTree = "<group>"; };
@@ -98,8 +98,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D032940B223B3648006A6ED0 /* librtlsdr.a in Frameworks */,
 				D0F098211E386BB300355EB0 /* libusb-1.0.a in Frameworks */,
-				D0F098201E386BB300355EB0 /* librtlsdr.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,7 +210,7 @@
 		D0F0981B1E386B3500355EB0 /* librtlsdr */ = {
 			isa = PBXGroup;
 			children = (
-				D0F0981E1E386BB300355EB0 /* librtlsdr.a */,
+				D032940A223B3648006A6ED0 /* librtlsdr.a */,
 				D0F0981F1E386BB300355EB0 /* libusb-1.0.a */,
 				D0F0981C1E386B6300355EB0 /* rtl-sdr_export.h */,
 				D0F0981D1E386B6300355EB0 /* rtl-sdr.h */,
@@ -430,7 +430,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -482,7 +482,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
