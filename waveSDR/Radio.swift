@@ -344,6 +344,22 @@ extension Radio {
     
     //--------------------------------------------------------------------------
     //
+    // resetToneDecoder()
+    //
+    // update the mixer frequency
+    //
+    //--------------------------------------------------------------------------
+    
+    func resetToneDecoder() {
+        for i in 0..<_blocks.count {
+            if(_blocks[i].name == "ToneDecoder") {
+                (_blocks[i] as! ToneDecoderBlock).decoderState = .reset
+            }
+        }
+    }
+    
+    //--------------------------------------------------------------------------
+    //
     // getRadioStatusForKey()
     //
     // queires radio blocks asking for a specific key to get status data

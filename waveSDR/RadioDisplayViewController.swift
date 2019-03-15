@@ -169,7 +169,6 @@ class RadioDisplayViewController: NSViewController {
         let stackView           = NSStackView()
         stackView.wantsLayer    = true
         stackView.orientation   = .vertical
-        stackView.wantsLayer    = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()

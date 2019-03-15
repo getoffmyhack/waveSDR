@@ -131,8 +131,8 @@
 		D022C6261E272DA8003FF574 /* DisplayView */ = {
 			isa = PBXGroup;
 			children = (
-				D0C6A0C81E2C99E600D05D4D /* LevelIndicatorWithSquelch.swift */,
 				D022C62A1E29AD3D003FF574 /* RadioDisplayViewController.swift */,
+				D0C6A0C81E2C99E600D05D4D /* LevelIndicatorWithSquelch.swift */,
 			);
 			name = DisplayView;
 			sourceTree = "<group>";
@@ -506,7 +506,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "waveSDR/waveSDR-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "";
 			};
@@ -527,7 +527,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.getoffmyhack.waveSDR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "waveSDR/waveSDR-Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "";
 			};

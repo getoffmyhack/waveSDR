@@ -14,6 +14,7 @@ class ToneDecoderBlock: RadioBlock {
         case    idle
         case    running
         case    locked
+        case    reset
     }
     
     let π: Double = Double.pi
@@ -104,16 +105,21 @@ class ToneDecoderBlock: RadioBlock {
                     self.resetFilter()
                 }
             } else {
-                if(self.decoderState != .locked) {
+                if(self.decoderState != .locked && self.decoderState != .reset) {
                     self.decoderState = .running
                 }
             }
             
             // check which state
             switch self.decoderState {
+            case .reset:
+                self.resetFilter()
+                self.decoderState = .running
+                break
             
             case .running:
                 self.getTone(samples)
+                break
                 
             default:
                 break
@@ -137,6 +143,8 @@ class ToneDecoderBlock: RadioBlock {
 
     func resetFilter() {
         
+        self.tone = 0.0
+
         let count = self.coefficients.count
         
         self.output.removeAll(keepingCapacity: true)
@@ -150,8 +158,6 @@ class ToneDecoderBlock: RadioBlock {
         self.delayTwo       = Array(repeating: 0.0, count: count)
         self.power          = Array(repeating: 0.0, count: count)
         self.relativePower  = Array(repeating: 0,   count: count)
-
-        self.tone = 0.0
         
         self.tempSampleCount = 0
         

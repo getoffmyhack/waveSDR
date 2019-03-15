@@ -84,6 +84,7 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
     var localOscillator:        Int = 0 {
         didSet {
             self.radio?.updateMixer(oscillator: localOscillator)
+            self.radio?.resetToneDecoder();
         }
     }
     
@@ -130,11 +131,17 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
     // The player node schedules the playback of the audio buffers.
     let audioPlayerNode:	AVAudioPlayerNode	= AVAudioPlayerNode()
     
+    // filter node creates high-pass filter
+    let audioFilterNode:    AVAudioUnitEQ       =  AVAudioUnitEQ(numberOfBands: 1)
+    var audioFilterParams:  AVAudioUnitEQFilterParameters?
+
+    
     // Use standard non-interleaved PCM audio.
     let audioFormat:		AVAudioFormat		= AVAudioFormat(standardFormatWithSampleRate: 48000.0, channels: 1)!
     
     // audio buffer
     let audioBuffer:		AVAudioPCMBuffer	= AVAudioPCMBuffer()
+    
 
     //--------------------------------------------------------------------------
     //
@@ -164,9 +171,20 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
         
         // configure audio system
         // Attach and connect the player node.
+        audioFilterParams = audioFilterNode.bands.first
+        audioFilterNode.bypass = false
+        
+        audioFilterParams!.filterType = .highPass
+        audioFilterParams!.frequency = 500
+        audioFilterParams!.bypass = false
+        
+        audioEngine.attach(audioFilterNode)
         audioEngine.attach(audioPlayerNode)
-//        audioEngine.connect(audioPlayerNode, to: audioEngine.mainMixerNode, format: audioFormat)
-        audioEngine.connect(audioPlayerNode, to: audioEngine.outputNode, format: audioFormat)
+        
+        audioEngine.connect(audioPlayerNode, to: audioFilterNode, format: audioFormat)
+        audioEngine.connect(audioFilterNode, to: audioEngine.mainMixerNode, format: audioFormat)
+//        audioEngine.connect(audioFilterNode, to: audioEngine.outputNode, format: audioFormat)
+
         
         NotificationCenter.default.addObserver(
             self,
@@ -265,10 +283,10 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
         
         self.dequeueQueue.async {
 
-            let rawSamples = self.sampleBuffer[self.sampleIndex]
-            self.sampleIndex += 1
+//            let rawSamples = self.sampleBuffer[self.sampleIndex]
+//            self.sampleIndex += 1
             
-//            let rawSamples = self.sampleBuffer.popLast()!
+            let rawSamples = self.sampleBuffer.popLast()!
             
             // get samples count
             let sampleLength = vDSP_Length(rawSamples.count)

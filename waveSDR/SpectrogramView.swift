@@ -86,11 +86,11 @@ class SpectrogramView: NSView {
         
         if(theEvent.clickCount == 1) {
 
-            self.delegate.togglePause()
+//             self.delegate.togglePause()
             
         } else if(theEvent.clickCount == 2) {
             
-            self.delegate.goLive()
+//            self.delegate.goLive()
             
         }
         
