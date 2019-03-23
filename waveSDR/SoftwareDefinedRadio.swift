@@ -48,6 +48,18 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
         }
     }
     
+    var highPassCutoff:    Int    = 0 {
+        didSet {
+            self.audioFilterParams.frequency = Float(self.highPassCutoff)
+        }
+    }
+    
+    var highPassBypass:    Bool    = false {
+        didSet {
+            self.audioFilterParams.bypass = self.highPassBypass
+        }
+    }
+    
     var sampleRate:             Int    = 2400000 {
         didSet {
             if let sdr = selectedDevice {
@@ -133,7 +145,7 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
     
     // filter node creates high-pass filter
     let audioFilterNode:    AVAudioUnitEQ       =  AVAudioUnitEQ(numberOfBands: 1)
-    var audioFilterParams:  AVAudioUnitEQFilterParameters?
+    var audioFilterParams:  AVAudioUnitEQFilterParameters
 
     
     // Use standard non-interleaved PCM audio.
@@ -152,7 +164,8 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
     override init() {
         
         radioQueue  = DispatchQueue(label: "com.getoffmyhack.wavesdr.sdrQueue", attributes: [])
-        
+        audioFilterParams = audioFilterNode.bands.first!
+
         super.init()
 
         //----------------------------------------------------------------------
@@ -171,12 +184,11 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
         
         // configure audio system
         // Attach and connect the player node.
-        audioFilterParams = audioFilterNode.bands.first
         audioFilterNode.bypass = false
         
-        audioFilterParams!.filterType = .highPass
-        audioFilterParams!.frequency = 500
-        audioFilterParams!.bypass = false
+        audioFilterParams.filterType = .highPass
+        audioFilterParams.frequency = 500
+        audioFilterParams.bypass = false
         
         audioEngine.attach(audioFilterNode)
         audioEngine.attach(audioPlayerNode)

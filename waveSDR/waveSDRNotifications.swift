@@ -62,6 +62,12 @@ let squelchUpdatedKey:                  String = "com.getoffmyhack.waveSDR.squel
 let demodModeUpdatedNotification:       String = "com.getoffmyhack.waveSDR.demodModeUpdated"
 let demodModeUpdatedKey:                String = "com.getoffmyhack.waveSDR.demodModeUpdatedKey"
 
+let highPassCutoffUpdatedNotification:  String = "com.getoffmyhack.waveSDR.highPassCutoffUpdated"
+let highPassCutoffUpdatedKey:           String = "com.getoffmyhack.waveSDR.highPassCutoffUpdatedKey"
+
+let highPassBypassUpdatedNotification:  String = "com.getoffmyhack.waveSDR.highPassBypassUpdated"
+let highPassBypassUpdatedKey:           String = "com.getoffmyhack.waveSDR.highPassBypassUpdatedKey"
+
 // report notifications from the radio
 
 let averageDBUpdatedNotification:       String = "com.getoffmyhack.waveSDR.averageDBUpdated"

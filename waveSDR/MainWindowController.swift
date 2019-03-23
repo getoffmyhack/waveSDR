@@ -32,6 +32,7 @@ class MainWindowController: NSWindowController {
     var sidebarViewController       =   SidebarViewController()
     var hardwareViewController      =   HardwareViewController()
     var tunerViewController         =   TunerViewController()
+    var audioOutViewController      =   AudioOutViewController()
     
     // create split view items for content view controllers
     var displaySplitViewItem        =   NSSplitViewItem()
@@ -133,6 +134,7 @@ class MainWindowController: NSWindowController {
         tunerViewController.demodSelected       = 1
         tunerViewController.selectedStepBase    = "kHz"
         tunerViewController.selectedStepSize    = 1
+        audioOutViewController.highPassCutoff   = 300
         
     }
     
@@ -158,6 +160,7 @@ class MainWindowController: NSWindowController {
         // build sidebar controller
         self.sidebarViewController.addChildViewController(hardwareViewController)
         self.sidebarViewController.addChildViewController(tunerViewController)
+        self.sidebarViewController.addChildViewController(audioOutViewController)
 
         // KLUDGE:
         // set inital sidebar state - used to keep toolbar button in sync
@@ -234,6 +237,20 @@ class MainWindowController: NSWindowController {
             self,
             selector:   #selector(observedFrequencyUpdatedNotification(_:)),
             name:       NSNotification.Name(rawValue: frequencyUpdatedNotification),
+            object:     nil
+        )
+        
+        notify.addObserver(
+            self,
+            selector:   #selector(observedHighPassCutoffUpdatedNotification(_:)),
+            name:       NSNotification.Name(rawValue: highPassCutoffUpdatedNotification),
+            object:     nil
+        )
+        
+        notify.addObserver(
+            self,
+            selector:   #selector(observedHighPassBypassUpdatedNotification(_:)),
+            name:       NSNotification.Name(rawValue: highPassBypassUpdatedNotification),
             object:     nil
         )
         
@@ -475,6 +492,40 @@ class MainWindowController: NSWindowController {
         if let userInfo = notification.userInfo {
             let gain = userInfo[tunerGainUpdatedKey] as! Int
             sdr.tunerGain = gain
+        }
+        
+    }
+    
+    //--------------------------------------------------------------------------
+    //
+    // observedHighPassCutoffUpdatedNotification()
+    //
+    // the frequency has been changed
+    //
+    //--------------------------------------------------------------------------
+    
+    @objc func observedHighPassCutoffUpdatedNotification(_ notification: Notification) {
+        
+        if let userInfo = notification.userInfo {
+            let updatedFrequency = userInfo[highPassCutoffUpdatedKey] as! Int
+            sdr.highPassCutoff = updatedFrequency
+        }
+        
+    }
+    
+    //--------------------------------------------------------------------------
+    //
+    // observedHighPassBypassUpdatedNotification()
+    //
+    // the frequency has been changed
+    //
+    //--------------------------------------------------------------------------
+    
+    @objc func observedHighPassBypassUpdatedNotification(_ notification: Notification) {
+        
+        if let userInfo = notification.userInfo {
+            let bypass = userInfo[highPassBypassUpdatedKey] as! Bool
+            sdr.highPassBypass = bypass
         }
         
     }
