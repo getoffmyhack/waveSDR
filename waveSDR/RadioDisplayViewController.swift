@@ -990,6 +990,8 @@ class RadioDisplayViewController: NSViewController {
     //--------------------------------------------------------------------------
     
     func configureGainSlider() {
+        
+//        print("Device: \(selectedDevice)")
         self.gainValueList = selectedDevice!.tunerGainArray()
     }
     

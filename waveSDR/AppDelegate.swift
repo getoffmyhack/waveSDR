@@ -10,7 +10,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    var mainWindowController: MainWindowController?
+    var windowControllers: [MainWindowController] = []
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication)-> Bool {
      
@@ -22,13 +22,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Insert code here to initialize your application
         
-        mainWindowController = MainWindowController()
-        mainWindowController?.showWindow(self)
-        
+//        mainWindowController = MainWindowController()
+//        mainWindowController?.showWindow(self)
+
+        addWindowController()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+    }
+    
+    // MARK: - Helpers
+    
+    func addWindowController() {
+        
+        let windowController = MainWindowController()
+        windowController.showWindow(self)
+        windowControllers.append(windowController)
+        
+    }
+    
+    // MARK - Actions
+    
+    @IBAction func displayNewWindow(_ send: NSMenuItem) {
+        
+        addWindowController()
     }
 
 
