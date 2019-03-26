@@ -52,7 +52,7 @@ class AudioOutViewController: NSViewController {
         
         didSet {
             let userInfo: [String : Any] = [highPassCutoffUpdatedKey: self.highPassCutoff]
-            notify.post(name: Notification.Name(rawValue: highPassCutoffUpdatedNotification), object: self, userInfo: userInfo)
+            notify.post(name: .highPassCutoffUpdatedNotification, object: self, userInfo: userInfo)
         }
     }
     
@@ -60,7 +60,7 @@ class AudioOutViewController: NSViewController {
         
         didSet {
             let userInfo: [String : Any] = [highPassBypassUpdatedKey: self.highPassBypass]
-            notify.post(name: Notification.Name(rawValue: highPassBypassUpdatedNotification), object: self, userInfo: userInfo)
+            notify.post(name: .highPassBypassUpdatedNotification, object: self, userInfo: userInfo)
         }
     }
     

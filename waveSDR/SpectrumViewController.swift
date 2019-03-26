@@ -227,35 +227,35 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
         NotificationCenter.default.addObserver(
             self,
             selector:   #selector(observedSampleRateUpdatedNotification(_:)),
-            name:       NSNotification.Name(rawValue: sampleRateUpdatedNotification),
+            name:       .sampleRateUpdatedNotification,
             object:     nil
         )
         
         NotificationCenter.default.addObserver(
             self,
             selector:   #selector(observedFrequencyUpdatedNotification(_:)),
-            name:       NSNotification.Name(rawValue: frequencyUpdatedNotification),
+            name:       .frequencyUpdatedNotification,
             object:     nil
         )
         
         NotificationCenter.default.addObserver(
             self,
             selector:   #selector(observedFrequencyStepUpdatedNotification(_:)),
-            name:       NSNotification.Name(rawValue: frequencyStepUpdatedNotification),
+            name:       .frequencyStepUpdatedNotification,
             object:     nil
         )
         
         NotificationCenter.default.addObserver(
             self,
             selector:   #selector(observedSDRStartedNotification(_:)),
-            name:       NSNotification.Name(rawValue: sdrStartedNotification),
+            name:       .sdrStartedNotification,
             object:     nil
         )
         
         NotificationCenter.default.addObserver(
             self,
             selector:   #selector(observedSDRStoppedNotification(_:)),
-            name:       NSNotification.Name(rawValue: sdrStoppedNotification),
+            name:       .sdrStoppedNotification,
             object:     nil
         )
     }
@@ -449,7 +449,7 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
         let userInfo: [String : Any] = [mixerChangeRequestKey: self.deltaFrequency]
         
         NotificationCenter.default.post(
-            name: Notification.Name(rawValue: mixerChangeRequestNotification),
+            name: .mixerChangeRequestNotification,
             object: self,
             userInfo: userInfo
         )
@@ -468,7 +468,7 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
         let userInfo: [String : Any] = [frequencyChangeRequestKey: requestedFrequency]
         
         NotificationCenter.default.post(
-            name: Notification.Name(rawValue: frequencyChangeRequestNotification),
+            name: .frequencyChangeRequestNotification,
             object: self,
             userInfo: userInfo
         )
@@ -478,7 +478,7 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
         let mixerInfo: [String : Any] = [mixerChangeRequestKey: self.deltaFrequency]
         
         NotificationCenter.default.post(
-            name: Notification.Name(rawValue: mixerChangeRequestNotification),
+            name: .mixerChangeRequestNotification,
             object: self,
             userInfo: mixerInfo
         )
@@ -497,7 +497,7 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
         let userInfo: [String : Any] = [frequencyChangeRequestKey: newFrequency]
         
         NotificationCenter.default.post(
-            name: Notification.Name(rawValue: frequencyChangeRequestNotification),
+            name: .frequencyChangeRequestNotification,
             object: self,
             userInfo: userInfo
         )
@@ -998,7 +998,7 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
     
     func togglePause() {
         NotificationCenter.default.post(
-            name: Notification.Name(rawValue: sdrPauseRequestNotification),
+            name: .sdrPauseRequestNotification,
             object: self,
             userInfo: nil
         )
@@ -1012,7 +1012,7 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
     
     func goLive() {
         NotificationCenter.default.post(
-            name: Notification.Name(rawValue: sdrLiveRequestNotification),
+            name: .sdrLiveRequestNotification,
             object: self,
             userInfo: nil
         )

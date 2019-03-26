@@ -67,7 +67,7 @@ class RadioDisplayViewController: NSViewController {
     
             // post squelch updated message
             let userInfo: [String : Any] = [squelchUpdatedKey : self.squelchValue]
-            notify.post(name: Notification.Name(rawValue: squelchUpdatedNotification), object: self, userInfo: userInfo)
+            notify.post(name: .squelchUpdatedNotification, object: self, userInfo: userInfo)
         }
     }
     
@@ -84,7 +84,7 @@ class RadioDisplayViewController: NSViewController {
                 
                 // post auto gain message
                 let userInfo: [String : Any] = [tunerAutoGainUpdatedKey : self.gainAutoModeOn]
-                notify.post(name: Notification.Name(rawValue: tunerAutoGainUpdatedNotification), object: self, userInfo: userInfo)
+                notify.post(name: .tunerAutoGainUpdatedNotification, object: self, userInfo: userInfo)
                 
             } else {
                 
@@ -94,7 +94,7 @@ class RadioDisplayViewController: NSViewController {
                     
                     // post manual gain message
                     let userInfo: [String : Any] = [tunerAutoGainUpdatedKey : self.gainAutoModeOn]
-                    notify.post(name: Notification.Name(rawValue: tunerAutoGainUpdatedNotification), object: self, userInfo: userInfo)
+                    notify.post(name: .tunerAutoGainUpdatedNotification, object: self, userInfo: userInfo)
                 }
                 let gainValue       = self.gainValueList[gainSliderRawValue]
                 let gainFloatValue  = Float(gainValue) / 10.0
@@ -102,7 +102,7 @@ class RadioDisplayViewController: NSViewController {
                 
                 // post set gain message
                 let userInfo = [tunerGainUpdatedKey : gainValue]
-                notify.post(name: Notification.Name(rawValue: tunerGainUpdatedNotification), object: self, userInfo: userInfo)
+                notify.post(name: .tunerGainUpdatedNotification, object: self, userInfo: userInfo)
                 
             }
             gainLastRawValue    = gainSliderRawValue
@@ -863,35 +863,35 @@ class RadioDisplayViewController: NSViewController {
         notify.addObserver(
             self,
             selector:   #selector(observedSdrDeviceSelectedNotification(_:)),
-            name:       Notification.Name(rawValue: sdrDeviceSelectedNotification),
+            name:       .sdrDeviceSelectedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedSdrDeviceInitalizedNotification(_:)),
-            name:       Notification.Name(rawValue: sdrDeviceInitalizedNotification),
+            name:       .sdrDeviceInitalizedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedFrequencyUpdatedNotification(_:)),
-            name:       Notification.Name(rawValue: frequencyUpdatedNotification),
+            name:       .frequencyUpdatedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedConverterUpdatedNotification(_:)),
-            name:       Notification.Name(rawValue: converterUpdatedNotification),
+            name:       .converterUpdatedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedMixerChangeRequestNotification(_:)),
-            name:       NSNotification.Name(rawValue: mixerChangeRequestNotification),
+            name:       .mixerChangeRequestNotification,
             object:     nil
         )
 

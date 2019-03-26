@@ -32,14 +32,14 @@ class HardwareViewController: NSViewController {
     @objc dynamic var selectedSampleRate:     Int         = 0 {
         didSet {
             let userInfo: [String : Any] = [sampleRateUpdatedKey : self.selectedSampleRate]
-            notify.post(name: Notification.Name(rawValue: sampleRateUpdatedNotification), object: self, userInfo: userInfo)
+            notify.post(name: .sampleRateUpdatedNotification, object: self, userInfo: userInfo)
         }
     }
     
     @objc dynamic var correctionValue:        Int         = 0 {
         didSet {
             let userInfo: [String : Any] = [correctionUpdatedKey : self.correctionValue]
-            notify.post(name: Notification.Name(rawValue: correctionUpdatedNotification), object: self, userInfo: userInfo)
+            notify.post(name: .correctionUpdatedNotification, object: self, userInfo: userInfo)
         }
     }
     
@@ -47,7 +47,7 @@ class HardwareViewController: NSViewController {
     @objc dynamic weak var selectedDevice:    SDRDevice? {
         didSet {
             let userInfo: [String : Any] = [sdrDeviceSelectedKey: self.selectedDevice!]
-            notify.post(name: Notification.Name(rawValue: sdrDeviceSelectedNotification), object: self, userInfo: userInfo)
+            notify.post(name: .sdrDeviceSelectedNotification, object: self, userInfo: userInfo)
             
             // update UI vars
             self.sampleRateList     = selectedDevice!.sampleRateList()
@@ -474,21 +474,21 @@ class HardwareViewController: NSViewController {
         notify.addObserver(
             self,
             selector:   #selector(observedSdrDeviceListNotifcaiton(_:)),
-            name:       NSNotification.Name(rawValue: sdrDeviceListNotifcaiton),
+            name:       .sdrDeviceListNotifcaiton,
             object:     nil
         )
         
         NotificationCenter.default.addObserver(
             self,
             selector:   #selector(observedSDRStartedNotification(_:)),
-            name:       NSNotification.Name(rawValue: sdrStartedNotification),
+            name:       .sdrStartedNotification,
             object:     nil
         )
         
         NotificationCenter.default.addObserver(
             self,
             selector:   #selector(observedSDRStoppedNotification(_:)),
-            name:       NSNotification.Name(rawValue: sdrStoppedNotification),
+            name:       .sdrStoppedNotification,
             object:     nil
         )
 

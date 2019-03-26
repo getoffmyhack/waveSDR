@@ -97,7 +97,7 @@ class SquelchBlock: RadioBlock {
         if let queue = self.notifyQueue {
             queue.async {
                 let userInfo: [String : Any] = [averageDBUpdatedKey : self.averageDB]
-                NotificationCenter.default.post(name: Notification.Name(rawValue: averageDBUpdatedNotification), object: self, userInfo: userInfo)
+                NotificationCenter.default.post(name: .averageDBUpdatedNotification, object: self, userInfo: userInfo)
             }
         }
 
@@ -121,7 +121,7 @@ class SquelchBlock: RadioBlock {
             if let queue = self.notifyQueue {
                 queue.async {
                     let userInfo: [String : Any] = [squelchPercentUpdatedKey : self.squelchPercent]
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: squelchPercentUpdatedNotification), object: self, userInfo: userInfo)
+                    NotificationCenter.default.post(name: .squelchPercentUpdatedNotification, object: self, userInfo: userInfo)
                 }
             }
         }

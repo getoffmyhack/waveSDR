@@ -63,7 +63,7 @@ class TunerViewController: NSViewController {
             }
 
             let userInfo: [String : Any] = [frequencyUpdatedKey: newFrequency]
-            notify.post(name: Notification.Name(rawValue: frequencyUpdatedNotification), object: self, userInfo: userInfo)
+            notify.post(name: .frequencyUpdatedNotification, object: self, userInfo: userInfo)
             
             self.tunedFrequency = newFrequency
         }
@@ -92,14 +92,14 @@ class TunerViewController: NSViewController {
     @objc var demodSelected:          Int         = 1 {
         didSet {
             let userInfo: [String : Any] = [demodModeUpdatedKey: self.demodModeList[self.demodSelected] ]
-            notify.post(name: Notification.Name(rawValue: demodModeUpdatedNotification), object: self, userInfo: userInfo)
+            notify.post(name: .demodModeUpdatedNotification, object: self, userInfo: userInfo)
         }
     }
     
     var frequencyStep:          Double      = 1000.0 {
         didSet {
             let userInfo: [String : Any] = [frequencyStepUpdatedKey: self.frequencyStep]
-            notify.post(name: Notification.Name(rawValue: frequencyStepUpdatedNotification), object: self, userInfo: userInfo)
+            notify.post(name:.frequencyStepUpdatedNotification, object: self, userInfo: userInfo)
         }
     }
     
@@ -132,7 +132,7 @@ class TunerViewController: NSViewController {
     @objc var converterFrequency: Int             = 0 {
         didSet {
             let userInfo: [String : Any] = [converterUpdatedKey: converterFrequency]
-            notify.post(name: Notification.Name(rawValue: converterUpdatedNotification), object: self, userInfo: userInfo)
+            notify.post(name: .converterUpdatedNotification, object: self, userInfo: userInfo)
         }
     }
     
@@ -658,7 +658,7 @@ class TunerViewController: NSViewController {
         notify.addObserver(
             self,
             selector:   #selector(observedSdrDeviceSelectedNotification(_:)),
-            name:       NSNotification.Name(rawValue: sdrDeviceSelectedNotification),
+            name:       .sdrDeviceSelectedNotification,
             object:     nil
         )
 

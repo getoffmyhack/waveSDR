@@ -41,7 +41,7 @@ class ToneDecoderBlock: RadioBlock {
     var tone:           Double      = 0.0 {
         didSet {
             let userInfo: [String : Any] = [toneDecoderUpdatedKey : tone]
-            NotificationCenter.default.post(name: Notification.Name(rawValue: toneDecoderUpdatedNotification), object: self, userInfo: userInfo)
+            NotificationCenter.default.post(name: .toneDecoderUpdatedNotification, object: self, userInfo: userInfo)
         }
     }
     

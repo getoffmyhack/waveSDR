@@ -123,7 +123,7 @@ class MainWindowController: NSWindowController {
         // know that the device list is ready
         
         let sdrDeviceInfo: [String : Any] = [sdrDeviceListKey: sdr.deviceList]
-        notify.post(name: Notification.Name(rawValue: sdrDeviceListNotifcaiton), object: self, userInfo: sdrDeviceInfo)
+        notify.post(name: .sdrDeviceListNotifcaiton, object: self, userInfo: sdrDeviceInfo)
         
         //
         // setup defaults
@@ -229,98 +229,98 @@ class MainWindowController: NSWindowController {
         notify.addObserver(
             self,
             selector:   #selector(observedSdrDeviceSelectedNotification(_:)),
-            name:       NSNotification.Name(rawValue: sdrDeviceSelectedNotification),
+            name:       .sdrDeviceSelectedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedFrequencyUpdatedNotification(_:)),
-            name:       NSNotification.Name(rawValue: frequencyUpdatedNotification),
+            name:       .frequencyUpdatedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedHighPassCutoffUpdatedNotification(_:)),
-            name:       NSNotification.Name(rawValue: highPassCutoffUpdatedNotification),
+            name:       .highPassCutoffUpdatedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedHighPassBypassUpdatedNotification(_:)),
-            name:       NSNotification.Name(rawValue: highPassBypassUpdatedNotification),
+            name:       .highPassBypassUpdatedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedSampleRateUpdatedNotification(_:)),
-            name:       NSNotification.Name(rawValue: sampleRateUpdatedNotification),
+            name:       .sampleRateUpdatedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedCorrectionUpdatedNotification(_:)),
-            name:       NSNotification.Name(rawValue: correctionUpdatedNotification),
+            name:       .correctionUpdatedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedTunerAutoGainUpdatedNotification(_:)),
-            name:       NSNotification.Name(rawValue: tunerAutoGainUpdatedNotification),
+            name:       .tunerAutoGainUpdatedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedTunerGainUpdatedNotification(_:)),
-            name:       NSNotification.Name(rawValue: tunerGainUpdatedNotification),
+            name:       .tunerGainUpdatedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedSquelchUpdatedNotification(_:)),
-            name:       NSNotification.Name(rawValue: squelchUpdatedNotification),
+            name:       .squelchUpdatedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedDemodModeUpdatedNotification(_:)),
-            name:       NSNotification.Name(rawValue: demodModeUpdatedNotification),
+            name:       .demodModeUpdatedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedFrequencyChangeRequestNotification(_:)),
-            name:       NSNotification.Name(rawValue: frequencyChangeRequestNotification),
+            name:       .frequencyChangeRequestNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedMixerChangeRequestNotification(_:)),
-            name:       NSNotification.Name(rawValue: mixerChangeRequestNotification),
+            name:       .mixerChangeRequestNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedSDRPauseRequestNotification(_:)),
-            name:       NSNotification.Name(rawValue: sdrPauseRequestNotification),
+            name:       .sdrPauseRequestNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedSDRLiveRequestRequestNotification(_:)),
-            name:       NSNotification.Name(rawValue: sdrLiveRequestNotification),
+            name:       .sdrLiveRequestNotification,
             object:     nil
         )
         
@@ -331,28 +331,28 @@ class MainWindowController: NSWindowController {
         notify.addObserver(
             self,
             selector:   #selector(observedAverageDBUpdatedNotification(_:)),
-            name:       NSNotification.Name(rawValue: averageDBUpdatedNotification),
+            name:       .averageDBUpdatedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedSquelchPercentUpdated(_:)),
-            name:       NSNotification.Name(rawValue: squelchPercentUpdatedNotification),
+            name:       .squelchPercentUpdatedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedFFTSamplesUpdatedNotification(_:)),
-            name:       NSNotification.Name(rawValue: fftSamplesUpdatedNotification),
+            name:       .fftSamplesUpdatedNotification,
             object:     nil
         )
         
         notify.addObserver(
             self,
             selector:   #selector(observedToneDecoderUpdatedNotification(_:)),
-            name:       NSNotification.Name(rawValue: toneDecoderUpdatedNotification),
+            name:       .toneDecoderUpdatedNotification,
             object:     nil
         )
 
@@ -455,7 +455,7 @@ class MainWindowController: NSWindowController {
             
             if(device.isConfigured()) {
                 // post device is configured notify
-                notify.post(name: Notification.Name(rawValue: sdrDeviceInitalizedNotification), object: self, userInfo: nil)
+                notify.post(name: .sdrDeviceInitalizedNotification, object: self, userInfo: nil)
 
             }
         }
@@ -782,7 +782,7 @@ class MainWindowController: NSWindowController {
 
             self.refreshTimer.invalidate()
             self.sdr.stop()
-            notify.post(name: Notification.Name(rawValue: sdrStoppedNotification), object: self, userInfo: nil)
+            notify.post(name: .sdrStoppedNotification, object: self, userInfo: nil)
             
         } else {
 
@@ -796,7 +796,7 @@ class MainWindowController: NSWindowController {
             RunLoop.main.add(self.refreshTimer, forMode: RunLoopMode.commonModes)
 
             self.sdr.start()
-            notify.post(name: Notification.Name(rawValue: sdrStartedNotification), object: self, userInfo: nil)
+            notify.post(name: .sdrStartedNotification, object: self, userInfo: nil)
         }
         
     }
