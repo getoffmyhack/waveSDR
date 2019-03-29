@@ -24,8 +24,8 @@ class SidebarViewController: NSViewController {
     @objc var selectedIndex:                  Int = 0 {
         didSet {
             
-            let oldView = childViewControllers[lastSelectedIndex].view
-            let newView = childViewControllers[selectedIndex].view
+            let oldView = children[lastSelectedIndex].view
+            let newView = children[selectedIndex].view
             
             self.containerView.replaceSubview(oldView, with: newView)
             self.constrainInContainerView(newView)
@@ -193,7 +193,7 @@ class SidebarViewController: NSViewController {
         setupBindings()
 
         // set up inital view
-        let selectedView = self.childViewControllers[selectedIndex].view
+        let selectedView = self.children[selectedIndex].view
         containerView.addSubview(selectedView)
         constrainInContainerView(selectedView)
         

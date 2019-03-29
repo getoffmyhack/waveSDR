@@ -718,7 +718,7 @@ class SpectrumViewController: NSViewController, AnalyzerViewDelegate, Spectrogra
             repeats:        true
         )
         
-        RunLoop.main.add(self.refreshTimer, forMode: RunLoopMode.commonModes)
+        RunLoop.main.add(self.refreshTimer, forMode: RunLoop.Mode.common)
         self._isRunning = true
         
     }

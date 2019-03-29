@@ -45,7 +45,7 @@ class MainWindowController: NSWindowController {
     @objc private dynamic var stringForToolBarDeviceLabel: String = ""
     
     override var windowNibName: NSNib.Name? {
-        return NSNib.Name("MainWindowController")
+        return "MainWindowController"
     }
     
 //    override var windowNibName: String! {
@@ -158,9 +158,9 @@ class MainWindowController: NSWindowController {
     func setupSidebar() {
         
         // build sidebar controller
-        self.sidebarViewController.addChildViewController(hardwareViewController)
-        self.sidebarViewController.addChildViewController(tunerViewController)
-        self.sidebarViewController.addChildViewController(audioOutViewController)
+        self.sidebarViewController.addChild(hardwareViewController)
+        self.sidebarViewController.addChild(tunerViewController)
+        self.sidebarViewController.addChild(audioOutViewController)
 
         // KLUDGE:
         // set inital sidebar state - used to keep toolbar button in sync
@@ -732,8 +732,8 @@ class MainWindowController: NSWindowController {
         
         
         // use standard system font and size (as default in IB) as attributes
-        let labelAttributes: [NSAttributedStringKey : Any] = [
-            NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue) : NSFont.systemFont(ofSize: NSFont.systemFontSize)
+        let labelAttributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key(rawValue: NSAttributedString.Key.font.rawValue) : NSFont.systemFont(ofSize: NSFont.systemFontSize)
         ]
 
         // get size of attributed string as displayed in toolbar device label
@@ -793,7 +793,7 @@ class MainWindowController: NSWindowController {
                 userInfo:       nil,
                 repeats:        true
             )
-            RunLoop.main.add(self.refreshTimer, forMode: RunLoopMode.commonModes)
+            RunLoop.main.add(self.refreshTimer, forMode: RunLoop.Mode.common)
 
             self.sdr.start()
             notify.post(name: .sdrStartedNotification, object: self, userInfo: nil)

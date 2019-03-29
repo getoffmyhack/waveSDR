@@ -136,19 +136,19 @@ class AnalyzerView: NSView {
             let channelTextParagraphStyle = NSMutableParagraphStyle()
             channelTextParagraphStyle.alignment = .right
             
-            var channelTextAttributes: [NSAttributedStringKey : Any]
+            var channelTextAttributes: [NSAttributedString.Key : Any]
 
             if(centered) {
                 channelTextAttributes = [
-                    NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):            NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize),
-                    NSAttributedStringKey(rawValue: NSAttributedStringKey.paragraphStyle.rawValue):  channelTextParagraphStyle,
-                    NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): NSColor.white.withAlphaComponent(1.00)
+                    NSAttributedString.Key(rawValue: NSAttributedString.Key.font.rawValue):            NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize),
+                    NSAttributedString.Key(rawValue: NSAttributedString.Key.paragraphStyle.rawValue):  channelTextParagraphStyle,
+                    NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): NSColor.white.withAlphaComponent(1.00)
                 ]
             } else {
                 channelTextAttributes = [
-                    NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):            NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize),
-                    NSAttributedStringKey(rawValue: NSAttributedStringKey.paragraphStyle.rawValue):  channelTextParagraphStyle,
-                    NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): NSColor.white.withAlphaComponent(0.85)
+                    NSAttributedString.Key(rawValue: NSAttributedString.Key.font.rawValue):            NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize),
+                    NSAttributedString.Key(rawValue: NSAttributedString.Key.paragraphStyle.rawValue):  channelTextParagraphStyle,
+                    NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): NSColor.white.withAlphaComponent(0.85)
                 ]
             }
             

@@ -25,7 +25,7 @@ class CenteringSpacerToolbarItem: NSToolbarItem {
         }
         
         // get my index into the toolbarItems array
-        let myIndex = toolbarItems.index(of: self)!
+        let myIndex = toolbarItems.firstIndex(of: self)!
         
         // get the frame for the view's superview (an instance of NSToolbarItemViewer)
         let myFrame = self.view!.superview!.frame

@@ -208,7 +208,7 @@ class ToneDecoderBlock: RadioBlock {
 
         if (maxPower > 70) {
             
-            let maxPowerIndex   = self.relativePower.index(of: maxPower)!
+            let maxPowerIndex   = self.relativePower.firstIndex(of: maxPower)!
             self.tone           = self.tones[maxPowerIndex]
             self.decoderState   = .locked
             
