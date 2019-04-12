@@ -23,6 +23,7 @@
 		D02AA8B11E3D925900218374 /* waveSDRNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA8B01E3D925900218374 /* waveSDRNotifications.swift */; };
 		D032940B223B3648006A6ED0 /* librtlsdr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D032940A223B3648006A6ED0 /* librtlsdr.a */; };
 		D032940D223B38E1006A6ED0 /* AudioOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D032940C223B38E1006A6ED0 /* AudioOutViewController.swift */; };
+		D05444782253156300F5CC29 /* DisclosureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05444772253156300F5CC29 /* DisclosureViewController.swift */; };
 		D05A11691E258D4000F2116D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05A11681E258D4000F2116D /* AppDelegate.swift */; };
 		D05A116B1E258D4000F2116D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D05A116A1E258D4000F2116D /* Assets.xcassets */; };
 		D05A116E1E258D4000F2116D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05A116C1E258D4000F2116D /* MainMenu.xib */; };
@@ -65,6 +66,7 @@
 		D032940A223B3648006A6ED0 /* librtlsdr.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = librtlsdr.a; sourceTree = "<group>"; };
 		D032940C223B38E1006A6ED0 /* AudioOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioOutViewController.swift; sourceTree = "<group>"; };
 		D049FBA91F8F157600C69135 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
+		D05444772253156300F5CC29 /* DisclosureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureViewController.swift; sourceTree = "<group>"; };
 		D05A11651E258D4000F2116D /* waveSDR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = waveSDR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05A11681E258D4000F2116D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D05A116A1E258D4000F2116D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				D0113F661E317DAB00D668CC /* HardwareViewController.swift */,
 				D0113F681E31919D00D668CC /* TunerViewController.swift */,
 				D032940C223B38E1006A6ED0 /* AudioOutViewController.swift */,
+				D05444772253156300F5CC29 /* DisclosureViewController.swift */,
 			);
 			name = SidebarView;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				D0CCEA311E515E0F005C6DC0 /* Radio.swift in Sources */,
 				D061D37D1E4C3296006A4CEF /* Bool+toggle.swift in Sources */,
 				D027D4A41E67C77A0089051F /* SpectrumViewController.swift in Sources */,
+				D05444782253156300F5CC29 /* DisclosureViewController.swift in Sources */,
 				D05A117C1E258D9800F2116D /* MainWindowController.swift in Sources */,
 				D0F098291E38734D00355EB0 /* RTLSDR.swift in Sources */,
 				D02AA8AF1E3C168500218374 /* SDRDevice.swift in Sources */,

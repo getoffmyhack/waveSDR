@@ -338,6 +338,7 @@ class HardwareViewController: NSViewController {
             in: .top
         )
         
+        
     }
     
     //--------------------------------------------------------------------------
