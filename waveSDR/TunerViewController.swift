@@ -604,20 +604,15 @@ class TunerViewController: NSViewController {
     
     func setupBindings() {
 
-        frequencyTextField.bind(    NSBindingName.value,         to: self, withKeyPath: "tunedFrequency",    options: nil)
-        stepSizePopUp.bind(         NSBindingName.contentValues, to: self, withKeyPath: "stepSizeList",      options: nil)
-        stepSizePopUp.bind(         NSBindingName.selectedValue, to: self, withKeyPath: "selectedStepSize",  options: nil)
-        stepBasePopUp.bind(         NSBindingName.contentValues, to: self, withKeyPath: "stepBaseList",      options: nil)
-        stepBasePopUp.bind(         NSBindingName.selectedValue, to: self, withKeyPath: "selectedStepBase",  options: nil)
-        demodSelction.bind(         NSBindingName.content,       to: self, withKeyPath: "demodModeList",     options: nil)
-        demodSelction.bind(         NSBindingName.selectedIndex, to: self, withKeyPath: "demodSelected",     options: nil)
-        converterTextField.bind(    NSBindingName.value,         to: self, withKeyPath: "converterFrequency",options: nil)
-
-        let tuneDownOptions: [NSBindingOption : Any] = [NSBindingOption(rawValue: NSBindingOption.selectorName.rawValue) : "frequencyStepDown"]
-        tuneDownButton.bind(NSBindingName.target, to: self, withKeyPath: "self", options: tuneDownOptions)
-
-        let tuneUpOptions: [NSBindingOption : Any] = [NSBindingOption(rawValue: NSBindingOption.selectorName.rawValue) : "frequencyStepUp"]
-        tuneUpButton.bind(NSBindingName.target, to: self, withKeyPath: "self", options: tuneUpOptions)
+        frequencyTextField.bind(    .value,         to: self, withKeyPath: "tunedFrequency",    options: nil)
+        stepSizePopUp.bind(         .contentValues, to: self, withKeyPath: "stepSizeList",      options: nil)
+        stepSizePopUp.bind(         .selectedValue, to: self, withKeyPath: "selectedStepSize",  options: nil)
+        stepBasePopUp.bind(         .contentValues, to: self, withKeyPath: "stepBaseList",      options: nil)
+        stepBasePopUp.bind(         .selectedValue, to: self, withKeyPath: "selectedStepBase",  options: nil)
+        demodSelction.bind(         .content,       to: self, withKeyPath: "demodModeList",     options: nil)
+        demodSelction.bind(         .selectedIndex, to: self, withKeyPath: "demodSelected",     options: nil)
+        converterTextField.bind(    .value,         to: self, withKeyPath: "converterFrequency",options: nil)
+        
     }
     
     //--------------------------------------------------------------------------
@@ -634,6 +629,12 @@ class TunerViewController: NSViewController {
         self.frequencyTextField.formatter = frequencyFormatter
         self.converterTextField.formatter = converterFormatter
         
+        // set target / action for tuning buttons
+        self.tuneDownButton.target = self
+        self.tuneDownButton.action = #selector(frequencyStepDown)
+        
+        self.tuneUpButton.target   = self
+        self.tuneUpButton.action   = #selector(frequencyStepUp)
     }
     
     //--------------------------------------------------------------------------
