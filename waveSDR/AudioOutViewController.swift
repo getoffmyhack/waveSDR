@@ -9,7 +9,7 @@
 import Cocoa
 
 
-class AudioOutViewController: NSViewController {
+class AudioOutViewController: DisclosureViewController {
     
     //--------------------------------------------------------------------------
     //
@@ -28,7 +28,7 @@ class AudioOutViewController: NSViewController {
     static var labelFontSize:   CGFloat = 10.0
     static var labelFont:       NSFont  = NSFont.systemFont(ofSize: labelFontSize)
     
-    private let notify: NotificationCenter = NotificationCenter.default
+//    private let notify: NotificationCenter = NotificationCenter.default
     
     //--------------------------------------------------------------------------
     //
@@ -208,17 +208,16 @@ class AudioOutViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
     
-    override func loadView() {
-        
-        self.view = NSView()
-        self.view.wantsLayer    = true
-        
-        // build stack views
-        setupStackViews()
-        
-        // add subviews
-        view.addSubview(audioOutStackView)
-    }
+//    override func loadView() {
+//
+//        super.loadView()
+//
+//        // build stack views
+//        setupStackViews()
+//
+//        // add subviews
+//        self.mainStackView.addArrangedSubview(audioOutStackView)
+//    }
     
     //--------------------------------------------------------------------------
     //
@@ -232,6 +231,9 @@ class AudioOutViewController: NSViewController {
         
         // Do view setup here.
         
+        setupStackViews()
+        self.disclosedView = audioOutStackView
+
         // add constraints
         setupConstraints()
         
@@ -286,7 +288,7 @@ class AudioOutViewController: NSViewController {
         //
         //----------------------------------------------------------------------
         
-        audioOutStackView.setViews([audioOutHeaderStackView, highPassCutoffStackView, highPassBypassStackView], in: .top)
+        audioOutStackView.setViews([/*audioOutHeaderStackView,*/ highPassCutoffStackView, highPassBypassStackView], in: .top)
         
     }
     
@@ -306,9 +308,9 @@ class AudioOutViewController: NSViewController {
         //
         //----------------------------------------------------------------------
         
-        audioOutStackView.topAnchor.constraint(              equalTo: self.view.topAnchor        ).isActive = true
-        audioOutStackView.leadingAnchor.constraint(          equalTo: self.view.leadingAnchor    ).isActive = true
-        audioOutStackView.trailingAnchor.constraint(         equalTo: self.view.trailingAnchor   ).isActive = true
+//        audioOutStackView.topAnchor.constraint(              equalTo: self.view.topAnchor        ).isActive = true
+        audioOutStackView.leadingAnchor.constraint(          equalTo: self.disclosedView.leadingAnchor    ).isActive = true
+        audioOutStackView.trailingAnchor.constraint(         equalTo: self.disclosedView.trailingAnchor   ).isActive = true
         
         // self.view.intrinsicContentSize
         
@@ -322,7 +324,7 @@ class AudioOutViewController: NSViewController {
         //
         //----------------------------------------------------------------------
         
-        audioOutHeaderStackView.leadingAnchor.constraint(   equalTo: audioOutStackView.leadingAnchor     ).isActive = true
+//        audioOutHeaderStackView.leadingAnchor.constraint(   equalTo: audioOutStackView.leadingAnchor     ).isActive = true
         highPassCutoffStackView.leadingAnchor.constraint(   equalTo: audioOutStackView.leadingAnchor     ).isActive = true
         highPassBypassStackView.leadingAnchor.constraint(   equalTo: audioOutStackView.leadingAnchor     ).isActive = true
         
@@ -336,8 +338,8 @@ class AudioOutViewController: NSViewController {
         //
         //----------------------------------------------------------------------
         
-        audioOutHeaderLabel.leadingAnchor.constraint(   equalTo: audioOutHeaderStackView.leadingAnchor,  constant:   5.0 ).isActive = true
-        audioOutHeaderLabel.trailingAnchor.constraint(  equalTo: audioOutHeaderStackView.trailingAnchor                  ).isActive = true
+//        audioOutHeaderLabel.leadingAnchor.constraint(   equalTo: audioOutHeaderStackView.leadingAnchor,  constant:   5.0 ).isActive = true
+//        audioOutHeaderLabel.trailingAnchor.constraint(  equalTo: audioOutHeaderStackView.trailingAnchor                  ).isActive = true
         
         frequencyLabel.leadingAnchor.constraint(        equalTo: highPassCutoffStackView.leadingAnchor,  constant:  20.0 ).isActive = true
         frequencyHzLabel.trailingAnchor.constraint(     equalTo: highPassCutoffStackView.trailingAnchor, constant: -10.0 ).isActive = true
@@ -346,7 +348,7 @@ class AudioOutViewController: NSViewController {
         highpassBypassLabel.trailingAnchor.constraint(equalTo: frequencyLabel.trailingAnchor).isActive = true
         highpassBypassCheckbox.centerYAnchor.constraint(equalTo: highpassBypassLabel.centerYAnchor).isActive = true
         
-        self.view.bottomAnchor.constraint( greaterThanOrEqualTo: audioOutStackView.bottomAnchor                          ).isActive = true
+//        self.view.bottomAnchor.constraint( greaterThanOrEqualTo: audioOutStackView.bottomAnchor                          ).isActive = true
         
     }
     
