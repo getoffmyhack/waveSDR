@@ -15,7 +15,7 @@
 
 import Cocoa
 
-class TunerViewController: NSViewController {
+class TunerViewController: DisclosureViewController {
     
     //--------------------------------------------------------------------------
     //
@@ -156,7 +156,6 @@ class TunerViewController: NSViewController {
     static var labelFontSize:   CGFloat = 10.0
     static var labelFont:       NSFont  = NSFont.systemFont(ofSize: labelFontSize)
     
-    private let notify: NotificationCenter = NotificationCenter.default
     
     //--------------------------------------------------------------------------
     //
@@ -427,17 +426,17 @@ class TunerViewController: NSViewController {
     //
     //--------------------------------------------------------------------------
     
-    override func loadView() {
-        
-        self.view = NSView()
-        self.view.wantsLayer    = true
-        
-        // build stack views
-        setupStackViews()
-        
-        // add subviews
-        view.addSubview(vfoStackView)
-    }
+//    override func loadView() {
+//
+//        self.view = NSView()
+//        self.view.wantsLayer    = true
+//
+//        // build stack views
+//        setupStackViews()
+//
+//        // add subviews
+//        view.addSubview(vfoStackView)
+//    }
     
     //--------------------------------------------------------------------------
     //
@@ -451,6 +450,9 @@ class TunerViewController: NSViewController {
         
         // Do view setup here.
 
+        setupStackViews()
+        self.disclosedView = vfoStackView
+        
         // add constraints
         setupConstraints()
 
@@ -512,7 +514,7 @@ class TunerViewController: NSViewController {
         //
         //----------------------------------------------------------------------
         
-        vfoStackView.setViews([vfoHeaderStackView, frequencyStackView, stepStackView, tuneStackView, demodStackView, converterStackView], in: .top)
+        vfoStackView.setViews([/*vfoHeaderStackView,*/ frequencyStackView, stepStackView, tuneStackView, demodStackView, converterStackView], in: .top)
 
     }
     
@@ -532,9 +534,9 @@ class TunerViewController: NSViewController {
         //
         //----------------------------------------------------------------------
         
-        vfoStackView.topAnchor.constraint(              equalTo: self.view.topAnchor        ).isActive = true
-        vfoStackView.leadingAnchor.constraint(          equalTo: self.view.leadingAnchor    ).isActive = true
-        vfoStackView.trailingAnchor.constraint(         equalTo: self.view.trailingAnchor   ).isActive = true
+//        vfoStackView.topAnchor.constraint(              equalTo: self.view.topAnchor        ).isActive = true
+        vfoStackView.leadingAnchor.constraint(          equalTo: self.disclosedView.leadingAnchor    ).isActive = true
+        vfoStackView.trailingAnchor.constraint(         equalTo: self.disclosedView.trailingAnchor   ).isActive = true
         
         // self.view.intrinsicContentSize
         
@@ -548,7 +550,7 @@ class TunerViewController: NSViewController {
         //
         //----------------------------------------------------------------------
         
-        vfoHeaderStackView.leadingAnchor.constraint(    equalTo: vfoStackView.leadingAnchor     ).isActive = true
+//        vfoHeaderStackView.leadingAnchor.constraint(    equalTo: vfoStackView.leadingAnchor     ).isActive = true
         frequencyStackView.leadingAnchor.constraint(    equalTo: vfoStackView.leadingAnchor     ).isActive = true
         stepStackView.leadingAnchor.constraint(         equalTo: vfoStackView.leadingAnchor     ).isActive = true
         tuneStackView.leadingAnchor.constraint(         equalTo: vfoStackView.leadingAnchor     ).isActive = true
@@ -565,8 +567,8 @@ class TunerViewController: NSViewController {
         //
         //----------------------------------------------------------------------
         
-        vfoHeaderLabel.leadingAnchor.constraint(        equalTo: vfoHeaderStackView.leadingAnchor,  constant:   5.0 ).isActive = true
-        vfoHeaderLabel.trailingAnchor.constraint(       equalTo: vfoHeaderStackView.trailingAnchor                  ).isActive = true
+//        vfoHeaderLabel.leadingAnchor.constraint(        equalTo: vfoHeaderStackView.leadingAnchor,  constant:   5.0 ).isActive = true
+//        vfoHeaderLabel.trailingAnchor.constraint(       equalTo: vfoHeaderStackView.trailingAnchor                  ).isActive = true
         
         frequencyLabel.leadingAnchor.constraint(        equalTo: frequencyStackView.leadingAnchor,  constant:  20.0 ).isActive = true
         frequencyHzLabel.trailingAnchor.constraint(     equalTo: frequencyStackView.trailingAnchor, constant: -10.0 ).isActive = true
@@ -590,7 +592,7 @@ class TunerViewController: NSViewController {
         converterHzLabel.trailingAnchor.constraint(     equalTo: converterStackView.trailingAnchor, constant: -10.0 ).isActive = true
         converterTextField.widthAnchor.constraint(                              greaterThanOrEqualToConstant: 100.0 ).isActive = true
         
-        self.view.bottomAnchor.constraint( greaterThanOrEqualTo: vfoStackView.bottomAnchor                          ).isActive = true
+//        self.view.bottomAnchor.constraint( greaterThanOrEqualTo: vfoStackView.bottomAnchor                          ).isActive = true
 
     }
     

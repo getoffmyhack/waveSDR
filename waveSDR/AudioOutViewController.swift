@@ -81,7 +81,8 @@ class AudioOutViewController: DisclosureViewController {
         stackview.wantsLayer    = true
         stackview.orientation   = .vertical
         stackview.spacing       = 5.0
-        stackview.translatesAutoresizingMaskIntoConstraints = false
+//        stackview.translatesAutoresizingMaskIntoConstraints = false
+//        stackview.layer?.backgroundColor = NSColor.red.cgColor
         return stackview
     }()
     
@@ -270,7 +271,7 @@ class AudioOutViewController: DisclosureViewController {
         //
         //----------------------------------------------------------------------
         
-        audioOutHeaderStackView.setViews([audioOutHeaderLabel], in: NSStackView.Gravity.leading)
+//        audioOutHeaderStackView.setViews([audioOutHeaderLabel], in: NSStackView.Gravity.leading)
         
         highPassCutoffStackView.setViews(
             [frequencyLabel, frequencyTextField, frequencyHzLabel],

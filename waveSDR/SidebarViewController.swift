@@ -63,6 +63,7 @@ class SidebarViewController: NSViewController {
         view.wantsLayer     = true
         view.orientation    = .vertical
         view.translatesAutoresizingMaskIntoConstraints = false
+//        view.layer?.backgroundColor = NSColor.purple.cgColor
         return view
     }()
     
@@ -193,9 +194,9 @@ class SidebarViewController: NSViewController {
         setupBindings()
 
         // set up inital view
-        let selectedView = self.children[selectedIndex].view
-        containerView.addSubview(selectedView)
-        constrainInContainerView(selectedView)
+//        let selectedView = self.children[selectedIndex].view
+//        containerView.addSubview(selectedView)
+//        constrainInContainerView(selectedView)
         
     }
     
@@ -218,15 +219,22 @@ class SidebarViewController: NSViewController {
     
     func setupStackViews() {
         
-        selectionStackView.setViews(    [selectionPopUp],   in: .center)
-        separatorLineStackView.setViews([separatorLine],    in: .center)
-        containerViewStackView.setViews([containerView],    in: NSStackView.Gravity.leading)
-        bottomLineStackView.setViews(   [bottomLine],       in: .center)
+//        selectionStackView.setViews(    [selectionPopUp],   in: .center)
+//        separatorLineStackView.setViews([separatorLine],    in: .center)
+//        containerViewStackView.setViews([containerView],    in: NSStackView.Gravity.leading)
+//        bottomLineStackView.setViews(   [bottomLine],       in: .center)
         
-        sidebarStackView.setViews(
-            [selectionStackView, separatorLineStackView, containerViewStackView, bottomLineStackView],
-            in: .top
-        )
+//        sidebarStackView.setViews(
+//            [selectionStackView, separatorLineStackView, containerViewStackView, bottomLineStackView],
+//            in: .top
+//        )
+        
+        for sidebarViewController in self.children {
+            sidebarStackView.addView(sidebarViewController.view, in: .top)
+            sidebarViewController.view.leadingAnchor.constraint(equalTo: self.sidebarStackView.leadingAnchor).isActive = true
+            sidebarViewController.view.trailingAnchor.constraint(equalTo: self.sidebarStackView.trailingAnchor).isActive = true
+
+        }
 
     }
     
@@ -240,25 +248,25 @@ class SidebarViewController: NSViewController {
     
     func setupConstraints() {
         
-        sidebarStackView.topAnchor.constraint(              equalTo: self.view.topAnchor                                ).isActive = true
+        sidebarStackView.topAnchor.constraint(              equalTo: self.view.topAnchor, constant: 10.0                ).isActive = true
         sidebarStackView.leadingAnchor.constraint(          equalTo: self.view.leadingAnchor                            ).isActive = true
         sidebarStackView.trailingAnchor.constraint(         equalTo: self.view.trailingAnchor                           ).isActive = true
 //        sidebarStackView.bottomAnchor.constraint(           equalTo: self.view.bottomAnchor                             ).isActive = true
         
-        selectionStackView.topAnchor.constraint(            equalTo: sidebarStackView.topAnchor,        constant:  10.0 ).isActive = true
-        selectionStackView.leadingAnchor.constraint(        equalTo: sidebarStackView.leadingAnchor                     ).isActive = true
-        selectionStackView.trailingAnchor.constraint(       equalTo: sidebarStackView.trailingAnchor                    ).isActive = true
-        
-        containerViewStackView.leadingAnchor.constraint(    equalTo: sidebarStackView.leadingAnchor                     ).isActive = true
-        containerViewStackView.trailingAnchor.constraint(   equalTo: sidebarStackView.trailingAnchor                    ).isActive = true
-        
-        bottomLineStackView.bottomAnchor.constraint(        equalTo: sidebarStackView.bottomAnchor,     constant: -5.0 ).isActive = true
-        
-        selectionPopUp.leadingAnchor.constraint(            equalTo: selectionStackView.leadingAnchor,  constant:  20.0 ).isActive = true
-        selectionPopUp.trailingAnchor.constraint(           equalTo: selectionStackView.trailingAnchor, constant: -10.0 ).isActive = true
-        
-        containerView.leadingAnchor.constraint(             equalTo: containerViewStackView.leadingAnchor               ).isActive = true
-        containerView.trailingAnchor.constraint(            equalTo: containerViewStackView.trailingAnchor              ).isActive = true
+//        selectionStackView.topAnchor.constraint(            equalTo: sidebarStackView.topAnchor,        constant:  10.0 ).isActive = true
+//        selectionStackView.leadingAnchor.constraint(        equalTo: sidebarStackView.leadingAnchor                     ).isActive = true
+//        selectionStackView.trailingAnchor.constraint(       equalTo: sidebarStackView.trailingAnchor                    ).isActive = true
+//
+//        containerViewStackView.leadingAnchor.constraint(    equalTo: sidebarStackView.leadingAnchor                     ).isActive = true
+//        containerViewStackView.trailingAnchor.constraint(   equalTo: sidebarStackView.trailingAnchor                    ).isActive = true
+//
+//        bottomLineStackView.bottomAnchor.constraint(        equalTo: sidebarStackView.bottomAnchor,     constant: -5.0 ).isActive = true
+//
+//        selectionPopUp.leadingAnchor.constraint(            equalTo: selectionStackView.leadingAnchor,  constant:  20.0 ).isActive = true
+//        selectionPopUp.trailingAnchor.constraint(           equalTo: selectionStackView.trailingAnchor, constant: -10.0 ).isActive = true
+//
+//        containerView.leadingAnchor.constraint(             equalTo: containerViewStackView.leadingAnchor               ).isActive = true
+//        containerView.trailingAnchor.constraint(            equalTo: containerViewStackView.trailingAnchor              ).isActive = true
         
     }
     

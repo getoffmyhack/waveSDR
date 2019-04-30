@@ -32,10 +32,11 @@ class DisclosureViewController: NSViewController {
     
     let mainStackView:      NSStackView = {
         let stackview           = NSStackView()
-        stackview.wantsLayer    = true
         stackview.orientation   = .vertical
         stackview.spacing       = 5.0
         stackview.translatesAutoresizingMaskIntoConstraints = false
+        stackview.wantsLayer = true
+//        stackview.layer?.backgroundColor = NSColor.blue.cgColor
         return stackview
     }()
     
@@ -47,6 +48,8 @@ class DisclosureViewController: NSViewController {
     
     var headerStackView:     NSStackView = {
         let stackview = NSStackView()
+        stackview.wantsLayer = true
+//        stackview.layer?.backgroundColor = NSColor.orange.cgColor
         return stackview
     }()
     
@@ -95,19 +98,6 @@ class DisclosureViewController: NSViewController {
         button.alignment    = NSTextAlignment.center
         return button
     }()
-    
-//    var disclosureButton:         NSButton      = {
-//        let button = NSButton()
-//        button.setButtonType(NSButton.ButtonType.onOff)
-//        button.bezelStyle   = NSButton.BezelStyle.inline
-//        button.controlSize  = NSControl.ControlSize.regular
-//        button.title        = "Hide"
-//        button.font         = NSFont.systemFont(ofSize: 10.0)
-//        button.alignment    = NSTextAlignment.center
-////        button.isContinuous = true
-//
-//        return button
-//    }()
     
     //--------------------------------------------------------------------------
     //
@@ -176,12 +166,17 @@ class DisclosureViewController: NSViewController {
         
         if(disclosureIsClosed == true) {
             disclosureButton.title = "Show"
+            disclosedView.isHidden = true
+//            disclosedView.bottomAnchor.constraint(equalTo: headerStackView.bottomAnchor).isActive = true
 
         } else {
             disclosureButton.title = "Hide"
+            disclosedView.isHidden = false
+
+//            disclosedView.bottomAnchor.constraint(equalTo: headerStackView.bottomAnchor).isActive = false
+
         }
         
-        print("Toggling")
     }
     
     override func viewDidLoad() {

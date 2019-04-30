@@ -14,7 +14,7 @@
 
 import Cocoa
 
-class HardwareViewController: NSViewController {
+class HardwareViewController: DisclosureViewController {
     
     //--------------------------------------------------------------------------
     //
@@ -69,9 +69,6 @@ class HardwareViewController: NSViewController {
     
     private static var labelFontSize:   CGFloat     = 10.0
     private static var labelFont:       NSFont      = NSFont.systemFont(ofSize: labelFontSize)
-    
-    private        let notify: NotificationCenter   = NotificationCenter.default
-
     
     //--------------------------------------------------------------------------
     //
@@ -256,18 +253,18 @@ class HardwareViewController: NSViewController {
     //--------------------------------------------------------------------------
     
     
-    override func loadView() {
-        
-        self.view = NSView()
-        self.view.wantsLayer    = true
-        
-        // build stack views
-        setupStackViews()
-
-        // add view
-        view.addSubview(hardwareStackView)
-        
-    }
+//    override func loadView() {
+//
+//        self.view = NSView()
+//        self.view.wantsLayer    = true
+//
+//        // build stack views
+//        setupStackViews()
+//
+//        // add view
+//        view.addSubview(hardwareStackView)
+//
+//    }
     
     //--------------------------------------------------------------------------
     //
@@ -278,6 +275,9 @@ class HardwareViewController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        setupStackViews()
+        self.disclosedView = hardwareStackView
         
         // build constraints
         setupConstraints()
@@ -357,11 +357,9 @@ class HardwareViewController: NSViewController {
         //
         //----------------------------------------------------------------------
     
-        NSLayoutConstraint.activate([
-            hardwareStackView.topAnchor.constraint(             equalTo: self.view.topAnchor        ),
-            hardwareStackView.leadingAnchor.constraint(         equalTo: self.view.leadingAnchor    ),
-            hardwareStackView.trailingAnchor.constraint(        equalTo: self.view.trailingAnchor   ),
-        ])
+//            hardwareStackView.topAnchor.constraint(             equalTo: self.view.topAnchor        ).isActive = true
+            hardwareStackView.leadingAnchor.constraint(         equalTo: self.disclosedView.leadingAnchor    ).isActive = true
+            hardwareStackView.trailingAnchor.constraint(        equalTo: self.disclosedView.trailingAnchor   ).isActive = true
         
         
         //----------------------------------------------------------------------
@@ -418,7 +416,7 @@ class HardwareViewController: NSViewController {
         correctionTextField.widthAnchor.constraint(                                              equalToConstant:  50.0 ).isActive = true
         correctionPPMLabel.trailingAnchor.constraint(   equalTo: correctionStackView.trailingAnchor,    constant: -10.0 ).isActive = true
 
-        self.view.bottomAnchor.constraint( greaterThanOrEqualTo: hardwareStackView.bottomAnchor,        constant:   5.0 ).isActive = true
+//        self.view.bottomAnchor.constraint( greaterThanOrEqualTo: hardwareStackView.bottomAnchor,        constant:   5.0 ).isActive = true
         
     }
 
