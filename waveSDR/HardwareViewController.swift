@@ -64,12 +64,12 @@ class HardwareViewController: DisclosureViewController {
     //
     //--------------------------------------------------------------------------
 
-    private static var headerFontSize:  CGFloat     = 10.0
-    private static var headerFont:      NSFont      = NSFont.boldSystemFont(ofSize: headerFontSize)
-    
-    private static var labelFontSize:   CGFloat     = 10.0
-    private static var labelFont:       NSFont      = NSFont.systemFont(ofSize: labelFontSize)
-    
+//    private static var headerFontSize:  CGFloat     = 10.0
+//    private static var headerFont:      NSFont      = NSFont.boldSystemFont(ofSize: headerFontSize)
+//    
+//    private static var labelFontSize:   CGFloat     = 10.0
+//    private static var labelFont:       NSFont      = NSFont.systemFont(ofSize: labelFontSize)
+//    
     //--------------------------------------------------------------------------
     //
     // instance properties
@@ -334,7 +334,7 @@ class HardwareViewController: DisclosureViewController {
         //----------------------------------------------------------------------
 
         hardwareStackView.setViews(
-            [sdrHeaderStackView, sdrPopUpStackView, separatorStackView, detailsHeaderStackView, sampleRateStackView, correctionStackView],
+            [/*sdrHeaderStackView,*/ sdrPopUpStackView, /* separatorStackView, detailsHeaderStackView,*/ sampleRateStackView, correctionStackView],
             in: .top
         )
         
@@ -368,17 +368,18 @@ class HardwareViewController: DisclosureViewController {
         //
         //----------------------------------------------------------------------
         
-        sdrHeaderStackView.leadingAnchor.constraint(        equalTo: hardwareStackView.leadingAnchor    ).isActive = true
-        sdrHeaderStackView.trailingAnchor.constraint(       equalTo: hardwareStackView.trailingAnchor   ).isActive = true
+//        sdrHeaderStackView.leadingAnchor.constraint(        equalTo: hardwareStackView.leadingAnchor    ).isActive = true
+//        sdrHeaderStackView.trailingAnchor.constraint(       equalTo: hardwareStackView.trailingAnchor   ).isActive = true
         
+//        sdrPopUpStackView.topAnchor.constraint(equalTo: hardwareStackView.bottomAnchor, constant: 10.0).isActive = true
         sdrPopUpStackView.leadingAnchor.constraint(         equalTo: hardwareStackView.leadingAnchor    ).isActive = true
         sdrPopUpStackView.trailingAnchor.constraint(        equalTo: hardwareStackView.trailingAnchor   ).isActive = true
         
-        separatorStackView.leadingAnchor.constraint(        equalTo: hardwareStackView.leadingAnchor    ).isActive = true
-        separatorStackView.trailingAnchor.constraint(       equalTo: hardwareStackView.trailingAnchor   ).isActive = true
+//        separatorStackView.leadingAnchor.constraint(        equalTo: hardwareStackView.leadingAnchor    ).isActive = true
+//        separatorStackView.trailingAnchor.constraint(       equalTo: hardwareStackView.trailingAnchor   ).isActive = true
         
-        detailsHeaderStackView.leadingAnchor.constraint(    equalTo: hardwareStackView.leadingAnchor    ).isActive = true
-        detailsHeaderStackView.trailingAnchor.constraint(   equalTo: hardwareStackView.trailingAnchor   ).isActive = true
+//        detailsHeaderStackView.leadingAnchor.constraint(    equalTo: hardwareStackView.leadingAnchor    ).isActive = true
+//        detailsHeaderStackView.trailingAnchor.constraint(   equalTo: hardwareStackView.trailingAnchor   ).isActive = true
         
         sampleRateStackView.leadingAnchor.constraint(       equalTo: hardwareStackView.leadingAnchor    ).isActive = true
         sampleRateStackView.trailingAnchor.constraint(      equalTo: hardwareStackView.trailingAnchor   ).isActive = true
@@ -396,21 +397,22 @@ class HardwareViewController: DisclosureViewController {
         //
         //----------------------------------------------------------------------
 
-        sdrHeaderLabel.leadingAnchor.constraint(        equalTo: sdrHeaderStackView.leadingAnchor,      constant:   5.0 ).isActive = true
-        sdrHeaderLabel.trailingAnchor.constraint(       equalTo: sdrHeaderStackView.trailingAnchor                      ).isActive = true
+//        sdrHeaderLabel.leadingAnchor.constraint(        equalTo: sdrHeaderStackView.leadingAnchor,      constant:   5.0 ).isActive = true
+//        sdrHeaderLabel.trailingAnchor.constraint(       equalTo: sdrHeaderStackView.trailingAnchor                      ).isActive = true
         
         sdrListPopUp.leadingAnchor.constraint(          equalTo: sdrPopUpStackView.leadingAnchor,       constant:  20.0 ).isActive = true
         sdrListPopUp.trailingAnchor.constraint(         equalTo: sdrPopUpStackView.trailingAnchor,      constant: -10.0 ).isActive = true
         
-        separatorLine.leadingAnchor.constraint(         equalTo: separatorStackView.leadingAnchor,      constant:  10.0 ).isActive = true
-        separatorLine.trailingAnchor.constraint(        equalTo: separatorStackView.trailingAnchor,     constant: -10.0 ).isActive = true
+//        separatorLine.leadingAnchor.constraint(         equalTo: separatorStackView.leadingAnchor,      constant:  10.0 ).isActive = true
+//        separatorLine.trailingAnchor.constraint(        equalTo: separatorStackView.trailingAnchor,     constant: -10.0 ).isActive = true
         
-        detailsHeaderLabel.leadingAnchor.constraint(    equalTo: detailsHeaderStackView.leadingAnchor,  constant:   5.0 ).isActive = true
-        detailsHeaderLabel.trailingAnchor.constraint(   equalTo: detailsHeaderStackView.trailingAnchor                  ).isActive = true
+//        detailsHeaderLabel.leadingAnchor.constraint(    equalTo: detailsHeaderStackView.leadingAnchor,  constant:   5.0 ).isActive = true
+//        detailsHeaderLabel.trailingAnchor.constraint(   equalTo: detailsHeaderStackView.trailingAnchor                  ).isActive = true
         
         sampleRateLabel.leadingAnchor.constraint(       equalTo: sampleRateStackView.leadingAnchor,     constant:  20.0 ).isActive = true
         sampleRatePopUp.trailingAnchor.constraint(      equalTo: sampleRateStackView.trailingAnchor,    constant: -10.0 ).isActive = true
         
+        correctionLabel.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
         correctionLabel.leadingAnchor.constraint(       equalTo: correctionStackView.leadingAnchor,     constant:  20.0 ).isActive = true
         correctionLabel.trailingAnchor.constraint(      equalTo: sampleRateLabel.trailingAnchor                         ).isActive = true
         correctionTextField.widthAnchor.constraint(                                              equalToConstant:  50.0 ).isActive = true

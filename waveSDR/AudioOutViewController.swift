@@ -22,11 +22,11 @@ class AudioOutViewController: DisclosureViewController {
     //
     //--------------------------------------------------------------------------
     
-    static var headerFontSize:  CGFloat = 10.0
-    static var headerFont:      NSFont  = NSFont.boldSystemFont(ofSize: headerFontSize)
-    
-    static var labelFontSize:   CGFloat = 10.0
-    static var labelFont:       NSFont  = NSFont.systemFont(ofSize: labelFontSize)
+//    static var headerFontSize:  CGFloat = 10.0
+//    static var headerFont:      NSFont  = NSFont.boldSystemFont(ofSize: headerFontSize)
+//    
+//    static var labelFontSize:   CGFloat = 10.0
+//    static var labelFont:       NSFont  = NSFont.systemFont(ofSize: labelFontSize)
     
 //    private let notify: NotificationCenter = NotificationCenter.default
     
@@ -341,7 +341,7 @@ class AudioOutViewController: DisclosureViewController {
         
 //        audioOutHeaderLabel.leadingAnchor.constraint(   equalTo: audioOutHeaderStackView.leadingAnchor,  constant:   5.0 ).isActive = true
 //        audioOutHeaderLabel.trailingAnchor.constraint(  equalTo: audioOutHeaderStackView.trailingAnchor                  ).isActive = true
-        
+        frequencyLabel.widthAnchor.constraint(equalToConstant: labelWidth).isActive = true
         frequencyLabel.leadingAnchor.constraint(        equalTo: highPassCutoffStackView.leadingAnchor,  constant:  20.0 ).isActive = true
         frequencyHzLabel.trailingAnchor.constraint(     equalTo: highPassCutoffStackView.trailingAnchor, constant: -10.0 ).isActive = true
         frequencyTextField.widthAnchor.constraint(                                   greaterThanOrEqualToConstant: 50.0 ).isActive = true

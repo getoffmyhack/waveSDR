@@ -11,13 +11,25 @@ class DisclosureViewController: NSViewController {
     
     let notify: NotificationCenter = NotificationCenter.default
     
-    private static var disclosureFontSize:  CGFloat = 10.0
-    private static var disclosureFont:      NSFont  = NSFont.boldSystemFont(ofSize: disclosureFontSize)
+    //--------------------------------------------------------------------------
+    //
+    // class constants
+    //
+    //--------------------------------------------------------------------------
+    
+    static let headerFontSize:  CGFloat     = 10.0
+    static let headerFont:      NSFont      = NSFont.boldSystemFont(ofSize: headerFontSize)
+    
+    static let labelFontSize:   CGFloat     = 10.0
+    static let labelFont:       NSFont      = NSFont.systemFont(ofSize: labelFontSize)
+    
+    static let disclosureFontSize:  CGFloat = 10.0
+    static let disclosureFont:      NSFont  = NSFont.boldSystemFont(ofSize: disclosureFontSize)
+    
+    let labelWidth:      CGFloat     = 80.0
     
     var disclosureIsClosed:     Bool                = false
-    var closingConstraint:      NSLayoutConstraint  = NSLayoutConstraint()
-    var disclosureViewHeight:   CGFloat             = 0.0
-    
+
     //--------------------------------------------------------------------------
     //
     // MARK: - container views
@@ -33,7 +45,7 @@ class DisclosureViewController: NSViewController {
     let mainStackView:      NSStackView = {
         let stackview           = NSStackView()
         stackview.orientation   = .vertical
-        stackview.spacing       = 5.0
+//        stackview.spacing       = 5.0
         stackview.translatesAutoresizingMaskIntoConstraints = false
         stackview.wantsLayer = true
 //        stackview.layer?.backgroundColor = NSColor.blue.cgColor
@@ -53,22 +65,37 @@ class DisclosureViewController: NSViewController {
         return stackview
     }()
     
+    var disclosedStackView:     NSStackView = {
+        let stackview = NSStackView()
+        stackview.wantsLayer = true
+        return stackview
+    }()
     
-//    var headerView:         NSView      = NSView()
+    var bottomLineStackView:    NSStackView = {
+        let view = NSStackView()
+        return view
+    }()
+    
     var disclosedView:      NSView      = NSView() {
         didSet {
-
-            self.mainStackView.addView(self.disclosedView, in: .top)
+            
+            self.disclosedStackView.addView(self.disclosedView, in: .top)
+            self.mainStackView.addView(self.disclosedStackView, in: .top)
+            self.mainStackView.addView(self.bottomLineStackView, in: .top)
             
             // set up constraints for the disclosed
-//            self.disclosedView.topAnchor.constraint(equalTo: self.headerStackView.bottomAnchor).isActive = true
-            self.disclosedView.leadingAnchor.constraint(equalTo: self.mainStackView.leadingAnchor).isActive = true
-            self.disclosedView.trailingAnchor.constraint(equalTo: self.mainStackView.trailingAnchor).isActive = true
+            self.disclosedView.topAnchor.constraint(equalTo: self.disclosedStackView.topAnchor).isActive = true
+            self.disclosedView.leadingAnchor.constraint(equalTo: self.disclosedStackView.leadingAnchor).isActive = true
+            self.disclosedView.trailingAnchor.constraint(equalTo: self.disclosedStackView.trailingAnchor).isActive = true
+            
+            self.disclosedStackView.topAnchor.constraint(equalTo: self.headerStackView.bottomAnchor, constant: 8.0).isActive = true
+            self.disclosedStackView.leadingAnchor.constraint(equalTo: self.mainStackView.leadingAnchor).isActive = true
+            self.disclosedStackView.trailingAnchor.constraint(equalTo: self.mainStackView.trailingAnchor).isActive = true
+            
+            
             
         }
     }
-    
-
     
     //--------------------------------------------------------------------------
     //
@@ -88,15 +115,22 @@ class DisclosureViewController: NSViewController {
         label.font  = disclosureFont
         return label
     }()
+    
     var disclosureButton:           NSButton      = {
         let button = NSButton()
-        button.setButtonType(NSButton.ButtonType.onOff)
-        button.bezelStyle   = NSButton.BezelStyle.inline
+        button.setButtonType(.onOff)
+        button.bezelStyle   = .inline
         button.controlSize  = .small
         button.title        = "Hide"
         button.font         = NSFont.systemFont(ofSize: 10.0)
         button.alignment    = NSTextAlignment.center
         return button
+    }()
+    
+    var bottomLine:             NSBox = {
+        let box     = NSBox()
+        box.boxType = .separator
+        return box
     }()
     
     //--------------------------------------------------------------------------
@@ -109,9 +143,6 @@ class DisclosureViewController: NSViewController {
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-        // set up notification observers as soon as possible
-//        initObservers()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -119,7 +150,7 @@ class DisclosureViewController: NSViewController {
     }
     
     deinit {
-//        notify.removeObserver(self)
+
     }
     
     //--------------------------------------------------------------------------
@@ -138,26 +169,16 @@ class DisclosureViewController: NSViewController {
         
         self.view = NSView()
         self.view.wantsLayer = true
-//        self.view.layer?.backgroundColor = NSColor.black.cgColor
         
         headerStackView.setViews([disclosureLabel, disclosureButton], in: .leading)
         mainStackView.addView(headerStackView, in: .top)
-        
-        //----------------------------------------------------------------------
-        //
+        bottomLineStackView.addView(bottomLine, in: .center)
+
         // build main stack view
-        //
-        //----------------------------------------------------------------------
-        
-//        audioOutStackView.setViews([audioOutHeaderStackView, highPassCutoffStackView, highPassBypassStackView], in: .top)
-        
-        
         self.view.addSubview(mainStackView)
 
         self.constrainViews()
-        
-   
-        
+
     }
     
     @objc func toggleDisclosureView() {
@@ -165,16 +186,28 @@ class DisclosureViewController: NSViewController {
         disclosureIsClosed.toggle();
         
         if(disclosureIsClosed == true) {
+            
             disclosureButton.title = "Show"
-            disclosedView.isHidden = true
-//            disclosedView.bottomAnchor.constraint(equalTo: headerStackView.bottomAnchor).isActive = true
-
+//            NSAnimationContext.runAnimationGroup({ (context) in
+//                context.duration = 1.0
+//                // Use the value you want to animate to (NOT the starting value)
+//                self.disclosedStackView.animator().isHidden = true
+//            })
+            disclosedStackView.isHidden = true
+//            disclosedStackView.bottomAnchor.constraint(equalTo: headerStackView.topAnchor, constant: 5.0).isActive = true
+            
         } else {
+            
             disclosureButton.title = "Hide"
-            disclosedView.isHidden = false
+            NSAnimationContext.runAnimationGroup({ (context) in
+                context.duration = 0.20
+                // Use the value you want to animate to (NOT the starting value)
 
-//            disclosedView.bottomAnchor.constraint(equalTo: headerStackView.bottomAnchor).isActive = false
-
+                self.disclosedStackView.animator().isHidden = false
+            })
+//            disclosedStackView.isHidden = false
+//            disclosedStackView.bottomAnchor.constraint(equalTo: headerStackView.topAnchor, constant: 5.0).isActive = false
+            
         }
         
     }
@@ -187,7 +220,6 @@ class DisclosureViewController: NSViewController {
     
         self.disclosureLabel.stringValue = self.description
 
-        // Do view setup here.
     }
     
     //--------------------------------------------------------------------------
@@ -208,7 +240,7 @@ class DisclosureViewController: NSViewController {
         mainStackView.topAnchor.constraint(         equalTo: self.view.topAnchor            ).isActive = true
         mainStackView.leadingAnchor.constraint(     equalTo: self.view.leadingAnchor        ).isActive = true
         mainStackView.trailingAnchor.constraint(    equalTo: self.view.trailingAnchor       ).isActive = true
-        mainStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -5).isActive = true
+        mainStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
         headerStackView.topAnchor.constraint(        equalTo: mainStackView.topAnchor       ).isActive = true
         headerStackView.leadingAnchor.constraint(    equalTo: mainStackView.leadingAnchor   ).isActive = true
@@ -219,7 +251,7 @@ class DisclosureViewController: NSViewController {
         
         disclosureButton.trailingAnchor.constraint(equalTo: headerStackView.trailingAnchor, constant: -5.0).isActive = true
         disclosureButton.lastBaselineAnchor.constraint(equalTo: disclosureLabel.lastBaselineAnchor).isActive = true
-        disclosureButton.widthAnchor.constraint(equalToConstant: 45.0).isActive = true
+        disclosureButton.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
         disclosureButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
 
