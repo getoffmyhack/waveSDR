@@ -188,25 +188,17 @@ class DisclosureViewController: NSViewController {
         if(disclosureIsClosed == true) {
             
             disclosureButton.title = "Show"
-//            NSAnimationContext.runAnimationGroup({ (context) in
-//                context.duration = 1.0
-//                // Use the value you want to animate to (NOT the starting value)
-//                self.disclosedStackView.animator().isHidden = true
-//            })
             disclosedStackView.isHidden = true
-//            disclosedStackView.bottomAnchor.constraint(equalTo: headerStackView.topAnchor, constant: 5.0).isActive = true
             
         } else {
             
             disclosureButton.title = "Hide"
-            NSAnimationContext.runAnimationGroup({ (context) in
-                context.duration = 0.20
-                // Use the value you want to animate to (NOT the starting value)
+            disclosedStackView.isHidden = false
 
-                self.disclosedStackView.animator().isHidden = false
-            })
-//            disclosedStackView.isHidden = false
-//            disclosedStackView.bottomAnchor.constraint(equalTo: headerStackView.topAnchor, constant: 5.0).isActive = false
+//            NSAnimationContext.runAnimationGroup({ (context) in
+//                context.duration = 0.20
+//                self.disclosedStackView.animator().isHidden = false
+//            })
             
         }
         
@@ -240,18 +232,19 @@ class DisclosureViewController: NSViewController {
         mainStackView.topAnchor.constraint(         equalTo: self.view.topAnchor            ).isActive = true
         mainStackView.leadingAnchor.constraint(     equalTo: self.view.leadingAnchor        ).isActive = true
         mainStackView.trailingAnchor.constraint(    equalTo: self.view.trailingAnchor       ).isActive = true
-        mainStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        mainStackView.bottomAnchor.constraint(      equalTo: self.view.bottomAnchor         ).isActive = true
         
-        headerStackView.topAnchor.constraint(        equalTo: mainStackView.topAnchor       ).isActive = true
-        headerStackView.leadingAnchor.constraint(    equalTo: mainStackView.leadingAnchor   ).isActive = true
-        headerStackView.trailingAnchor.constraint(   equalTo: mainStackView.trailingAnchor  ).isActive = true
+        headerStackView.topAnchor.constraint(       equalTo: mainStackView.topAnchor        ).isActive = true
+        headerStackView.leadingAnchor.constraint(   equalTo: mainStackView.leadingAnchor    ).isActive = true
+        headerStackView.trailingAnchor.constraint(  equalTo: mainStackView.trailingAnchor   ).isActive = true
         
-        disclosureLabel.topAnchor.constraint(equalTo: headerStackView.topAnchor).isActive = true
-        disclosureLabel.leadingAnchor.constraint(equalTo: headerStackView.leadingAnchor, constant: 5.0).isActive = true
+        disclosureLabel.topAnchor.constraint(       equalTo: headerStackView.topAnchor      ).isActive = true
+        disclosureLabel.leadingAnchor.constraint(   equalTo: headerStackView.leadingAnchor, constant: 5.0).isActive = true
         
-        disclosureButton.trailingAnchor.constraint(equalTo: headerStackView.trailingAnchor, constant: -5.0).isActive = true
-        disclosureButton.lastBaselineAnchor.constraint(equalTo: disclosureLabel.lastBaselineAnchor).isActive = true
-        disclosureButton.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
+        disclosureButton.trailingAnchor.constraint(     equalTo: headerStackView.trailingAnchor, constant: -5.0).isActive = true
+        disclosureButton.lastBaselineAnchor.constraint( equalTo: disclosureLabel.lastBaselineAnchor).isActive = true
+        disclosureButton.widthAnchor.constraint(        equalToConstant: 40.0               ).isActive = true
+        
         disclosureButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
 
