@@ -21,6 +21,7 @@
 		D027D4A91E6E3BE90089051F /* SpectrogramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027D4A81E6E3BE90089051F /* SpectrogramView.swift */; };
 		D02AA8AF1E3C168500218374 /* SDRDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA8AE1E3C168500218374 /* SDRDevice.swift */; };
 		D02AA8B11E3D925900218374 /* waveSDRNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA8B01E3D925900218374 /* waveSDRNotifications.swift */; };
+		D030234A227A0BA50016DF97 /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = D0302349227A0BA50016DF97 /* screenshot.png */; };
 		D032940B223B3648006A6ED0 /* librtlsdr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D032940A223B3648006A6ED0 /* librtlsdr.a */; };
 		D032940D223B38E1006A6ED0 /* AudioOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D032940C223B38E1006A6ED0 /* AudioOutViewController.swift */; };
 		D05444782253156300F5CC29 /* DisclosureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05444772253156300F5CC29 /* DisclosureViewController.swift */; };
@@ -63,9 +64,9 @@
 		D027D4A81E6E3BE90089051F /* SpectrogramView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrogramView.swift; sourceTree = "<group>"; };
 		D02AA8AE1E3C168500218374 /* SDRDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDRDevice.swift; sourceTree = "<group>"; };
 		D02AA8B01E3D925900218374 /* waveSDRNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = waveSDRNotifications.swift; sourceTree = "<group>"; };
+		D0302349227A0BA50016DF97 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 		D032940A223B3648006A6ED0 /* librtlsdr.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = librtlsdr.a; sourceTree = "<group>"; };
 		D032940C223B38E1006A6ED0 /* AudioOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioOutViewController.swift; sourceTree = "<group>"; };
-		D049FBA91F8F157600C69135 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 		D05444772253156300F5CC29 /* DisclosureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureViewController.swift; sourceTree = "<group>"; };
 		D05A11651E258D4000F2116D /* waveSDR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = waveSDR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05A11681E258D4000F2116D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -156,7 +157,7 @@
 		D05A115C1E258D4000F2116D = {
 			isa = PBXGroup;
 			children = (
-				D049FBA91F8F157600C69135 /* screenshot.png */,
+				D0302349227A0BA50016DF97 /* screenshot.png */,
 				D0EDB2B51F31949D00B84C4B /* Readme.md */,
 				D05A11671E258D4000F2116D /* waveSDR */,
 				D05A11661E258D4000F2116D /* Products */,
@@ -331,6 +332,7 @@
 				D05A117D1E258D9800F2116D /* MainWindowController.xib in Resources */,
 				D0F098191E38525100355EB0 /* DVTStop_10_10.pdf in Resources */,
 				D05A116E1E258D4000F2116D /* MainMenu.xib in Resources */,
+				D030234A227A0BA50016DF97 /* screenshot.png in Resources */,
 				D0F098181E38525100355EB0 /* DVTRun_10_10.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
