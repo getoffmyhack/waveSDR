@@ -47,6 +47,7 @@
 		D0F098291E38734D00355EB0 /* RTLSDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F098281E38734D00355EB0 /* RTLSDR.swift */; };
 		D0F0982C1E3882CF00355EB0 /* SoftwareDefinedRadio.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F0982B1E3882CF00355EB0 /* SoftwareDefinedRadio.swift */; };
 		D0F9183A1E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F918391E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift */; };
+		D0FCB6482288E4A200E98E23 /* BuildLog.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0FCB6472288E4A200E98E23 /* BuildLog.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		D0F098281E38734D00355EB0 /* RTLSDR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTLSDR.swift; sourceTree = "<group>"; };
 		D0F0982B1E3882CF00355EB0 /* SoftwareDefinedRadio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoftwareDefinedRadio.swift; sourceTree = "<group>"; };
 		D0F918391E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteringSpacerToolbarItem.swift; sourceTree = "<group>"; };
+		D0FCB6472288E4A200E98E23 /* BuildLog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BuildLog.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 		D05A115C1E258D4000F2116D = {
 			isa = PBXGroup;
 			children = (
+				D0FCB6472288E4A200E98E23 /* BuildLog.txt */,
 				D0302349227A0BA50016DF97 /* screenshot.png */,
 				D0EDB2B51F31949D00B84C4B /* Readme.md */,
 				D05A11671E258D4000F2116D /* waveSDR */,
@@ -331,6 +334,7 @@
 				D05A116B1E258D4000F2116D /* Assets.xcassets in Resources */,
 				D05A117D1E258D9800F2116D /* MainWindowController.xib in Resources */,
 				D0F098191E38525100355EB0 /* DVTStop_10_10.pdf in Resources */,
+				D0FCB6482288E4A200E98E23 /* BuildLog.txt in Resources */,
 				D05A116E1E258D4000F2116D /* MainMenu.xib in Resources */,
 				D030234A227A0BA50016DF97 /* screenshot.png in Resources */,
 				D0F098181E38525100355EB0 /* DVTRun_10_10.pdf in Resources */,
