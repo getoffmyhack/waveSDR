@@ -711,9 +711,9 @@ class MainWindowController: NSWindowController {
     @objc func updateSidebarButton(notification: NSNotification) {
         
         if(sidebarSplitViewItem.isCollapsed == true) {
-            sidebarButton.state = NSControl.StateValue.off // NSOffState
+            sidebarButton.state = .off // NSOffState
         } else {
-            sidebarButton.state = NSControl.StateValue.on  // NSOnState
+            sidebarButton.state = .on  // NSOnState
         }
         
     }
