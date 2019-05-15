@@ -30,9 +30,15 @@ The changes in the main window controller was basically adding the callback meth
 
 The majority of the ViewController changes basically dealt with going to nil devices available and how to handle their controls and if/when notifications are posted.  As stated before, it currently works, but needs to have more of a concrete process of going from 1 to 0 devices in how the ViewController's controls are reset to a default state.
 
+Worth noting about the hardwareViewController was an unexpected retain of the last removed RTLSDR object.  The hVC has its own device list array which is programmatically bound to a NSPopUpButton and is copied each time a new device is added or removed: self.deviceList = incomingDeviceList.  I would expect that if I copy a new, but empty array (self.deviceList.count = x; incomingDeviceList.count = 0), all of the previous 'x' elements would be released.  Using Xcode's visual memory graph, I was able to determine that an NSMenuItem (as part of the NSPopUpButton) was the last object to have a strong reference to the last device.  My solution consisted simply of clearing the already empty array: self.deviceList.removeAll(). (the code first checks if .count == 0, and if so, it will .removeAll())  I will explore this further at some point in the future as it seems that if I copied an empty array to a local copy, all previous elements should be released.
+
 SpectrumView
 
 I should put in here that because of the changes made to support a dynamic device list, the SpectrumView has a not-fatal crash related to CoreGraphics when the mouse is moved into the analyzer view after the last device has been removed.  Since the spectrum view code is due for a major re-write in the future, I will not deal with this now as it does not crash the app when it happens.
+
+Xcode
+
+Created a debugging build scheme such that I can debug non-DSP based issues.
 
 12 May 2019
 
