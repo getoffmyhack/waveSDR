@@ -1,3 +1,39 @@
+14 May 2019
+
+This commit merges all the changes from the usb_helper branch.  There was a lot of trial-and-error in terms of how everything was laid out, and therefore I made just a couple of commits.  This commit has working code that has been tested to verify device addition and removal works properly, but there is still plenty of code that needs to be changed in order to take account of all scenarios. 
+
+The first major change was the addition of the IOUSBManager class.  This class monitors the USB bus for device changes (additions and removals) and reports via a delegate call any changes.
+
+Adding dynamic device detection was far down on my list of items, but as both the developer and a user, I decided I was tired of having to constantly restart the app every time I changed my RTL dongles.  As such, the UI classes were all originally created with only two scenarios to deal with.  1) App launched with zero RTL devices installed and therefore defaults all controls.  2) App launched with devices.  With that being the case, the UI changes thus far have been to deal with the device object array going from zero to 1 elements and going from 1 element to zero.  UI changes will be detailed below.
+
+SoftwareDefinedRadio Class
+
+The USBManger class is being handled by the SoftwareDefinedRadio class which acts as the go-between the hardware and the UI.  The major changes with the SDR class is a dynamic device list instead of a one-time-initalized device list.  This is accomplished in two parts.  The first part removes the static initialization of the device list and instead, it is the delegate for the USB manager for when USB devices are added / removed.  The delegate methods will manage the list of devices based on whether or not the device is a supported SDR hardware dongle.  If a USB device is added, it is passed to a class (factory) function of SDRDevice to determine if it is supported, and if so, returns an instantiated SDRDevice object, otherwise nil is returned.  When a USB device is removed, it is compared against its current list of SDR devices and removes it from the list if found.  The second part is a startUSBManager() method called from the UI controller which passes a callback function.  Once this method is called, the USBManager is started such that device notifications will start to appear.  This is done to make sure all aspects of the UI are ready before devices start populating the device list.  The callback is just a simple callback to the UI controller which sends an associative array (dictionary) back to the UI controller whenever an SDR device is added or removed.  The UI Controller retrieves the current SDR device list and the added / removed device from the dictionary and acts as needed.  As I prepare for supporting multiple windows with multiple RTL devices, the SoftwareDefinedRadio class may need to be made a singleton in order to manage the single list of devices for multiple windows and to manage which devices are being used by which window.
+
+RTLSDR (SDRDevice) Class
+
+Side Note: The SDRDevice class is a poor attempt to create a purely abstract class (something that did not exist in Swift when I started this project) to be subclassed by concrete device classes.  Once I start to add additional SDR hardware (HackRF, etc) I will re-visit the abstract class / protocol and make changes as needed.
+
+Although the RTLSDR driver had to be re-designed in terms of how the objects are instantiated, the changes ended up being fairly minimal.  Gone are the static constructs of deviceCount and deviceList where accessing the device list for the first time will instantiate all attached RTLSDR devices as a static array of objects.  The biggest change is the addition of a purely static helper class RTLKnowDeviceList.  This contains the list of USB Vendor and Product IDs as found, but not exposed, in librtlsdr.  This class has 2 components, a Set which contains the VID/PID tuples and a class function to check if the passed in VID/PID exists in the set.  A return of "true" indicates the VID/PID is a RTLSDR dongle.  This check is performed in the class factory function isDeviceSupported() and if true, instantiates the RTLSDR object and returns the object to the caller.  Since this class has a one-to-one relationship to the underlying hardware, each RTLSDR object needs to be a singleton so only a single instance of the object is ever created.
+
+The other major change (which is quite minor) is the handling of the librtlsdr index of the actual device.  During my testing phase, after the first device is recognized by librtlsdr, any additional new devices are always given index 0, therefore destroying my reliance on the index as a way back into librtlsdr for this specific RTLSDR object/device.  To overcome this, the librtlsdrIndex property was converted to a read-only computed property where each "get" uses the rtlsdr_get_index_by_serial() function to retrieve the device's current index when needed.  The downside is that the USB Serial Number field needs to be unique, but that is not always the case with the RTLSDR devices as I have had a several that came with SN: 0001.  The rtlsdr command line tools are needed to change the SN of the devices if needed, and that process (not the cmd line tool) may be integrated into waveSDR in the future.
+
+Also worth noting, the IOUSBManager has me laying the ground work for creating a pure Swift RTLSDR framework instead of relying on librtlsdr.  I have no  idea how long that will take or even if I finish it, but I am going to try and make it work.  The biggest setback I have found, is that in my quick review of the librtlsdr code, there is a lot of pixie dust and magic numbers that make everything work.
+
+UI
+
+Most of the changes in the UI code deal with the dynamic nature of devices being added and removed.  Although all the code currently works, more work is needed in order to create a "default" state where once the last device is removed, all UI controls revert to a default state.
+
+MainWindowController (et al.)
+
+The changes in the main window controller was basically adding the callback method that is called each time a valid SDR device is added or removed and posts the notifications as needed.  At the very end of the windowDidLoad method, the SDR.startUSBManager() method is called which sets in motion the dynamic device detection.
+
+The majority of the ViewController changes basically dealt with going to nil devices available and how to handle their controls and if/when notifications are posted.  As stated before, it currently works, but needs to have more of a concrete process of going from 1 to 0 devices in how the ViewController's controls are reset to a default state.
+
+SpectrumView
+
+I should put in here that because of the changes made to support a dynamic device list, the SpectrumView has a not-fatal crash related to CoreGraphics when the mouse is moved into the analyzer view after the last device has been removed.  Since the spectrum view code is due for a major re-write in the future, I will not deal with this now as it does not crash the app when it happens.
+
 12 May 2019
 
 Laid out initial "framework" for a USB Manager class.  This class will mainly act as a shim between IOKit.USB and the low-level C driver libraries (librtlsdr).  
