@@ -732,6 +732,8 @@ class TunerViewController: DisclosureViewController {
             self.maximumFrequency = device.maximumFrequency()
             // FIXME: This should be not be set from here
             device.tunedFrequency(frequency: self.tunedFrequency)
+        } else {
+            // FIXME: Reset controls to default state
         }
     }
 

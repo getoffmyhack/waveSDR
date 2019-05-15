@@ -80,12 +80,12 @@ extension io_object_t {
     }
     
     func usbVendorName() -> String? {
-        var usbVendor: String? = nil
+        var usbVendorName: String? = nil
         
         if let cfUSBVendorName = IORegistryEntryCreateCFProperty(self, kUSBVendorString as CFString, kCFAllocatorDefault, 0) {
-            usbVendor = cfUSBVendorName.takeRetainedValue() as? String
+            usbVendorName = cfUSBVendorName.takeRetainedValue() as? String
         }
         
-        return usbVendor
+        return usbVendorName
     }
 }

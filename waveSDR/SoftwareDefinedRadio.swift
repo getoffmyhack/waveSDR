@@ -9,16 +9,22 @@ import Foundation
 import Accelerate
 import AVFoundation
 
-class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
-    
+class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate, IOUSBManagerDelegate {
+
     static let audioSampleRate = 48000
+    
+    typealias DeviceListCallbackType = ( (SDRDevice, String) -> Void )
+    var deviceListChangedCallback: DeviceListCallbackType?
     
     var workQueue:          DispatchQueue = DispatchQueue(label: "SoftwareDefinedRadio.WorkQueue")
 
     @objc dynamic var selectedDevice: SDRDevice? {
         didSet {
             oldValue?.delegate = nil
-            selectedDevice!.delegate = self
+            // check if nil device
+            if(self.selectedDevice != nil) {
+                selectedDevice!.delegate = self
+            }
         }
     }
     
@@ -28,7 +34,7 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
     
     var isPaused:               Bool    = false
     
-    var deviceCount:            Int     = 0
+//    var deviceCount:            Int     = 0
 
     var frequency:              Int     = 0 {
         didSet {
@@ -64,9 +70,10 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
         didSet {
             if let sdr = selectedDevice {
                 sdr.sampleRate(rate: self.sampleRate)
-            }
-            if let radio = self.radio {
-                radio.updateIFSampleRate(rate: self.sampleRate)
+            
+                if let radio = self.radio {
+                    radio.updateIFSampleRate(rate: self.sampleRate)
+                }
             }
         }
     }
@@ -177,10 +184,10 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
         // any number of different hardware platforms can be enumerated
         //
         //----------------------------------------------------------------------
-
-        let rtlsdrList = RTLSDR.deviceList()
-        deviceList  += rtlsdrList
-        deviceCount  = deviceList.count
+        
+//        let rtlsdrList = RTLSDR.deviceList()
+//        deviceList  += rtlsdrList
+//        deviceCount  = deviceList.count
         
         // configure audio system
         // Attach and connect the player node.
@@ -206,6 +213,22 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
         )
 
 
+    }
+    
+    //--------------------------------------------------------------------------
+    //
+    //
+    //
+    //--------------------------------------------------------------------------
+    
+    func startUSBDeviceManager(callback: (DeviceListCallbackType)? ) {
+        
+        if let callbackFunction = callback {
+            self.deviceListChangedCallback = callbackFunction
+        }
+
+        let usbManager = IOUSBManager.manager()
+        usbManager.start(delegate: self)
     }
     
     //--------------------------------------------------------------------------
@@ -417,6 +440,14 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate {
     
 }
 
+//------------------------------------------------------------------------------
+//
+// MARK: - Audio output
+//
+// This extension manages the audio output
+//
+//------------------------------------------------------------------------------
+
 extension SoftwareDefinedRadio {
 
     //--------------------------------------------------------------------------
@@ -443,6 +474,69 @@ extension SoftwareDefinedRadio {
         self.audioPlayerNode.scheduleBuffer(audioBuffer)
         
     }
+
+}
+
+//------------------------------------------------------------------------------
+//
+// MARK: - IOUSBManager Delegate
+//
+// This extension is where the IOUSBManager delegate method is called in
+// order to manage the USB devices within the OS
+//
+//------------------------------------------------------------------------------
+
+extension SoftwareDefinedRadio {
+
+    func usbDeviceAdded(_ device: IOUSBDevice) {
+        
+        // a new USB device has been added, check if it will be claimed
+        // by one of the legacy C library "drivers"
+        
+        if let sdrDevice = RTLSDR.isDeviceSupported(usbDevice: device) {
+            self.deviceList.append(sdrDevice)
+            if let callback = self.deviceListChangedCallback {
+                callback(sdrDevice, sdrDeviceAddedKey)
+            }
+        }
+    }
+    
+    func usbDeviceRemoved(_ device: IOUSBDevice) {
+
+        // check if removed USB device is in SDR device list
+
+        for (index, sdrDevice) in self.deviceList.enumerated() {
+
+            if sdrDevice.usbDevice == device {
+                
+                // found device, check if selected.
+                if selectedDevice == sdrDevice {
+                    
+                    // check if running
+                    if self.isRunning == true {
+                        self.stop()
+                        // an "EMERGENCY STOP" notification will be sent out so
+                        // so that the mainwindowcontroller will perform the
+                        // stop procedures
+                        
+                        // FIXME: A beter way to stop when device removed.
+                        NotificationCenter.default.post(name: .sdrStoppedNotification, object: self, userInfo: nil)
+                    }
+                    
+                }
+                
+                // remove device from sdr device list
+                self.deviceList.remove(at: index)
+                
+                // use callback to let GUI know the dev list changed
+                if let callback = self.deviceListChangedCallback {
+                    callback(sdrDevice, sdrDeviceRemovedKey)
+                }
+            }
+        }
+        
+    }
+    
 
 }
 

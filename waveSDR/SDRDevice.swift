@@ -16,7 +16,7 @@ import Foundation
 //
 //------------------------------------------------------------------------------
 
-protocol SDRDeviceDelegate {
+protocol SDRDeviceDelegate: class {
     func sdrDevice(_ device: SDRDevice, rawSamples: [UInt8])
 //    func sdrDevice(_ device: SDRDevice, normalizedSamples: [Float])
 }
@@ -29,7 +29,9 @@ protocol SDRDeviceDelegate {
 
 protocol SDRDeviceProtocol: NSObjectProtocol {
     
-    var delegate: SDRDeviceDelegate? { get set }
+//    weak var delegate: SDRDeviceDelegate? { get set }
+    
+    var usbDevice: IOUSBDevice? { get set }
     
     func minimumFrequency() -> Int
     func maximumFrequency() -> Int
@@ -60,8 +62,10 @@ protocol SDRDeviceProtocol: NSObjectProtocol {
 
 class SDRDevice: NSObject, SDRDeviceProtocol {
     
-    internal var delegate: SDRDeviceDelegate?
     
+    weak var delegate: SDRDeviceDelegate?
+    var usbDevice: IOUSBDevice?
+
     //--------------------------------------------------------------------------
     //
     // deviceCount()
@@ -70,9 +74,9 @@ class SDRDevice: NSObject, SDRDeviceProtocol {
     //
     //--------------------------------------------------------------------------
     
-    class func deviceCount() -> Int {
-        return 0
-    }
+//    class func deviceCount() -> Int {
+//        return 0
+//    }
     
     //--------------------------------------------------------------------------
     //
@@ -82,8 +86,20 @@ class SDRDevice: NSObject, SDRDeviceProtocol {
     //
     //--------------------------------------------------------------------------
 
-    class func deviceList() -> [SDRDevice] {
-        return []
+//    class func deviceList() -> [SDRDevice] {
+//        return []
+//    }
+    
+    //--------------------------------------------------------------------------
+    //
+    // isSupportDevice()
+    //
+    // type method returning array of enumerated sdr devices
+    //
+    //--------------------------------------------------------------------------
+    
+    class func isDeviceSupported(usbDevice: IOUSBDevice) -> SDRDevice? {
+        return nil
     }
     
     //--------------------------------------------------------------------------

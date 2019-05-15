@@ -34,8 +34,8 @@
 		D061D37D1E4C3296006A4CEF /* Bool+toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D061D37C1E4C3296006A4CEF /* Bool+toggle.swift */; };
 		D06C48D42288A7CA00978ECC /* io_object_t+IOUSBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06C48D32288A7CA00978ECC /* io_object_t+IOUSBDevice.swift */; };
 		D06C48D62288B7EB00978ECC /* IOUSBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06C48D52288B7EB00978ECC /* IOUSBDevice.swift */; };
-		D06C48D82288BD4800978ECC /* io_registry_id_t.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06C48D72288BD4800978ECC /* io_registry_id_t.swift */; };
 		D081664D1E79F905002BF5CF /* ToneDecoderBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D081664C1E79F905002BF5CF /* ToneDecoderBlock.swift */; };
+		D08FC4D32288FE3F002E54BD /* RTLKnownDeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FC4D22288FE3F002E54BD /* RTLKnownDeviceList.swift */; };
 		D09BB4681E58C843002DEC58 /* ComplexFilterBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB4671E58C843002DEC58 /* ComplexFilterBlock.swift */; };
 		D09BB46A1E58FEC9002DEC58 /* FMDemodulatorBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB4691E58FEC9002DEC58 /* FMDemodulatorBlock.swift */; };
 		D09BB46D1E5B7C31002DEC58 /* Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB46C1E5B7C31002DEC58 /* Samples.swift */; };
@@ -84,8 +84,8 @@
 		D061D37C1E4C3296006A4CEF /* Bool+toggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+toggle.swift"; sourceTree = "<group>"; };
 		D06C48D32288A7CA00978ECC /* io_object_t+IOUSBDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "io_object_t+IOUSBDevice.swift"; sourceTree = "<group>"; };
 		D06C48D52288B7EB00978ECC /* IOUSBDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOUSBDevice.swift; sourceTree = "<group>"; };
-		D06C48D72288BD4800978ECC /* io_registry_id_t.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = io_registry_id_t.swift; sourceTree = "<group>"; };
 		D081664C1E79F905002BF5CF /* ToneDecoderBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToneDecoderBlock.swift; sourceTree = "<group>"; };
+		D08FC4D22288FE3F002E54BD /* RTLKnownDeviceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTLKnownDeviceList.swift; sourceTree = "<group>"; };
 		D09BB4671E58C843002DEC58 /* ComplexFilterBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplexFilterBlock.swift; sourceTree = "<group>"; };
 		D09BB4691E58FEC9002DEC58 /* FMDemodulatorBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMDemodulatorBlock.swift; sourceTree = "<group>"; };
 		D09BB46C1E5B7C31002DEC58 /* Samples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Samples.swift; sourceTree = "<group>"; };
@@ -205,7 +205,6 @@
 				D06C48D52288B7EB00978ECC /* IOUSBDevice.swift */,
 				D0AF458D228003C8001F7DE2 /* IOUSBManager.swift */,
 				D06C48D32288A7CA00978ECC /* io_object_t+IOUSBDevice.swift */,
-				D06C48D72288BD4800978ECC /* io_registry_id_t.swift */,
 			);
 			name = IOKitUSB;
 			sourceTree = "<group>";
@@ -247,14 +246,13 @@
 			name = librtlsdr;
 			sourceTree = "<group>";
 		};
-		D0F098261E3872B500355EB0 /* Hardware */ = {
+		D0F098261E3872B500355EB0 /* SDR Hardware */ = {
 			isa = PBXGroup;
 			children = (
-				D06C48D92288BFA600978ECC /* IOKitUSB */,
 				D02AA8AE1E3C168500218374 /* SDRDevice.swift */,
 				D0F098271E3872C200355EB0 /* RTLSDR */,
 			);
-			name = Hardware;
+			name = "SDR Hardware";
 			sourceTree = "<group>";
 		};
 		D0F098271E3872C200355EB0 /* RTLSDR */ = {
@@ -262,6 +260,7 @@
 			children = (
 				D0F0981B1E386B3500355EB0 /* librtlsdr */,
 				D0F098281E38734D00355EB0 /* RTLSDR.swift */,
+				D08FC4D22288FE3F002E54BD /* RTLKnownDeviceList.swift */,
 			);
 			name = RTLSDR;
 			sourceTree = "<group>";
@@ -269,8 +268,9 @@
 		D0F0982A1E38811700355EB0 /* SDR */ = {
 			isa = PBXGroup;
 			children = (
-				D0F098261E3872B500355EB0 /* Hardware */,
+				D0F098261E3872B500355EB0 /* SDR Hardware */,
 				D08166501E7A0601002BF5CF /* DSP */,
+				D06C48D92288BFA600978ECC /* IOKitUSB */,
 				D0F0982B1E3882CF00355EB0 /* SoftwareDefinedRadio.swift */,
 				D0CCEA301E515E0F005C6DC0 /* Radio.swift */,
 				D0DA27791F33848D00C8FC53 /* RadioBlock.swift */,
@@ -390,11 +390,11 @@
 				D027D4A11E67ABAE0089051F /* FFTBlock.swift in Sources */,
 				D06C48D62288B7EB00978ECC /* IOUSBDevice.swift in Sources */,
 				D09BB46D1E5B7C31002DEC58 /* Samples.swift in Sources */,
+				D08FC4D32288FE3F002E54BD /* RTLKnownDeviceList.swift in Sources */,
 				D027D4971E6269EF0089051F /* AMDemodulatorBlock.swift in Sources */,
 				D0DA277A1F33848D00C8FC53 /* RadioBlock.swift in Sources */,
 				D032940D223B38E1006A6ED0 /* AudioOutViewController.swift in Sources */,
 				D0F9183A1E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift in Sources */,
-				D06C48D82288BD4800978ECC /* io_registry_id_t.swift in Sources */,
 				D09BB46F1E5B88F3002DEC58 /* FilterCoefficients.swift in Sources */,
 				D022C62B1E29AD3D003FF574 /* RadioDisplayViewController.swift in Sources */,
 				D05A11691E258D4000F2116D /* AppDelegate.swift in Sources */,

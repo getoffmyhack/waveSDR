@@ -122,8 +122,8 @@ class MainWindowController: NSWindowController {
         // at this point, all devices (if any) have been enumerated, let the UI
         // know that the device list is ready
         
-        let sdrDeviceInfo: [String : Any] = [sdrDeviceListKey: sdr.deviceList]
-        notify.post(name: .sdrDeviceListNotifcaiton, object: self, userInfo: sdrDeviceInfo)
+//        let sdrDeviceInfo: [String : Any] = [sdrDeviceListKey: sdr.deviceList]
+//        notify.post(name: .sdrDeviceListNotifcaiton, object: self, userInfo: sdrDeviceInfo)
         
         //
         // setup defaults
@@ -136,6 +136,24 @@ class MainWindowController: NSWindowController {
         tunerViewController.selectedStepSize    = 1
         audioOutViewController.highPassCutoff   = 300
         
+        // at this point, everything should be built in the GUI
+        // start the sdr USB monitor to start waiting for SDR
+        // devices to be discovered
+        
+        sdr.startUSBDeviceManager(callback: sdrListChanged)
+        
+    }
+    
+    func sdrListChanged(device: SDRDevice, deviceActionKey: String) {
+
+        // this needs to be despatched on the main thread so that any
+        // UI controls can re-adjust their layout as needed.
+        DispatchQueue.main.async {
+            var sdrDeviceInfo: [String : Any] = [sdrDeviceListKey: self.sdr.deviceList]
+            sdrDeviceInfo[deviceActionKey] = device
+            self.notify.post(name: .sdrDeviceListNotifcaiton, object: self, userInfo: sdrDeviceInfo)
+        }
+
     }
     
     //--------------------------------------------------------------------------
@@ -458,6 +476,15 @@ class MainWindowController: NSWindowController {
                 notify.post(name: .sdrDeviceInitalizedNotification, object: self, userInfo: nil)
 
             }
+            
+        } else {
+            
+            // FIXME: post a last device removed notificatin to all objects
+            // reset their controls and properties to default values
+            updateToolBarDeviceLabel("")
+            self.window?.title = ""
+            sdr.selectedDevice = nil
+            
         }
         
     }

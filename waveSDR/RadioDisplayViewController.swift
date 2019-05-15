@@ -26,7 +26,12 @@ class RadioDisplayViewController: NSViewController {
 
     weak var selectedDevice:        SDRDevice? {
         didSet {
-            self.selectedDeviceName = selectedDevice!.description
+            if(self.selectedDevice != nil) {
+                self.selectedDeviceName = selectedDevice!.description
+            }
+            else {
+                self.selectedDeviceName = "No SDR Device Selected"
+            }
         }
     }
     
@@ -292,7 +297,9 @@ class RadioDisplayViewController: NSViewController {
         return label
     }()
     
+   
     var deviceLabel:                NSTextField = {
+         // TODO: is this device label needed?
         let label       = NSTextField(labelWithString: "")
         label.textColor = displayFontColor
         label.font      = displayFont
@@ -918,6 +925,9 @@ class RadioDisplayViewController: NSViewController {
         if let userInfo = notification.userInfo {
             let device = userInfo[sdrDeviceSelectedKey] as! SDRDevice
             selectedDevice = device
+        } else {
+            // FIXME: reset controls to default state
+            selectedDevice = nil
         }
 
     }
@@ -991,7 +1001,6 @@ class RadioDisplayViewController: NSViewController {
     
     func configureGainSlider() {
         
-//        print("Device: \(selectedDevice)")
         self.gainValueList = selectedDevice!.tunerGainArray()
     }
     

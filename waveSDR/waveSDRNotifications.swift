@@ -10,6 +10,8 @@ import Foundation
 // Strings as keys for notification's userinfo dictionary
 
 let sdrDeviceListKey            = String("com.getoffmyhack.waveSDR.sdrDeviceListKey")
+let sdrDeviceAddedKey           = String("com.getoffmyhack.wabeSDR.sdrDeviceAdded")
+let sdrDeviceRemovedKey         = String("com.getoffmyhack.wabeSDR.sdrDeviceRemoved")
 let sdrDeviceSelectedKey        = String("com.getoffmyhack.waveSDR.sdrDeviceSelectedKey")
 let sdrDeviceInitalizedKey      = String("com.getoffmyhack.waveSDR.sdrDeviceInitalizedKey")
 let frequencyUpdatedKey         = String("com.getoffmyhack.waveSDR.frequencyUpdatedKey")

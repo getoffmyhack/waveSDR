@@ -46,13 +46,38 @@ class HardwareViewController: DisclosureViewController {
     @objc dynamic      var deviceList:        [SDRDevice] = []
     @objc dynamic weak var selectedDevice:    SDRDevice? {
         didSet {
-            let userInfo: [String : Any] = [sdrDeviceSelectedKey: self.selectedDevice!]
-            notify.post(name: .sdrDeviceSelectedNotification, object: self, userInfo: userInfo)
             
-            // update UI vars
-            self.sampleRateList     = selectedDevice!.sampleRateList()
-            self.selectedSampleRate = selectedDevice!.sampleRate()
-            self.correctionValue    = selectedDevice!.frequencyCorrection()
+            let userInfo: [String: Any]?
+            
+            // check if selected device is nil (last device has been removed)
+            // if nil, then the userInfo dictionary for the notification will
+            // be nil, allowing the notification observers to determine if the
+            // last device has been removed and can react accordingly
+            
+            // also, adjust local controls accordingly
+            
+            if(self.selectedDevice == nil) {
+                
+                userInfo = nil
+                notify.post(name: .sdrDeviceSelectedNotification, object: self, userInfo: userInfo)
+
+                // FIXME: Reset local controls
+                self.sampleRateList     = []
+                self.selectedSampleRate = 0
+                self.correctionValue    = 0
+                
+            } else {
+                
+                userInfo = [sdrDeviceSelectedKey: self.selectedDevice!]
+                notify.post(name: .sdrDeviceSelectedNotification, object: self, userInfo: userInfo)
+
+                self.sampleRateList     = selectedDevice!.sampleRateList()
+                self.selectedSampleRate = selectedDevice!.sampleRate()
+                self.correctionValue    = selectedDevice!.frequencyCorrection()
+                
+            }
+
+
         }
     }
     
@@ -438,6 +463,7 @@ class HardwareViewController: DisclosureViewController {
 
         sdrListPopUp.bind(          NSBindingName.content,           to: self, withKeyPath: "deviceList",            options: sdrListContentOptions)
         sdrListPopUp.bind(          NSBindingName.selectedObject,    to: self, withKeyPath: "selectedDevice",        options: nil)
+//        sdrListPopUp.bind(          NSBindingName.selectedIndex,     to: self, withKeyPath: "selectedDeviceIndex",   options: nil)
         sdrListPopUp.bind(          NSBindingName.enabled,           to: self, withKeyPath: "selectedDevice",        options: isNotNillEnableOption)
         sdrListPopUp.bind(          NSBindingName.enabled,           to: self, withKeyPath: "isRunning",             options: negateBooleanOption)
         
@@ -516,11 +542,54 @@ class HardwareViewController: DisclosureViewController {
         if let userInfo = notification.userInfo {
             let sdrDeviceArray = userInfo[sdrDeviceListKey] as! [SDRDevice]
             self.deviceList = sdrDeviceArray
+        
             
-            // TODO: Replace with defaults
-            if(deviceList.count > 0) {
-                selectedDevice = deviceList[0]
+            // check the userDict passed in from the notification to determine
+            // if a device has been added or removed based off the existance
+            // of either sdrDeviceAddedKey or sdrDeviceRemovedKey; the
+            // associated value for either key is the SDRDevice object that
+            // has been added or removed
+            
+            if userInfo[sdrDeviceAddedKey] != nil {
+                
+                // a new device has been added, check if the first device
+                if self.selectedDevice == nil {
+                    self.selectedDevice = self.deviceList[0]
+                }
+                
+            } else {
+                
+                // device has been removed
+                let sdrDevice = userInfo[sdrDeviceRemovedKey] as! SDRDevice
+            
+                // check it removed device was selected device
+                if (self.selectedDevice == sdrDevice) {
+                    
+                    // check if removed device was last device in list
+                    if (self.deviceList.count == 0) {
+                        self.selectedDevice = nil
+                        
+                        // TODO: Determine why this is needed
+                        // Without removing all elements from the array, even
+                        // though the array count is 0, there was a "stray"
+                        // NSMenuItem holding onto the last SDRDevice object
+                        // in the array.
+                        //
+                        // above where I set the deviceList = sdrList, as
+                        // retreived from the notification dictionary, should
+                        // have replace the current deviceList object with the
+                        // new empty list and should have removed all other
+                        // references
+                        
+                        self.deviceList.removeAll()
+                    } else {
+                        self.selectedDevice = self.deviceList[0]
+                    }
+                    
+                }
+                
             }
+
         }
         
     }
