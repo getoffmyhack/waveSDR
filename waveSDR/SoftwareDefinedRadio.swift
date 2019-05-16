@@ -471,6 +471,7 @@ extension SoftwareDefinedRadio {
 // This extension is where the IOUSBManager delegate method is called in
 // order to manage the USB devices within the OS
 //
+//
 //------------------------------------------------------------------------------
 
 extension SoftwareDefinedRadio {
@@ -479,7 +480,6 @@ extension SoftwareDefinedRadio {
         
         // a new USB device has been added, check if it will be claimed
         // by one of the legacy C library "drivers"
-        
         if let sdrDevice = RTLSDR.isDeviceSupported(usbDevice: device) {
             self.deviceList.append(sdrDevice)
             if let callback = self.deviceListChangedCallback {
@@ -494,22 +494,6 @@ extension SoftwareDefinedRadio {
         for (index, sdrDevice) in self.deviceList.enumerated() {
 
             if sdrDevice.usbDevice == device {
-                
-                // found device, check if selected.
-                if selectedDevice == sdrDevice {
-                    
-                    // check if running
-                    if self.isRunning == true {
-                        self.stop()
-                        // an "EMERGENCY STOP" notification will be sent out so
-                        // so that the mainwindowcontroller will perform the
-                        // stop procedures
-                        
-                        // FIXME: A beter way to stop when device removed.
-                        NotificationCenter.default.post(name: .sdrStoppedNotification, object: self, userInfo: nil)
-                    }
-                    
-                }
                 
                 // remove device from sdr device list
                 self.deviceList.remove(at: index)

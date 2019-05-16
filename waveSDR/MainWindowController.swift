@@ -144,16 +144,35 @@ class MainWindowController: NSWindowController {
         
     }
     
+    
     func sdrListChanged(device: SDRDevice, deviceActionKey: String) {
-
+        
         // this needs to be despatched on the main thread so that any
         // UI controls can re-adjust their layout as needed.
         DispatchQueue.main.async {
-            var sdrDeviceInfo: [String : Any] = [sdrDeviceListKey: self.sdr.deviceList]
-            sdrDeviceInfo[deviceActionKey] = device
-            self.notify.post(name: .sdrDeviceListNotifcaiton, object: self, userInfo: sdrDeviceInfo)
+            
+            // first check if a device has been removed
+            if(deviceActionKey == sdrDeviceRemovedKey) {
+                
+                // check if selected device
+                if(device == self.sdr.selectedDevice) {
+                    
+                    // check if running / needs an EMERGENCY STOP
+                    if(self.sdr.isRunning == true) {
+                        // click the run/stop button
+                        self.startSDRButton.performClick(self)
+                    }
+                    
+                }
+                
+            }
+            
+            // send notification about device change
+//            var sdrDeviceInfo: [String : Any] = [sdrDeviceListKey: self.sdr.deviceList]
+            let sdrDeviceInfo: [String: Any] = [deviceActionKey : device]
+            self.notify.post(name: .sdrDeviceNotifcaiton, object: self, userInfo: sdrDeviceInfo)
         }
-
+        
     }
     
     //--------------------------------------------------------------------------
@@ -804,7 +823,7 @@ class MainWindowController: NSWindowController {
     //--------------------------------------------------------------------------
     
     @IBAction func runStopButtonClicked(_ sender: AnyObject) {
-        
+        print("Run / Stop clicked!!")
         if(self.sdr.isRunning == true) {
 
             self.refreshTimer.invalidate()

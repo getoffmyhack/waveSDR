@@ -501,7 +501,7 @@ class HardwareViewController: DisclosureViewController {
         notify.addObserver(
             self,
             selector:   #selector(observedSdrDeviceListNotifcaiton(_:)),
-            name:       .sdrDeviceListNotifcaiton,
+            name:       .sdrDeviceNotifcaiton,
             object:     nil
         )
         

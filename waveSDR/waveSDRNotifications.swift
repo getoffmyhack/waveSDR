@@ -39,7 +39,7 @@ let toneDecoderKey              = String("com.getoffmyhack.waveSDR.toneDecoderKe
 
 extension Notification.Name {
 
-    static let sdrDeviceListNotifcaiton             = Notification.Name("com.getoffmyhack.waveSDR.sdrDeviceListAvailable")
+    static let sdrDeviceNotifcaiton                 = Notification.Name("com.getoffmyhack.waveSDR.sdrDevice")
     static let sdrStartedNotification               = Notification.Name("com.getoffmyhack.waveSDR.sdrStarted")
     static let sdrStoppedNotification               = Notification.Name("com.getoffmyhack.waveSDR.sdrStopped")
     static let sdrPauseRequestNotification          = Notification.Name("com.getoffmyhack.waveSDR.sdrPauseRequest")
