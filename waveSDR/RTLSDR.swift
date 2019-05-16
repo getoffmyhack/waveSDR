@@ -23,6 +23,7 @@ final class RTLSDR: SDRDevice {
     
     fileprivate static let gainModeAuto:    Int32  = 0
     fileprivate static let gainModeManual:  Int32  = 1
+    fileprivate static let newDeviceQueue:  DispatchQueue = DispatchQueue(label: "com.getoffmyhack.waveSDR.RTLSDR.newDeviceQueue")
 
     
     //--------------------------------------------------------------------------
@@ -35,34 +36,51 @@ final class RTLSDR: SDRDevice {
     override class func isDeviceSupported(usbDevice: USBDevice) -> SDRDevice? {
         
         var rtlDevice: RTLSDR? = nil
-        
-        // a new USB device has been added, first check if RTL
-        if(RTLKnownDevices.isKnownRTLDevice(vid: usbDevice.usbVendorID, pid: usbDevice.usbProductID)) {
+
+        // librtlsdr will always assign index 0 to any new devices it recognizes
+        // therefore, if multiple devices are plugged in quickly, the second
+        // device may end up becoming index 0 prior to the first device being
+        // opened / configured / closed.
+        //
+        // isDeviceSupported() is always called from an async queue from
+        // USBManager; therefore dispatch this into a sync queue so only a
+        // single device can be initalized at once.
+        //
+        // this queue might want to be moved to the SoftwareDefinedRadio class
+        // so that all new additions are dispatched into a sync queue
+
+        newDeviceQueue.sync {
             
-            // at this point, IOKit has completely registered this device
-            // but for some uknown reason(s) (as of now) it takes about 2 seconds
-            // for librtlsdr via libusb to recognize the new device using
-            // either rtlsdr_get_device_count or rtlsdr_get_index_by_serial
+            // a new USB device has been added, first check if RTL
+            if(RTLKnownDevices.isKnownRTLDevice(vid: usbDevice.usbVendorID, pid: usbDevice.usbProductID)) {
             
-            // my option to overcome this is to loop the call to
-            // rtlsdr_get_index_by_serial until it returns a valid index
-            // which usually happens on the second call
+                // at this point, IOKit has completely registered this device
+                // but for some unknown reason(s) (as of now) it takes about 2 seconds
+                // for librtlsdr via libusb to recognize the new device using
+                // either rtlsdr_get_device_count or rtlsdr_get_index_by_serial
             
-            let serialCString = (usbDevice.usbSerialNumber as NSString).utf8String
+                // my option to overcome this is to loop the call to
+                // rtlsdr_get_index_by_serial until it returns a valid index
+                // which usually happens on the second call
             
-            var index: Int32 = -99
+                let serialCString = (usbDevice.usbSerialNumber as NSString).utf8String
             
-            repeat {
-                index = rtlsdr_get_index_by_serial(serialCString)
-            } while index < 0
+                var index: Int32 = -99
             
-            // we have the index, create the RTLSDR object and return
-            rtlDevice = RTLSDR(UInt32(index), device: usbDevice)
-            rtlDevice?.initDevice()
+                repeat {
+                    index = rtlsdr_get_index_by_serial(serialCString)
+                } while index < 0
+            
+                // we have the index, create the RTLSDR object and return
+                rtlDevice = RTLSDR(UInt32(index), device: usbDevice)
+                rtlDevice?.initDevice()
+            
+            }
             
         }
         
         return rtlDevice
+        
     }
 
     
