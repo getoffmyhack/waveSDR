@@ -92,7 +92,7 @@ class USBManager {
                 usbManager.ioUSBDeviceRemoved(iterator: iterator)
         }
         
-        // create a point to this instace of USBManager
+        // create a pointer to this instace of USBManager
         let instancePointer = Unmanaged.passUnretained(self).toOpaque()
         
         // add notification for when a device is added
@@ -142,7 +142,7 @@ class USBManager {
     // ioUSBDeviceAdded
     //
     // called from the IOKit callback closure whenever a new USB device is added.
-    // Each new device will create an IOUSBDevice struct and pass to delegate
+    // Each new device will create an USBDevice struct and pass to delegate
     //
     //--------------------------------------------------------------------------
     
@@ -163,9 +163,11 @@ class USBManager {
             )
             
             // call delegate with new device
-            if let delegate = self.delegate {
-                delegate.usbDeviceAdded(usbDevice)
+            guard let delegate = self.delegate else {
+                fatalError("No delegate for USBManager")
             }
+            
+            delegate.usbDeviceAdded(usbDevice)
 
             IOObjectRelease(device)
         }
@@ -196,9 +198,11 @@ class USBManager {
                 product:    device.usbProductName()     ?? "<unknown>"
             )
             
-            if let delegate = self.delegate {
-                delegate.usbDeviceRemoved(usbDevice)
+            guard let delegate = self.delegate else {
+                fatalError("No delegate for USBManager")
             }
+            delegate.usbDeviceRemoved(usbDevice)
+            
             IOObjectRelease(device)
    
         }
