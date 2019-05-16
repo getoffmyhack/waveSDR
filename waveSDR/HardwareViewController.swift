@@ -540,30 +540,31 @@ class HardwareViewController: DisclosureViewController {
     @objc func observedSdrDeviceListNotifcaiton(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
-            let sdrDeviceArray = userInfo[sdrDeviceListKey] as! [SDRDevice]
-            self.deviceList = sdrDeviceArray
-        
             
-            // check the userDict passed in from the notification to determine
-            // if a device has been added or removed based off the existance
-            // of either sdrDeviceAddedKey or sdrDeviceRemovedKey; the
-            // associated value for either key is the SDRDevice object that
-            // has been added or removed
-            
+            // check if new device was added
             if userInfo[sdrDeviceAddedKey] != nil {
                 
-                // a new device has been added, check if the first device
-                if self.selectedDevice == nil {
-                    self.selectedDevice = self.deviceList[0]
-                }
+                // get new device
+                let newDevice = userInfo[sdrDeviceAddedKey] as! SDRDevice
                 
+                // add to local device list
+                self.deviceList.append(newDevice)
+
+                // if not currently running, select new device
+                if self.isRunning == false {
+                    self.selectedDevice = newDevice
+                }
+
             } else {
                 
                 // device has been removed
-                let sdrDevice = userInfo[sdrDeviceRemovedKey] as! SDRDevice
+                let removedDevice = userInfo[sdrDeviceRemovedKey] as! SDRDevice
             
+                // remove device from list
+                self.deviceList.remove(at: self.deviceList.firstIndex(of: removedDevice)!)
+                
                 // check it removed device was selected device
-                if (self.selectedDevice == sdrDevice) {
+                if (self.selectedDevice == removedDevice) {
                     
                     // check if removed device was last device in list
                     if (self.deviceList.count == 0) {
@@ -580,6 +581,9 @@ class HardwareViewController: DisclosureViewController {
                         // have replace the current deviceList object with the
                         // new empty list and should have removed all other
                         // references
+                        
+                        // also, this doesn't always work, so still need to do
+                        // some more research
                         
                         self.deviceList.removeAll()
                     } else {
