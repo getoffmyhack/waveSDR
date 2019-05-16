@@ -15,7 +15,7 @@ public typealias io_registry_id_t = UInt64
 //
 //--------------------------------------------------------------------------
 
-public struct IOUSBDevice: Hashable, CustomStringConvertible {
+public struct USBDevice: Hashable, CustomStringConvertible {
     let ioRegistryID:       io_registry_id_t
     let ioRegistryName:     String
     let usbVendorID:        Int

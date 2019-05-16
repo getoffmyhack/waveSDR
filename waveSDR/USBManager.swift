@@ -18,9 +18,9 @@ import IOKit.usb
 //
 //--------------------------------------------------------------------------
 
-protocol IOUSBManagerDelegate: class {
-    func usbDeviceAdded(_   device: IOUSBDevice)
-    func usbDeviceRemoved(_ device: IOUSBDevice)
+protocol USBManagerDelegate: class {
+    func usbDeviceAdded(_   device: USBDevice)
+    func usbDeviceRemoved(_ device: USBDevice)
 }
 
 //--------------------------------------------------------------------------
@@ -29,37 +29,18 @@ protocol IOUSBManagerDelegate: class {
 //
 //--------------------------------------------------------------------------
 
-class IOUSBManager {
+class USBManager {
     
-    private static var sharedIOUSBManager: IOUSBManager = {
-        let usbManager = IOUSBManager()
-        return usbManager
-    }()
-
     private let ioNotificationPort:   IONotificationPortRef
     
-    private      var ioUSBDeviceList:    [IOUSBDevice] = []
-    private weak var delegate:           IOUSBManagerDelegate?
+    private weak var delegate:      USBManagerDelegate?
     
     private var addedIterator:      io_iterator_t = 0
     private var removedIterator:    io_iterator_t = 0
     
     private let ioUSBManagerQueue:  DispatchQueue           = DispatchQueue(label: "com.getoffmyhack.waveSDR.IOUSBManagerQueue")
-    private let matchingDict:       NSMutableDictionary     = IOServiceMatching(kIOUSBDeviceClassName)
+    private var matchingDict:       NSMutableDictionary     = IOServiceMatching(kIOUSBDeviceClassName)
     
-    //--------------------------------------------------------------------------
-    //
-    // manager()
-    //
-    // this is used to get the shared instance to IOUSBManager
-    //
-    //--------------------------------------------------------------------------
-    
-    class func manager() -> IOUSBManager {
-        
-        return sharedIOUSBManager
-        
-    }
     
     //--------------------------------------------------------------------------
     //
@@ -67,8 +48,8 @@ class IOUSBManager {
     //
     //--------------------------------------------------------------------------
     
-    private init() {
-        
+    init() {
+    
         // get the Master notificatin port for IO Kit
         let notificationPort = IONotificationPortCreate(kIOMasterPortDefault)
         guard notificationPort != nil else {
@@ -92,25 +73,26 @@ class IOUSBManager {
     //
     //--------------------------------------------------------------------------
     
-    func start(delegate: IOUSBManagerDelegate) {
+    func start(delegate: USBManagerDelegate) {
 
+        // set the delegate object
         self.delegate = delegate
         
         // create callback closure for when a device is added
         let usbDeviceAddedCallback:IOServiceMatchingCallback = {
             (instance, iterator) in
-                let usbManager = Unmanaged<IOUSBManager>.fromOpaque(instance!).takeUnretainedValue()
+                let usbManager = Unmanaged<USBManager>.fromOpaque(instance!).takeUnretainedValue()
                 usbManager.ioUSBDeviceAdded(iterator: iterator)
         }
         
         // create callback closure for when a device is removed
         let usbDeviceRemovedCallback: IOServiceMatchingCallback = {
             (instance, iterator) in
-                let usbManager = Unmanaged<IOUSBManager>.fromOpaque(instance!).takeUnretainedValue()
+                let usbManager = Unmanaged<USBManager>.fromOpaque(instance!).takeUnretainedValue()
                 usbManager.ioUSBDeviceRemoved(iterator: iterator)
         }
         
-        // create a point to this instace of IOUSBManager
+        // create a point to this instace of USBManager
         let instancePointer = Unmanaged.passUnretained(self).toOpaque()
         
         // add notification for when a device is added
@@ -159,9 +141,8 @@ class IOUSBManager {
     //
     // ioUSBDeviceAdded
     //
-    // called from the IOKit whenever a new USB device is added.  Each new
-    // device will create an IOUSBDevice struct, adds to an internal array
-    // and passes it to the delegate
+    // called from the IOKit callback closure whenever a new USB device is added.
+    // Each new device will create an IOUSBDevice struct and pass to delegate
     //
     //--------------------------------------------------------------------------
     
@@ -171,7 +152,7 @@ class IOUSBManager {
         while case let device = IOIteratorNext(iterator), device != IO_OBJECT_NULL {
             
             // create usbDevice for this device
-            let usbDevice: IOUSBDevice = IOUSBDevice(
+            let usbDevice: USBDevice = USBDevice(
                 id:         device.ioRegistryID(),
                 name:       device.ioRegistryName()     ?? "<unknown>",
                 vid:        device.usbVendorID()        ?? 0x00,
@@ -180,9 +161,6 @@ class IOUSBManager {
                 vendor:     device.usbVendorName()      ?? "<unknown>",
                 product:    device.usbProductName()     ?? "<unknown>"
             )
-            
-            // append to local list
-            ioUSBDeviceList.append(usbDevice)
             
             // call delegate with new device
             if let delegate = self.delegate {
@@ -198,8 +176,7 @@ class IOUSBManager {
     //
     // ioUSBDeviceRemoved
     //
-    // called from the IOKit whenever a USB device is removed, remove from
-    // local array and call delegate
+    // called from the IOKit whenever a USB device is removed, calls delegate
     //
     //--------------------------------------------------------------------------
     
@@ -208,21 +185,24 @@ class IOUSBManager {
         // iterate through list of devices removed from IOKit
         while case let device = IOIteratorNext(iterator), device != IO_OBJECT_NULL {
         
-            // although this will be a small array, there are better ways to
-            // iterate and remove a device, but that can be done later
-            for index in 0..<ioUSBDeviceList.count {
-                if(ioUSBDeviceList[index].ioRegistryID == device.ioRegistryID()) {
-                    let usbDevice = ioUSBDeviceList[index]
-                    ioUSBDeviceList.remove(at: index)
-                    if let delegate = self.delegate {
-                        delegate.usbDeviceRemoved(usbDevice)
-                    }
-                    break;
-                }
-            }
+            // create usbDevice for this device
+            let usbDevice: USBDevice = USBDevice(
+                id:         device.ioRegistryID(),
+                name:       device.ioRegistryName()     ?? "<unknown>",
+                vid:        device.usbVendorID()        ?? 0x00,
+                pid:        device.usbProductID()       ?? 0x00,
+                serial:     device.usbSerialNumber()    ?? "<unknown>",
+                vendor:     device.usbVendorName()      ?? "<unknown>",
+                product:    device.usbProductName()     ?? "<unknown>"
+            )
             
+            if let delegate = self.delegate {
+                delegate.usbDeviceRemoved(usbDevice)
+            }
             IOObjectRelease(device)
+   
         }
+        
     }
     
 

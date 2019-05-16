@@ -32,7 +32,7 @@ final class RTLSDR: SDRDevice {
     //--------------------------------------------------------------------------
     
     
-    override class func isDeviceSupported(usbDevice: IOUSBDevice) -> SDRDevice? {
+    override class func isDeviceSupported(usbDevice: USBDevice) -> SDRDevice? {
         
         var rtlDevice: RTLSDR? = nil
         
@@ -539,7 +539,7 @@ final class RTLSDR: SDRDevice {
     //
     //--------------------------------------------------------------------------
 
-    fileprivate init(_ devID: UInt32, device: IOUSBDevice){
+    fileprivate init(_ devID: UInt32, device: USBDevice){
         
         
         // get the librtlsdr name

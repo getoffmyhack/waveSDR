@@ -140,7 +140,7 @@ class MainWindowController: NSWindowController {
         // start the sdr USB monitor to start waiting for SDR
         // devices to be discovered
         
-        sdr.startUSBDeviceManager(callback: sdrListChanged)
+        sdr.startDeviceManager(callback: sdrListChanged)
         
     }
     

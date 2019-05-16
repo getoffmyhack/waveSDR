@@ -31,7 +31,7 @@ protocol SDRDeviceProtocol: NSObjectProtocol {
     
 //    weak var delegate: SDRDeviceDelegate? { get set }
     
-    var usbDevice: IOUSBDevice? { get set }
+    var usbDevice: USBDevice? { get set }
     
     func minimumFrequency() -> Int
     func maximumFrequency() -> Int
@@ -64,7 +64,7 @@ class SDRDevice: NSObject, SDRDeviceProtocol {
     
     
     weak var delegate: SDRDeviceDelegate?
-    var usbDevice: IOUSBDevice?
+    var usbDevice: USBDevice?
 
     //--------------------------------------------------------------------------
     //
@@ -98,7 +98,7 @@ class SDRDevice: NSObject, SDRDeviceProtocol {
     //
     //--------------------------------------------------------------------------
     
-    class func isDeviceSupported(usbDevice: IOUSBDevice) -> SDRDevice? {
+    class func isDeviceSupported(usbDevice: USBDevice) -> SDRDevice? {
         return nil
     }
     

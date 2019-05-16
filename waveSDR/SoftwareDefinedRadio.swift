@@ -9,7 +9,7 @@ import Foundation
 import Accelerate
 import AVFoundation
 
-class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate, IOUSBManagerDelegate {
+class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate, USBManagerDelegate {
 
     static let audioSampleRate = 48000
     
@@ -34,8 +34,6 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate, IOUSBManagerDelegate {
     
     var isPaused:               Bool    = false
     
-//    var deviceCount:            Int     = 0
-
     var frequency:              Int     = 0 {
         didSet {
             if let sdr = selectedDevice {
@@ -45,6 +43,9 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate, IOUSBManagerDelegate {
             }
         }
     }
+    
+    // a lot of these properties need to be abstracted out of this class
+    // dependant on the SDR device being used.
     
     var frequencyCorrection:    Int    = 0 {
         didSet {
@@ -161,10 +162,12 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate, IOUSBManagerDelegate {
     // audio buffer
     let audioBuffer:		AVAudioPCMBuffer	= AVAudioPCMBuffer()
     
+    // usb device manager
+    let usbManager:         USBManager          = USBManager()
 
     //--------------------------------------------------------------------------
     //
-    //
+    // MARK: instance methods
     //
     //--------------------------------------------------------------------------
 
@@ -172,22 +175,8 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate, IOUSBManagerDelegate {
         
         radioQueue  = DispatchQueue(label: "com.getoffmyhack.wavesdr.sdrQueue", attributes: [])
         audioFilterParams = audioFilterNode.bands.first!
-
-        super.init()
-
-        //----------------------------------------------------------------------
-        //
-        // get a list of all SDR hardware devices currently installed
-        //
-        // currently this is hard coded to the RTLSDR devices, but will 
-        // ultimatly be replaced with a plug-in architecture such that
-        // any number of different hardware platforms can be enumerated
-        //
-        //----------------------------------------------------------------------
         
-//        let rtlsdrList = RTLSDR.deviceList()
-//        deviceList  += rtlsdrList
-//        deviceCount  = deviceList.count
+        super.init()
         
         // configure audio system
         // Attach and connect the player node.
@@ -212,7 +201,6 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate, IOUSBManagerDelegate {
             object:     audioEngine
         )
 
-
     }
     
     //--------------------------------------------------------------------------
@@ -221,13 +209,12 @@ class SoftwareDefinedRadio: NSObject, SDRDeviceDelegate, IOUSBManagerDelegate {
     //
     //--------------------------------------------------------------------------
     
-    func startUSBDeviceManager(callback: (DeviceListCallbackType)? ) {
+    func startDeviceManager(callback: (DeviceListCallbackType)? ) {
         
         if let callbackFunction = callback {
             self.deviceListChangedCallback = callbackFunction
         }
 
-        let usbManager = IOUSBManager.manager()
         usbManager.start(delegate: self)
     }
     
@@ -488,7 +475,7 @@ extension SoftwareDefinedRadio {
 
 extension SoftwareDefinedRadio {
 
-    func usbDeviceAdded(_ device: IOUSBDevice) {
+    func usbDeviceAdded(_ device: USBDevice) {
         
         // a new USB device has been added, check if it will be claimed
         // by one of the legacy C library "drivers"
@@ -501,10 +488,9 @@ extension SoftwareDefinedRadio {
         }
     }
     
-    func usbDeviceRemoved(_ device: IOUSBDevice) {
+    func usbDeviceRemoved(_ device: USBDevice) {
 
         // check if removed USB device is in SDR device list
-
         for (index, sdrDevice) in self.deviceList.enumerated() {
 
             if sdrDevice.usbDevice == device {
