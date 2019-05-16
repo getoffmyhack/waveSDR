@@ -19,27 +19,6 @@ final class RTLSDR: SDRDevice {
     //
     //------------------------------------------------------------
     
-//    fileprivate static let _rtlsdrCount: Int = {
-    
-//        let rtlsdrCount = Int(rtlsdr_get_device_count())
-//        return rtlsdrCount
-//        return _deviceArray.count
-
-//    }()
-
-//    fileprivate static let _deviceArray: [RTLSDR] = []
-//    fileprivate static let _deviceArray: [RTLSDR] = {
-//
-//        var rtlsdrArray: [RTLSDR] = []
-//        for i in 0..<_rtlsdrCount {
-//            let device = RTLSDR(i)
-//            device.initDevice()
-//            rtlsdrArray.append(device)
-//        }
-//        return rtlsdrArray
-//
-//    }()
-    
     fileprivate static let _sampleRates:    [Int] = [960000, 2400000]
     
     fileprivate static let gainModeAuto:    Int32  = 0
@@ -52,13 +31,6 @@ final class RTLSDR: SDRDevice {
     //
     //--------------------------------------------------------------------------
     
-//    override class func deviceCount() -> Int {
-//        return _rtlsdrCount
-//    }
-//    
-//    override class func deviceList() -> [SDRDevice] {
-//        return _deviceArray
-//    }
     
     override class func isDeviceSupported(usbDevice: IOUSBDevice) -> SDRDevice? {
         
@@ -560,9 +532,6 @@ final class RTLSDR: SDRDevice {
         }
         
     }
-    
-    // init() is marked private as the only time an object is initalized will
-    // be first access to deviceArray from the getDeviceArray() type method
     
     //--------------------------------------------------------------------------
     //

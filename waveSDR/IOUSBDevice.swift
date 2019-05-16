@@ -5,7 +5,15 @@
 //  Copyright © 2019 GetOffMyHack. All rights reserved.
 //
 
-typealias io_registry_id_t = UInt64
+public typealias io_registry_id_t = UInt64
+
+//--------------------------------------------------------------------------
+//
+// IOUSBDevice
+//
+// simple struct which represents the USB device data
+//
+//--------------------------------------------------------------------------
 
 public struct IOUSBDevice: Hashable, CustomStringConvertible {
     let ioRegistryID:       io_registry_id_t
@@ -15,6 +23,12 @@ public struct IOUSBDevice: Hashable, CustomStringConvertible {
     let usbSerialNumber:    String
     let usbVendorName:      String
     let usbProductName:     String
+    
+    //--------------------------------------------------------------------------
+    //
+    // creates a print -able representation of the object
+    //
+    //--------------------------------------------------------------------------
     
     public var description:   String {
         get {
@@ -33,8 +47,14 @@ usbSerialNumber: \(self.usbSerialNumber)
         }
     }
     
+    //--------------------------------------------------------------------------
+    //
+    // init new struct with required USB data
+    //
+    //--------------------------------------------------------------------------
+    
     public init(
-        id:         UInt64,
+        id:         io_registry_id_t,
         name:       String,
         vid:        Int,
         pid:        Int,

@@ -8,9 +8,26 @@
 import IOKit
 import IOKit.usb
 
+//--------------------------------------------------------------------------
+//
+// io_object_t extensions
+//
+// adds OO style extensions to the simple io_object_t type;
+// the io_object_t, if you follow the line of typealias, eventually
+// becomes a simple UInt32:
+//
+// public typealias __darwin_natural_t = UInt32
+//
+//--------------------------------------------------------------------------
+
 extension io_object_t {
     
+    //--------------------------------------------------------------------------
+    //
     // returns the registry entry id
+    //
+    //--------------------------------------------------------------------------
+    
     func ioRegistryID() -> UInt64 {
 
         var registryID: UInt64  = 0
@@ -23,8 +40,14 @@ extension io_object_t {
 
     }
     
-    /// - Returns: The device's name.
+    //--------------------------------------------------------------------------
+    //
+    // returns the registry name (generally the USB Product Name)
+    //
+    //--------------------------------------------------------------------------
+
     func ioRegistryName() -> String? {
+        
         let buf = UnsafeMutablePointer<io_name_t>.allocate(capacity: 1)
         
         defer {
@@ -37,8 +60,15 @@ extension io_object_t {
             }
             return nil
         }
-    }
         
+    }
+    
+    //--------------------------------------------------------------------------
+    //
+    // returns USB Vendor ID
+    //
+    //--------------------------------------------------------------------------
+    
     func usbVendorID() -> Int? {
         var vendorID: Int? = nil
         
@@ -48,6 +78,12 @@ extension io_object_t {
         
         return vendorID
     }
+    
+    //--------------------------------------------------------------------------
+    //
+    // returns USB Product ID
+    //
+    //--------------------------------------------------------------------------
     
     func usbProductID() -> Int? {
         var productID: Int? = nil
@@ -59,6 +95,12 @@ extension io_object_t {
         return productID
     }
     
+    //--------------------------------------------------------------------------
+    //
+    // returns USB serial number string
+    //
+    //--------------------------------------------------------------------------
+    
     func usbSerialNumber() -> String? {
         var usbSerial: String? = nil
         
@@ -69,6 +111,12 @@ extension io_object_t {
         return usbSerial
     }
     
+    //--------------------------------------------------------------------------
+    //
+    // returns USB product name
+    //
+    //--------------------------------------------------------------------------
+    
     func usbProductName() -> String? {
         var usbProductName: String? = nil
         
@@ -78,6 +126,12 @@ extension io_object_t {
         
         return usbProductName
     }
+    
+    //--------------------------------------------------------------------------
+    //
+    // returns USB vendor name
+    //
+    //--------------------------------------------------------------------------
     
     func usbVendorName() -> String? {
         var usbVendorName: String? = nil
