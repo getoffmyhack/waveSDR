@@ -11,7 +11,6 @@
 		D0113F651E2F140A00D668CC /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0113F641E2F140A00D668CC /* SidebarViewController.swift */; };
 		D0113F671E317DAB00D668CC /* HardwareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0113F661E317DAB00D668CC /* HardwareViewController.swift */; };
 		D0113F691E31919D00D668CC /* TunerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0113F681E31919D00D668CC /* TunerViewController.swift */; };
-		D022C62B1E29AD3D003FF574 /* RadioDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022C62A1E29AD3D003FF574 /* RadioDisplayViewController.swift */; };
 		D027D4971E6269EF0089051F /* AMDemodulatorBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027D4961E6269EF0089051F /* AMDemodulatorBlock.swift */; };
 		D027D4991E6391FC0089051F /* SquelchBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027D4981E6391FC0089051F /* SquelchBlock.swift */; };
 		D027D49D1E64EA8E0089051F /* FilterBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027D49C1E64EA8E0089051F /* FilterBlock.swift */; };
@@ -22,7 +21,6 @@
 		D02AA8AF1E3C168500218374 /* SDRDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA8AE1E3C168500218374 /* SDRDevice.swift */; };
 		D02AA8B11E3D925900218374 /* waveSDRNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA8B01E3D925900218374 /* waveSDRNotifications.swift */; };
 		D030234A227A0BA50016DF97 /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = D0302349227A0BA50016DF97 /* screenshot.png */; };
-		D032940B223B3648006A6ED0 /* librtlsdr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D032940A223B3648006A6ED0 /* librtlsdr.a */; };
 		D032940D223B38E1006A6ED0 /* AudioOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D032940C223B38E1006A6ED0 /* AudioOutViewController.swift */; };
 		D05444782253156300F5CC29 /* DisclosureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05444772253156300F5CC29 /* DisclosureViewController.swift */; };
 		D05A11691E258D4000F2116D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05A11681E258D4000F2116D /* AppDelegate.swift */; };
@@ -36,18 +34,20 @@
 		D06C48D62288B7EB00978ECC /* USBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06C48D52288B7EB00978ECC /* USBDevice.swift */; };
 		D081664D1E79F905002BF5CF /* ToneDecoderBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D081664C1E79F905002BF5CF /* ToneDecoderBlock.swift */; };
 		D08FC4D32288FE3F002E54BD /* RTLKnownDeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FC4D22288FE3F002E54BD /* RTLKnownDeviceList.swift */; };
+		D0930B09228F27C800342C57 /* LevelIndicatorWithSquelch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0930B07228F27C800342C57 /* LevelIndicatorWithSquelch.swift */; };
+		D0930B0A228F27C800342C57 /* RadioDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0930B08228F27C800342C57 /* RadioDisplayViewController.swift */; };
+		D0930B0C228F286400342C57 /* librtlsdr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D032940A223B3648006A6ED0 /* librtlsdr.a */; };
+		D0930B0D228F287000342C57 /* libusb-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F0981F1E386BB300355EB0 /* libusb-1.0.a */; };
 		D09BB4681E58C843002DEC58 /* ComplexFilterBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB4671E58C843002DEC58 /* ComplexFilterBlock.swift */; };
 		D09BB46A1E58FEC9002DEC58 /* FMDemodulatorBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB4691E58FEC9002DEC58 /* FMDemodulatorBlock.swift */; };
 		D09BB46D1E5B7C31002DEC58 /* Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB46C1E5B7C31002DEC58 /* Samples.swift */; };
 		D09BB46F1E5B88F3002DEC58 /* FilterCoefficients.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB46E1E5B88F3002DEC58 /* FilterCoefficients.swift */; };
 		D0AF458E228003C8001F7DE2 /* USBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AF458D228003C8001F7DE2 /* USBManager.swift */; };
 		D0C407C91E8217E800FD0034 /* MixerBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C407C81E8217E800FD0034 /* MixerBlock.swift */; };
-		D0C6A0C91E2C99E600D05D4D /* LevelIndicatorWithSquelch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C6A0C81E2C99E600D05D4D /* LevelIndicatorWithSquelch.swift */; };
 		D0CCEA311E515E0F005C6DC0 /* Radio.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCEA301E515E0F005C6DC0 /* Radio.swift */; };
 		D0DA277A1F33848D00C8FC53 /* RadioBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DA27791F33848D00C8FC53 /* RadioBlock.swift */; };
 		D0F098181E38525100355EB0 /* DVTRun_10_10.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0F098161E38525100355EB0 /* DVTRun_10_10.pdf */; };
 		D0F098191E38525100355EB0 /* DVTStop_10_10.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D0F098171E38525100355EB0 /* DVTStop_10_10.pdf */; };
-		D0F098211E386BB300355EB0 /* libusb-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F0981F1E386BB300355EB0 /* libusb-1.0.a */; };
 		D0F098291E38734D00355EB0 /* RTLSDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F098281E38734D00355EB0 /* RTLSDR.swift */; };
 		D0F0982C1E3882CF00355EB0 /* SoftwareDefinedRadio.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F0982B1E3882CF00355EB0 /* SoftwareDefinedRadio.swift */; };
 		D0F9183A1E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F918391E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift */; };
@@ -59,7 +59,6 @@
 		D0113F641E2F140A00D668CC /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		D0113F661E317DAB00D668CC /* HardwareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HardwareViewController.swift; sourceTree = "<group>"; };
 		D0113F681E31919D00D668CC /* TunerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunerViewController.swift; sourceTree = "<group>"; };
-		D022C62A1E29AD3D003FF574 /* RadioDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioDisplayViewController.swift; sourceTree = "<group>"; };
 		D027D4961E6269EF0089051F /* AMDemodulatorBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMDemodulatorBlock.swift; sourceTree = "<group>"; };
 		D027D4981E6391FC0089051F /* SquelchBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquelchBlock.swift; sourceTree = "<group>"; };
 		D027D49C1E64EA8E0089051F /* FilterBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterBlock.swift; sourceTree = "<group>"; };
@@ -86,13 +85,14 @@
 		D06C48D52288B7EB00978ECC /* USBDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USBDevice.swift; sourceTree = "<group>"; };
 		D081664C1E79F905002BF5CF /* ToneDecoderBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToneDecoderBlock.swift; sourceTree = "<group>"; };
 		D08FC4D22288FE3F002E54BD /* RTLKnownDeviceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTLKnownDeviceList.swift; sourceTree = "<group>"; };
+		D0930B07228F27C800342C57 /* LevelIndicatorWithSquelch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelIndicatorWithSquelch.swift; sourceTree = "<group>"; };
+		D0930B08228F27C800342C57 /* RadioDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioDisplayViewController.swift; sourceTree = "<group>"; };
 		D09BB4671E58C843002DEC58 /* ComplexFilterBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplexFilterBlock.swift; sourceTree = "<group>"; };
 		D09BB4691E58FEC9002DEC58 /* FMDemodulatorBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMDemodulatorBlock.swift; sourceTree = "<group>"; };
 		D09BB46C1E5B7C31002DEC58 /* Samples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Samples.swift; sourceTree = "<group>"; };
 		D09BB46E1E5B88F3002DEC58 /* FilterCoefficients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCoefficients.swift; sourceTree = "<group>"; };
 		D0AF458D228003C8001F7DE2 /* USBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USBManager.swift; sourceTree = "<group>"; };
 		D0C407C81E8217E800FD0034 /* MixerBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixerBlock.swift; sourceTree = "<group>"; };
-		D0C6A0C81E2C99E600D05D4D /* LevelIndicatorWithSquelch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelIndicatorWithSquelch.swift; sourceTree = "<group>"; };
 		D0CCEA301E515E0F005C6DC0 /* Radio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Radio.swift; sourceTree = "<group>"; };
 		D0DA27791F33848D00C8FC53 /* RadioBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioBlock.swift; sourceTree = "<group>"; };
 		D0EDB2B51F31949D00B84C4B /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
@@ -113,57 +113,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D032940B223B3648006A6ED0 /* librtlsdr.a in Frameworks */,
-				D0F098211E386BB300355EB0 /* libusb-1.0.a in Frameworks */,
+				D0930B0D228F287000342C57 /* libusb-1.0.a in Frameworks */,
+				D0930B0C228F286400342C57 /* librtlsdr.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D0113F631E2F135800D668CC /* SidebarView */ = {
-			isa = PBXGroup;
-			children = (
-				D0113F641E2F140A00D668CC /* SidebarViewController.swift */,
-				D0113F661E317DAB00D668CC /* HardwareViewController.swift */,
-				D0113F681E31919D00D668CC /* TunerViewController.swift */,
-				D032940C223B38E1006A6ED0 /* AudioOutViewController.swift */,
-				D05444772253156300F5CC29 /* DisclosureViewController.swift */,
-			);
-			name = SidebarView;
-			sourceTree = "<group>";
-		};
-		D022C6251E272D75003FF574 /* MainWindow */ = {
-			isa = PBXGroup;
-			children = (
-				D05A117A1E258D9800F2116D /* MainWindowController.swift */,
-				D0113F611E2F040500D668CC /* MainContentViewController.swift */,
-				D0F918391E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift */,
-				D05A117B1E258D9800F2116D /* MainWindowController.xib */,
-				D05A116C1E258D4000F2116D /* MainMenu.xib */,
-			);
-			name = MainWindow;
-			sourceTree = "<group>";
-		};
-		D022C6261E272DA8003FF574 /* DisplayView */ = {
-			isa = PBXGroup;
-			children = (
-				D022C62A1E29AD3D003FF574 /* RadioDisplayViewController.swift */,
-				D0C6A0C81E2C99E600D05D4D /* LevelIndicatorWithSquelch.swift */,
-			);
-			name = DisplayView;
-			sourceTree = "<group>";
-		};
-		D027D4A21E67C7570089051F /* SpectrumView */ = {
-			isa = PBXGroup;
-			children = (
-				D027D4A31E67C77A0089051F /* SpectrumViewController.swift */,
-				D027D4A51E67C7980089051F /* AnalyzerView.swift */,
-				D027D4A81E6E3BE90089051F /* SpectrogramView.swift */,
-			);
-			name = SpectrumView;
-			sourceTree = "<group>";
-		};
 		D05A115C1E258D4000F2116D = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +129,7 @@
 				D0EDB2B51F31949D00B84C4B /* Readme.md */,
 				D05A11671E258D4000F2116D /* waveSDR */,
 				D05A11661E258D4000F2116D /* Products */,
+				D0930B0B228F286400342C57 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -190,28 +148,43 @@
 				D061D37C1E4C3296006A4CEF /* Bool+toggle.swift */,
 				D05A11681E258D4000F2116D /* AppDelegate.swift */,
 				D02AA8B01E3D925900218374 /* waveSDRNotifications.swift */,
-				D0F0982D1E395A1400355EB0 /* UI */,
-				D0F0982A1E38811700355EB0 /* SDR */,
-				D0F0981A1E386A2200355EB0 /* Resources */,
+				D0930B01228F271700342C57 /* UI */,
+				D0930AFB228F254E00342C57 /* SDR */,
+				D0930B0E228F28EC00342C57 /* Resources */,
 				D05A116A1E258D4000F2116D /* Assets.xcassets */,
 				D05A116F1E258D4000F2116D /* Info.plist */,
 			);
 			path = waveSDR;
 			sourceTree = "<group>";
 		};
-		D06C48D92288BFA600978ECC /* IOKitUSB */ = {
+		D0930AFB228F254E00342C57 /* SDR */ = {
+			isa = PBXGroup;
+			children = (
+				D0930AFE228F267500342C57 /* Hardware */,
+				D0930AFD228F261400342C57 /* DSP */,
+				D0930AFC228F25B900342C57 /* IOKitUSB */,
+				D0F0982B1E3882CF00355EB0 /* SoftwareDefinedRadio.swift */,
+				D0CCEA301E515E0F005C6DC0 /* Radio.swift */,
+				D0DA27791F33848D00C8FC53 /* RadioBlock.swift */,
+				D09BB46C1E5B7C31002DEC58 /* Samples.swift */,
+			);
+			path = SDR;
+			sourceTree = "<group>";
+		};
+		D0930AFC228F25B900342C57 /* IOKitUSB */ = {
 			isa = PBXGroup;
 			children = (
 				D06C48D52288B7EB00978ECC /* USBDevice.swift */,
 				D0AF458D228003C8001F7DE2 /* USBManager.swift */,
 				D06C48D32288A7CA00978ECC /* io_object_t+IOUSBDevice.swift */,
 			);
-			name = IOKitUSB;
+			path = IOKitUSB;
 			sourceTree = "<group>";
 		};
-		D08166501E7A0601002BF5CF /* DSP */ = {
+		D0930AFD228F261400342C57 /* DSP */ = {
 			isa = PBXGroup;
 			children = (
+				D09BB46E1E5B88F3002DEC58 /* FilterCoefficients.swift */,
 				D027D4A01E67ABAE0089051F /* FFTBlock.swift */,
 				D0C407C81E8217E800FD0034 /* MixerBlock.swift */,
 				D09BB4671E58C843002DEC58 /* ComplexFilterBlock.swift */,
@@ -220,74 +193,109 @@
 				D027D4981E6391FC0089051F /* SquelchBlock.swift */,
 				D081664C1E79F905002BF5CF /* ToneDecoderBlock.swift */,
 				D027D49C1E64EA8E0089051F /* FilterBlock.swift */,
-				D09BB46E1E5B88F3002DEC58 /* FilterCoefficients.swift */,
 			);
-			name = DSP;
+			path = DSP;
 			sourceTree = "<group>";
 		};
-		D0F0981A1E386A2200355EB0 /* Resources */ = {
+		D0930AFE228F267500342C57 /* Hardware */ = {
+			isa = PBXGroup;
+			children = (
+				D0930AFF228F268900342C57 /* RTLSDR */,
+				D02AA8AE1E3C168500218374 /* SDRDevice.swift */,
+			);
+			path = Hardware;
+			sourceTree = "<group>";
+		};
+		D0930AFF228F268900342C57 /* RTLSDR */ = {
+			isa = PBXGroup;
+			children = (
+				D0930B00228F26B800342C57 /* librtlsdr */,
+				D0F098281E38734D00355EB0 /* RTLSDR.swift */,
+				D08FC4D22288FE3F002E54BD /* RTLKnownDeviceList.swift */,
+			);
+			path = RTLSDR;
+			sourceTree = "<group>";
+		};
+		D0930B00228F26B800342C57 /* librtlsdr */ = {
+			isa = PBXGroup;
+			children = (
+				D0F0981D1E386B6300355EB0 /* rtl-sdr.h */,
+				D0F0981C1E386B6300355EB0 /* rtl-sdr_export.h */,
+				D0F0981F1E386BB300355EB0 /* libusb-1.0.a */,
+				D032940A223B3648006A6ED0 /* librtlsdr.a */,
+			);
+			path = librtlsdr;
+			sourceTree = "<group>";
+		};
+		D0930B01228F271700342C57 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D0930B02228F273A00342C57 /* MainWindow */,
+				D0930B04228F277800342C57 /* SidebarView */,
+				D0930B06228F27C800342C57 /* DisplayView */,
+				D0930B03228F275C00342C57 /* SpectrumView */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		D0930B02228F273A00342C57 /* MainWindow */ = {
+			isa = PBXGroup;
+			children = (
+				D05A117A1E258D9800F2116D /* MainWindowController.swift */,
+				D0113F611E2F040500D668CC /* MainContentViewController.swift */,
+				D0F918391E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift */,
+				D05A117B1E258D9800F2116D /* MainWindowController.xib */,
+				D05A116C1E258D4000F2116D /* MainMenu.xib */,
+			);
+			path = MainWindow;
+			sourceTree = "<group>";
+		};
+		D0930B03228F275C00342C57 /* SpectrumView */ = {
+			isa = PBXGroup;
+			children = (
+				D027D4A31E67C77A0089051F /* SpectrumViewController.swift */,
+				D027D4A51E67C7980089051F /* AnalyzerView.swift */,
+				D027D4A81E6E3BE90089051F /* SpectrogramView.swift */,
+			);
+			path = SpectrumView;
+			sourceTree = "<group>";
+		};
+		D0930B04228F277800342C57 /* SidebarView */ = {
+			isa = PBXGroup;
+			children = (
+				D0113F641E2F140A00D668CC /* SidebarViewController.swift */,
+				D0113F661E317DAB00D668CC /* HardwareViewController.swift */,
+				D0113F681E31919D00D668CC /* TunerViewController.swift */,
+				D032940C223B38E1006A6ED0 /* AudioOutViewController.swift */,
+				D05444772253156300F5CC29 /* DisclosureViewController.swift */,
+			);
+			path = SidebarView;
+			sourceTree = "<group>";
+		};
+		D0930B06228F27C800342C57 /* DisplayView */ = {
+			isa = PBXGroup;
+			children = (
+				D0930B07228F27C800342C57 /* LevelIndicatorWithSquelch.swift */,
+				D0930B08228F27C800342C57 /* RadioDisplayViewController.swift */,
+			);
+			path = DisplayView;
+			sourceTree = "<group>";
+		};
+		D0930B0B228F286400342C57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0930B0E228F28EC00342C57 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				D05DE8521F3297570063B3CB /* enhanced_led_board-7.ttf */,
 				D0F098161E38525100355EB0 /* DVTRun_10_10.pdf */,
 				D0F098171E38525100355EB0 /* DVTStop_10_10.pdf */,
 			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		D0F0981B1E386B3500355EB0 /* librtlsdr */ = {
-			isa = PBXGroup;
-			children = (
-				D032940A223B3648006A6ED0 /* librtlsdr.a */,
-				D0F0981F1E386BB300355EB0 /* libusb-1.0.a */,
-				D0F0981C1E386B6300355EB0 /* rtl-sdr_export.h */,
-				D0F0981D1E386B6300355EB0 /* rtl-sdr.h */,
-			);
-			name = librtlsdr;
-			sourceTree = "<group>";
-		};
-		D0F098261E3872B500355EB0 /* SDR Hardware */ = {
-			isa = PBXGroup;
-			children = (
-				D02AA8AE1E3C168500218374 /* SDRDevice.swift */,
-				D0F098271E3872C200355EB0 /* RTLSDR */,
-			);
-			name = "SDR Hardware";
-			sourceTree = "<group>";
-		};
-		D0F098271E3872C200355EB0 /* RTLSDR */ = {
-			isa = PBXGroup;
-			children = (
-				D0F0981B1E386B3500355EB0 /* librtlsdr */,
-				D0F098281E38734D00355EB0 /* RTLSDR.swift */,
-				D08FC4D22288FE3F002E54BD /* RTLKnownDeviceList.swift */,
-			);
-			name = RTLSDR;
-			sourceTree = "<group>";
-		};
-		D0F0982A1E38811700355EB0 /* SDR */ = {
-			isa = PBXGroup;
-			children = (
-				D0F098261E3872B500355EB0 /* SDR Hardware */,
-				D08166501E7A0601002BF5CF /* DSP */,
-				D06C48D92288BFA600978ECC /* IOKitUSB */,
-				D0F0982B1E3882CF00355EB0 /* SoftwareDefinedRadio.swift */,
-				D0CCEA301E515E0F005C6DC0 /* Radio.swift */,
-				D0DA27791F33848D00C8FC53 /* RadioBlock.swift */,
-				D09BB46C1E5B7C31002DEC58 /* Samples.swift */,
-			);
-			name = SDR;
-			sourceTree = "<group>";
-		};
-		D0F0982D1E395A1400355EB0 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				D022C6251E272D75003FF574 /* MainWindow */,
-				D027D4A21E67C7570089051F /* SpectrumView */,
-				D0113F631E2F135800D668CC /* SidebarView */,
-				D022C6261E272DA8003FF574 /* DisplayView */,
-			);
-			name = UI;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,12 +377,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D09BB46A1E58FEC9002DEC58 /* FMDemodulatorBlock.swift in Sources */,
+				D0930B0A228F27C800342C57 /* RadioDisplayViewController.swift in Sources */,
 				D0C407C91E8217E800FD0034 /* MixerBlock.swift in Sources */,
 				D0113F671E317DAB00D668CC /* HardwareViewController.swift in Sources */,
 				D0113F691E31919D00D668CC /* TunerViewController.swift in Sources */,
 				D027D49D1E64EA8E0089051F /* FilterBlock.swift in Sources */,
 				D027D4A61E67C7980089051F /* AnalyzerView.swift in Sources */,
-				D0C6A0C91E2C99E600D05D4D /* LevelIndicatorWithSquelch.swift in Sources */,
 				D0113F651E2F140A00D668CC /* SidebarViewController.swift in Sources */,
 				D027D4A91E6E3BE90089051F /* SpectrogramView.swift in Sources */,
 				D0F0982C1E3882CF00355EB0 /* SoftwareDefinedRadio.swift in Sources */,
@@ -387,6 +395,7 @@
 				D0AF458E228003C8001F7DE2 /* USBManager.swift in Sources */,
 				D06C48D42288A7CA00978ECC /* io_object_t+IOUSBDevice.swift in Sources */,
 				D02AA8AF1E3C168500218374 /* SDRDevice.swift in Sources */,
+				D0930B09228F27C800342C57 /* LevelIndicatorWithSquelch.swift in Sources */,
 				D027D4A11E67ABAE0089051F /* FFTBlock.swift in Sources */,
 				D06C48D62288B7EB00978ECC /* USBDevice.swift in Sources */,
 				D09BB46D1E5B7C31002DEC58 /* Samples.swift in Sources */,
@@ -396,7 +405,6 @@
 				D032940D223B38E1006A6ED0 /* AudioOutViewController.swift in Sources */,
 				D0F9183A1E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift in Sources */,
 				D09BB46F1E5B88F3002DEC58 /* FilterCoefficients.swift in Sources */,
-				D022C62B1E29AD3D003FF574 /* RadioDisplayViewController.swift in Sources */,
 				D05A11691E258D4000F2116D /* AppDelegate.swift in Sources */,
 				D09BB4681E58C843002DEC58 /* ComplexFilterBlock.swift in Sources */,
 				D027D4991E6391FC0089051F /* SquelchBlock.swift in Sources */,
@@ -541,6 +549,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/waveSDR",
+					"$(PROJECT_DIR)/waveSDR/SDR/Hardware/RTLSDR/librtlsdr",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.getoffmyhack.waveSDR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -562,6 +571,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/waveSDR",
+					"$(PROJECT_DIR)/waveSDR/SDR/Hardware/RTLSDR/librtlsdr",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.getoffmyhack.waveSDR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
