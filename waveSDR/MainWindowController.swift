@@ -111,20 +111,6 @@ class MainWindowController: NSWindowController {
         // set main content view controller
         self.contentViewController = mainContentViewController
         
-        //----------------------------------------------------------------------
-        //
-        // setup software defined radio
-        //
-        //----------------------------------------------------------------------
-
-        // announce device list
-        //
-        // at this point, all devices (if any) have been enumerated, let the UI
-        // know that the device list is ready
-        
-//        let sdrDeviceInfo: [String : Any] = [sdrDeviceListKey: sdr.deviceList]
-//        notify.post(name: .sdrDeviceListNotifcaiton, object: self, userInfo: sdrDeviceInfo)
-        
         //
         // setup defaults
         //
@@ -140,38 +126,7 @@ class MainWindowController: NSWindowController {
         // start the sdr USB monitor to start waiting for SDR
         // devices to be discovered
         
-        sdr.startDeviceManager(callback: sdrListChanged)
-        
-    }
-    
-    
-    func sdrListChanged(device: SDRDevice, deviceActionKey: String) {
-        
-        // this needs to be despatched on the main thread so that any
-        // UI controls can re-adjust their layout as needed.
-        DispatchQueue.main.async {
-            
-            // first check if a device has been removed
-            if(deviceActionKey == sdrDeviceRemovedKey) {
-                
-                // check if selected device
-                if(device == self.sdr.selectedDevice) {
-                    
-                    // check if running / needs an EMERGENCY STOP
-                    if(self.sdr.isRunning == true) {
-                        // click the run/stop button
-                        self.startSDRButton.performClick(self)
-                    }
-                    
-                }
-                
-            }
-            
-            // send notification about device change
-//            var sdrDeviceInfo: [String : Any] = [sdrDeviceListKey: self.sdr.deviceList]
-            let sdrDeviceInfo: [String: Any] = [deviceActionKey : device]
-            self.notify.post(name: .sdrDeviceNotifcaiton, object: self, userInfo: sdrDeviceInfo)
-        }
+        sdr.startDeviceManager(callback: sdrDeviceChange)
         
     }
     
@@ -823,7 +778,7 @@ class MainWindowController: NSWindowController {
     //--------------------------------------------------------------------------
     
     @IBAction func runStopButtonClicked(_ sender: AnyObject) {
-        print("Run / Stop clicked!!")
+
         if(self.sdr.isRunning == true) {
 
             self.refreshTimer.invalidate()
@@ -847,7 +802,49 @@ class MainWindowController: NSWindowController {
         
     }
     
+    //--------------------------------------------------------------------------
+    //
+    // MARK: - Helper Methods
+    //
+    //--------------------------------------------------------------------------
+    
+    //--------------------------------------------------------------------------
+    //
+    // sdrDeviceChage()
+    //
+    // this is called from the SDR instance whenever a new SDR device has
+    // been added or removed
+    //
+    //--------------------------------------------------------------------------
 
+    func sdrDeviceChange(device: SDRDevice, deviceActionKey: String) {
+        
+        // this needs to be despatched on the main thread so that any
+        // UI controls can re-adjust their layout as needed.
+        DispatchQueue.main.async {
+            
+            // first check if a device has been removed
+            if(deviceActionKey == sdrDeviceRemovedKey) {
+                
+                // check if selected device
+                if(device == self.sdr.selectedDevice) {
+                    
+                    // check if running / needs an EMERGENCY STOP
+                    if(self.sdr.isRunning == true) {
+                        // click the run/stop button
+                        self.startSDRButton.performClick(self)
+                    }
+                    
+                }
+                
+            }
+            
+            // send notification about device change
+            let sdrDeviceInfo: [String: Any] = [deviceActionKey : device]
+            self.notify.post(name: .sdrDeviceNotifcaiton, object: self, userInfo: sdrDeviceInfo)
+        }
+        
+    }
     
 }
 
