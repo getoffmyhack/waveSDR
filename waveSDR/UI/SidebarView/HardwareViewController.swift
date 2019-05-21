@@ -63,7 +63,7 @@ class HardwareViewController: DisclosureViewController {
 
                 // FIXME: Reset local controls
                 self.sampleRateList     = []
-                self.selectedSampleRate = 0
+//                self.selectedSampleRate = 0
                 self.correctionValue    = 0
                 
             } else {
