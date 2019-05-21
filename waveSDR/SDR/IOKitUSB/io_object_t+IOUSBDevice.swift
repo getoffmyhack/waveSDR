@@ -142,4 +142,27 @@ extension io_object_t {
         
         return usbVendorName
     }
+
+    //--------------------------------------------------------------------------
+    //
+    // returns entire properties dictionary from the IOKit registery
+    //
+    //--------------------------------------------------------------------------
+    
+    func getProperties()-> Dictionary<String, Any>?  {
+        
+        var properties: Unmanaged<CFMutableDictionary>? = nil
+        var prop: Dictionary<String, Any>? = nil
+
+        
+        let kr = IORegistryEntryCreateCFProperties(self, &properties, kCFAllocatorDefault, 0)
+        
+        if(kr == kIOReturnSuccess) {
+            prop = properties?.takeUnretainedValue() as? [String:Any]
+        }
+        
+        return prop
+    
+    }
+
 }
