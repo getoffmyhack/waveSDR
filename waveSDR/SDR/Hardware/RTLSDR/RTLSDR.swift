@@ -54,6 +54,9 @@ final class RTLSDR: SDRDevice {
             // a new USB device has been added, first check if RTL
             if(RTLKnownDevices.isKnownRTLDevice(vid: usbDevice.usbVendorID, pid: usbDevice.usbProductID)) {
             
+                let serialCString = (usbDevice.usbSerialNumber as NSString).utf8String
+
+                // KLUDGE:
                 // at this point, IOKit has completely registered this device
                 // but for some unknown reason(s) (as of now) it takes about 2 seconds
                 // for librtlsdr via libusb to recognize the new device using
@@ -63,17 +66,29 @@ final class RTLSDR: SDRDevice {
                 // rtlsdr_get_index_by_serial until it returns a valid index
                 // which usually happens on the second call
             
-                let serialCString = (usbDevice.usbSerialNumber as NSString).utf8String
-            
-                var index: Int32 = -99
-            
+                // During testing, there are times where
+                // SDR.usbDeviceAdded() is called with a device passed to this
+                // function, recognized as an RTLSDR device, but is then removed
+                // before finishing this function.
+                //
+                // a simple loop counter will determine when to "time-out"
+                // and simply return a nil object.  There is probably a better
+                // means to handle this situation and this section of code.
+                
+                let maxCount:   Int     = 5
+                var index:      Int32   = -99
+                var count:      Int     = 0
                 repeat {
                     index = rtlsdr_get_index_by_serial(serialCString)
-                } while index < 0
+                    count += 1
+                } while (index < 0) && (count < maxCount)
             
-                // we have the index, create the RTLSDR object and return
-                rtlDevice = RTLSDR(UInt32(index), device: usbDevice)
-                rtlDevice?.initDevice()
+                // didn't time out
+                if(count < maxCount) {
+                // we have a valid index, create the RTLSDR object and return
+                    rtlDevice = RTLSDR(device: usbDevice)
+                    rtlDevice?.initDevice()
+                }
             
             }
             
@@ -94,7 +109,7 @@ final class RTLSDR: SDRDevice {
     let usbManufacture:     String
     let usbProduct:         String
     let usbSerial:          String
-    let name:               String
+//    let name:               String
 
     var tuner:              String = ""
     var isInitalized:       Bool   = false
@@ -557,25 +572,12 @@ final class RTLSDR: SDRDevice {
     //
     //--------------------------------------------------------------------------
 
-    fileprivate init(_ devID: UInt32, device: USBDevice){
+    fileprivate init(device: USBDevice){
         
-        
-        // get the librtlsdr name
-        name      = String(cString: UnsafePointer(rtlsdr_get_device_name(devID)))
-        
-        // get usb strings from device
-        var manf:   [CChar] = [CChar](repeating: 0, count: 255)
-        var prod:	[CChar] = [CChar](repeating: 0, count: 255)
-        var serial:	[CChar] = [CChar](repeating: 0, count: 255)
-        
-        rtlsdr_get_device_usb_strings(devID, &manf, &prod, &serial)
-        
-        usbManufacture    = String(cString: manf)
-        usbProduct        = String(cString: prod)
-        usbSerial         = String(cString: serial)
-        usbName           = usbManufacture + " " + usbProduct + " SN: " + usbSerial
-        
-        // Initalize vars
+        usbManufacture  = device.usbVendorName
+        usbProduct      = device.usbProductName
+        usbSerial       = device.usbSerialNumber
+        usbName         = usbManufacture + " " + usbProduct + " SN: " + usbSerial
         
         asyncReadQueue  = DispatchQueue(label: "\(asyncReadQueueLabel).\(usbName)")
         sampleBuffer    = [UInt8](repeating: 0, count: bufferSize)
