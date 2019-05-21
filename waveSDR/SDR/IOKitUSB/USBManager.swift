@@ -105,7 +105,8 @@ class USBManager {
             &addedIterator
         )
         
-        // "arm" the call back notification
+        //Iterate over set of matching devices to access already-present devices
+        //and to arm the notification
         self.ioUSBDeviceAdded(iterator: addedIterator)
 
         // add notification for when a device is removed
@@ -118,8 +119,9 @@ class USBManager {
             &removedIterator
         )
         
-        // "arm" the call back notification
-        self.ioUSBDeviceRemoved(iterator: removedIterator)
+        //Iterate over set of matching devices to release each one and to
+        //arm the notification
+            self.ioUSBDeviceRemoved(iterator: removedIterator)
         
     }
     
@@ -153,14 +155,18 @@ class USBManager {
             
             // create usbDevice for this device
             let usbDevice: USBDevice = USBDevice(
-                id:         device.ioRegistryID(),
-                name:       device.ioRegistryName()     ?? "<unknown>",
-                vid:        device.usbVendorID()        ?? 0x00,
-                pid:        device.usbProductID()       ?? 0x00,
-                serial:     device.usbSerialNumber()    ?? "<unknown>",
-                vendor:     device.usbVendorName()      ?? "<unknown>",
-                product:    device.usbProductName()     ?? "<unknown>"
+                ioRegistryID:       device.ioRegistryID(),
+                ioRegistryName:     device.ioRegistryName()     ?? "<unknown>",
+                usbVendorID:        device.usbVendorID()        ?? 0x00,
+                usbProductID:       device.usbProductID()       ?? 0x00,
+                usbSerialNumber:    device.usbSerialNumber()    ?? "<unknown>",
+                usbVendorName:      device.usbVendorName()      ?? "<unknown>",
+                usbProductName:     device.usbProductName()     ?? "<unknown>"
             )
+            
+//            for(key, value) in device.getProperties()! {
+//                print("Key: \(key)\t\(value)")
+//            }
             
             // call delegate with new device
             guard let delegate = self.delegate else {
@@ -189,13 +195,13 @@ class USBManager {
         
             // create usbDevice for this device
             let usbDevice: USBDevice = USBDevice(
-                id:         device.ioRegistryID(),
-                name:       device.ioRegistryName()     ?? "<unknown>",
-                vid:        device.usbVendorID()        ?? 0x00,
-                pid:        device.usbProductID()       ?? 0x00,
-                serial:     device.usbSerialNumber()    ?? "<unknown>",
-                vendor:     device.usbVendorName()      ?? "<unknown>",
-                product:    device.usbProductName()     ?? "<unknown>"
+                ioRegistryID:       device.ioRegistryID(),
+                ioRegistryName:     device.ioRegistryName()     ?? "<unknown>",
+                usbVendorID:        device.usbVendorID()        ?? 0x00,
+                usbProductID:       device.usbProductID()       ?? 0x00,
+                usbSerialNumber:    device.usbSerialNumber()    ?? "<unknown>",
+                usbVendorName:      device.usbVendorName()      ?? "<unknown>",
+                usbProductName:     device.usbProductName()     ?? "<unknown>"
             )
             
             guard let delegate = self.delegate else {

@@ -24,6 +24,7 @@ public struct USBDevice: Hashable, CustomStringConvertible {
     let usbVendorName:      String
     let usbProductName:     String
     
+    
     //--------------------------------------------------------------------------
     //
     // creates a print -able representation of the object
@@ -45,31 +46,5 @@ usbSerialNumber: \(self.usbSerialNumber)
 """
             return returnString
         }
-    }
-    
-    //--------------------------------------------------------------------------
-    //
-    // init new struct with required USB data
-    //
-    //--------------------------------------------------------------------------
-    
-    public init(
-        id:         io_registry_id_t,
-        name:       String,
-        vid:        Int,
-        pid:        Int,
-        serial:     String,
-        vendor:     String,
-        product:    String
-    ) {
-        
-        self.ioRegistryID       = id
-        self.ioRegistryName     = name
-        self.usbVendorID        = vid
-        self.usbProductID       = pid
-        self.usbSerialNumber    = serial
-        self.usbVendorName      = vendor
-        self.usbProductName     = product
-        
     }
 }

@@ -200,8 +200,8 @@
 		D0930AFE228F267500342C57 /* Hardware */ = {
 			isa = PBXGroup;
 			children = (
-				D0930AFF228F268900342C57 /* RTLSDR */,
 				D02AA8AE1E3C168500218374 /* SDRDevice.swift */,
+				D0930AFF228F268900342C57 /* RTLSDR */,
 			);
 			path = Hardware;
 			sourceTree = "<group>";
