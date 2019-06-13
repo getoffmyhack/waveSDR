@@ -110,6 +110,7 @@
 		D0F098281E38734D00355EB0 /* RTLSDR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTLSDR.swift; sourceTree = "<group>"; };
 		D0F0982B1E3882CF00355EB0 /* SoftwareDefinedRadio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoftwareDefinedRadio.swift; sourceTree = "<group>"; };
 		D0F918391E46E0D700F05EF2 /* CenteringSpacerToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteringSpacerToolbarItem.swift; sourceTree = "<group>"; };
+		D0FE550822B2D63000D5889C /* 20190613.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 20190613.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +132,7 @@
 				D054BFCD229CB0F2001604A3 /* 20190501.md */,
 				D054BFCF229CB144001604A3 /* 20190512.md */,
 				D054BFD1229CB1B2001604A3 /* 20190514.md */,
+				D0FE550822B2D63000D5889C /* 20190613.md */,
 			);
 			path = BuildLog;
 			sourceTree = "<group>";

@@ -2,7 +2,6 @@
 //  RTLKnownDeviceList.swift
 //  waveSDR
 //
-//  Created by Justin England on 5/12/19.
 //  Copyright © 2019 GetOffMyHack. All rights reserved.
 //
 

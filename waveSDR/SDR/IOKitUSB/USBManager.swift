@@ -82,14 +82,14 @@ class USBManager {
         let usbDeviceAddedCallback:IOServiceMatchingCallback = {
             (instance, iterator) in
                 let usbManager = Unmanaged<USBManager>.fromOpaque(instance!).takeUnretainedValue()
-                usbManager.ioUSBDeviceAdded(iterator: iterator)
+                usbManager.usbDeviceAdded(iterator: iterator)
         }
         
         // create callback closure for when a device is removed
         let usbDeviceRemovedCallback: IOServiceMatchingCallback = {
             (instance, iterator) in
                 let usbManager = Unmanaged<USBManager>.fromOpaque(instance!).takeUnretainedValue()
-                usbManager.ioUSBDeviceRemoved(iterator: iterator)
+                usbManager.usbDeviceRemoved(iterator: iterator)
         }
         
         // create a pointer to this instace of USBManager
@@ -107,7 +107,7 @@ class USBManager {
         
         //Iterate over set of matching devices to access already-present devices
         //and to arm the notification
-        self.ioUSBDeviceAdded(iterator: addedIterator)
+        self.usbDeviceAdded(iterator: addedIterator)
 
         // add notification for when a device is removed
         IOServiceAddMatchingNotification(
@@ -121,7 +121,7 @@ class USBManager {
         
         //Iterate over set of matching devices to release each one and to
         //arm the notification
-            self.ioUSBDeviceRemoved(iterator: removedIterator)
+            self.usbDeviceRemoved(iterator: removedIterator)
         
     }
     
@@ -141,28 +141,45 @@ class USBManager {
     
     //--------------------------------------------------------------------------
     //
-    // ioUSBDeviceAdded
+    // fillUSBDevice
+    //
+    // fills the USBDevice struct with properties for this device
+    //
+    //--------------------------------------------------------------------------
+    
+    private func fillUSBDevice(_ device: io_object_t) -> USBDevice {
+        
+        // create usbDevice for this device
+        let usbDevice: USBDevice = USBDevice(
+            ioRegistryID:       device.ioRegistryID(),
+            ioRegistryName:     device.ioRegistryName()     ?? "",
+            usbVendorID:        device.usbVendorID()        ?? 0x00,
+            usbProductID:       device.usbProductID()       ?? 0x00,
+            usbSerialNumber:    device.usbSerialNumber()    ?? "",
+            usbVendorName:      device.usbVendorName()      ?? "",
+            usbProductName:     device.usbProductName()     ?? ""
+        )
+        
+        return usbDevice
+        
+    }
+    
+    //--------------------------------------------------------------------------
+    //
+    // usbDeviceAdded
     //
     // called from the IOKit callback closure whenever a new USB device is added.
     // Each new device will create an USBDevice struct and pass to delegate
     //
     //--------------------------------------------------------------------------
     
-    private func ioUSBDeviceAdded(iterator: io_iterator_t) {
+    private func usbDeviceAdded(iterator: io_iterator_t) {
         
         // iterate through the list of devices from IOKit
         while case let device = IOIteratorNext(iterator), device != IO_OBJECT_NULL {
             
             // create usbDevice for this device
-            let usbDevice: USBDevice = USBDevice(
-                ioRegistryID:       device.ioRegistryID(),
-                ioRegistryName:     device.ioRegistryName()     ?? "<unknown>",
-                usbVendorID:        device.usbVendorID()        ?? 0x00,
-                usbProductID:       device.usbProductID()       ?? 0x00,
-                usbSerialNumber:    device.usbSerialNumber()    ?? "<unknown>",
-                usbVendorName:      device.usbVendorName()      ?? "<unknown>",
-                usbProductName:     device.usbProductName()     ?? "<unknown>"
-            )
+            let usbDevice = fillUSBDevice(device)
             
 //            for(key, value) in device.getProperties()! {
 //                print("Key: \(key)\t\(value)")
@@ -182,27 +199,19 @@ class USBManager {
     
     //--------------------------------------------------------------------------
     //
-    // ioUSBDeviceRemoved
+    // usbDeviceRemoved
     //
     // called from the IOKit whenever a USB device is removed, calls delegate
     //
     //--------------------------------------------------------------------------
     
-    private func ioUSBDeviceRemoved(iterator: io_iterator_t) {
+    private func usbDeviceRemoved(iterator: io_iterator_t) {
         
         // iterate through list of devices removed from IOKit
         while case let device = IOIteratorNext(iterator), device != IO_OBJECT_NULL {
         
             // create usbDevice for this device
-            let usbDevice: USBDevice = USBDevice(
-                ioRegistryID:       device.ioRegistryID(),
-                ioRegistryName:     device.ioRegistryName()     ?? "<unknown>",
-                usbVendorID:        device.usbVendorID()        ?? 0x00,
-                usbProductID:       device.usbProductID()       ?? 0x00,
-                usbSerialNumber:    device.usbSerialNumber()    ?? "<unknown>",
-                usbVendorName:      device.usbVendorName()      ?? "<unknown>",
-                usbProductName:     device.usbProductName()     ?? "<unknown>"
-            )
+            let usbDevice = fillUSBDevice(device)
             
             guard let delegate = self.delegate else {
                 fatalError("No delegate for USBManager")
