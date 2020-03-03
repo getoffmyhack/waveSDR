@@ -2,6 +2,10 @@
 
 A macOS native desktop Software Defined Radio application using the RTL-SDR USB device.
 
+<> Mar 2020<>
+
+Back from a bit of a hiatus in development on waveSDR, but before I start adding features to waveSDR, I plan on finishing my port of librtlsdr to a native macOS Swift framework.  Follow the progress here: [RTLSDR.Swift](https://github.com/getoffmyhack/RTLSDR.Swift) 
+
 <> May 2019 <>
  
 I have started a simple build log which can be found in the project's root directory, more as notes to myself, but also as a means of thinking through my design choices and documenting them for future reference.  Eventually my build log will become posts on my wordpress site. 
