@@ -478,9 +478,17 @@ extension SoftwareDefinedRadio {
 
     func usbDeviceAdded(_ device: USBDevice) {
         
+        print("SDR Device:    <\(device.description)>")
+
+        
         // a new USB device has been added, check if it will be claimed
         // by one of the legacy C library "drivers"
         if let sdrDevice = RTLSDR.isDeviceSupported(usbDevice: device) {
+            self.deviceList.append(sdrDevice)
+            if let callback = self.deviceListChangedCallback {
+                callback(sdrDevice, sdrDeviceAddedKey)
+            }
+        } else if let sdrDevice = HackRF.isDeviceSupported(usbDevice: device) {
             self.deviceList.append(sdrDevice)
             if let callback = self.deviceListChangedCallback {
                 callback(sdrDevice, sdrDeviceAddedKey)

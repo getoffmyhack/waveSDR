@@ -108,7 +108,8 @@ class SquelchBlock: RadioBlock {
         // loop through checking for 0 values 
         var squelchCount: Int = 0
         for i in 0..<samples.count {
-            if magnitudes[i] == 0 {
+//            if magnitudes[i] == 0 {
+            if(self.averageDB < self.squelch ) {
                 samples.audio[i] = 0
                 squelchCount += 1
             }

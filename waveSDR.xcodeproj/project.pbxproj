@@ -35,6 +35,8 @@
 		D061D37D1E4C3296006A4CEF /* Bool+toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D061D37C1E4C3296006A4CEF /* Bool+toggle.swift */; };
 		D06C48D42288A7CA00978ECC /* io_object_t+IOUSBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06C48D32288A7CA00978ECC /* io_object_t+IOUSBDevice.swift */; };
 		D06C48D62288B7EB00978ECC /* USBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06C48D52288B7EB00978ECC /* USBDevice.swift */; };
+		D07A8E162BEACF84005D764E /* libhackrf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D07A8E142BEACF84005D764E /* libhackrf.a */; };
+		D07A8E192BEAD049005D764E /* HackRF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A8E182BEAD049005D764E /* HackRF.swift */; };
 		D081664D1E79F905002BF5CF /* ToneDecoderBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D081664C1E79F905002BF5CF /* ToneDecoderBlock.swift */; };
 		D08FC4D32288FE3F002E54BD /* RTLKnownDeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FC4D22288FE3F002E54BD /* RTLKnownDeviceList.swift */; };
 		D0930B09228F27C800342C57 /* LevelIndicatorWithSquelch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0930B07228F27C800342C57 /* LevelIndicatorWithSquelch.swift */; };
@@ -88,6 +90,10 @@
 		D061D37C1E4C3296006A4CEF /* Bool+toggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+toggle.swift"; sourceTree = "<group>"; };
 		D06C48D32288A7CA00978ECC /* io_object_t+IOUSBDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "io_object_t+IOUSBDevice.swift"; sourceTree = "<group>"; };
 		D06C48D52288B7EB00978ECC /* USBDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USBDevice.swift; sourceTree = "<group>"; };
+		D07A8E142BEACF84005D764E /* libhackrf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libhackrf.a; sourceTree = "<group>"; };
+		D07A8E152BEACF84005D764E /* hackrf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hackrf.h; sourceTree = "<group>"; };
+		D07A8E182BEAD049005D764E /* HackRF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackRF.swift; sourceTree = "<group>"; };
+		D07A8E1A2BEAD7C2005D764E /* api.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = api.md; sourceTree = "<group>"; };
 		D081664C1E79F905002BF5CF /* ToneDecoderBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToneDecoderBlock.swift; sourceTree = "<group>"; };
 		D08FC4D22288FE3F002E54BD /* RTLKnownDeviceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTLKnownDeviceList.swift; sourceTree = "<group>"; };
 		D0930B07228F27C800342C57 /* LevelIndicatorWithSquelch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelIndicatorWithSquelch.swift; sourceTree = "<group>"; };
@@ -120,6 +126,7 @@
 			files = (
 				D0930B0D228F287000342C57 /* libusb-1.0.a in Frameworks */,
 				D0930B0C228F286400342C57 /* librtlsdr.a in Frameworks */,
+				D07A8E162BEACF84005D764E /* libhackrf.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +180,25 @@
 			path = waveSDR;
 			sourceTree = "<group>";
 		};
+		D07A8E132BEACD42005D764E /* HackRF */ = {
+			isa = PBXGroup;
+			children = (
+				D07A8E172BEACF9A005D764E /* libhackrf */,
+				D07A8E182BEAD049005D764E /* HackRF.swift */,
+			);
+			path = HackRF;
+			sourceTree = "<group>";
+		};
+		D07A8E172BEACF9A005D764E /* libhackrf */ = {
+			isa = PBXGroup;
+			children = (
+				D07A8E142BEACF84005D764E /* libhackrf.a */,
+				D07A8E152BEACF84005D764E /* hackrf.h */,
+				D07A8E1A2BEAD7C2005D764E /* api.md */,
+			);
+			path = libhackrf;
+			sourceTree = "<group>";
+		};
 		D0930AFB228F254E00342C57 /* SDR */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				D02AA8AE1E3C168500218374 /* SDRDevice.swift */,
+				D07A8E132BEACD42005D764E /* HackRF */,
 				D0930AFF228F268900342C57 /* RTLSDR */,
 			);
 			path = Hardware;
@@ -400,6 +427,7 @@
 				D0113F671E317DAB00D668CC /* HardwareViewController.swift in Sources */,
 				D0113F691E31919D00D668CC /* TunerViewController.swift in Sources */,
 				D027D49D1E64EA8E0089051F /* FilterBlock.swift in Sources */,
+				D07A8E192BEAD049005D764E /* HackRF.swift in Sources */,
 				D027D4A61E67C7980089051F /* AnalyzerView.swift in Sources */,
 				D0113F651E2F140A00D668CC /* SidebarViewController.swift in Sources */,
 				D027D4A91E6E3BE90089051F /* SpectrogramView.swift in Sources */,
@@ -569,7 +597,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/waveSDR",
 					"$(PROJECT_DIR)/waveSDR/SDR/Hardware/RTLSDR/librtlsdr",
+					"$(PROJECT_DIR)/waveSDR/SDR/Hardware/HackRF/**",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.getoffmyhack.waveSDR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "waveSDR/waveSDR-Bridging-Header.h";
@@ -592,7 +622,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/waveSDR",
 					"$(PROJECT_DIR)/waveSDR/SDR/Hardware/RTLSDR/librtlsdr",
+					"$(PROJECT_DIR)/waveSDR/SDR/Hardware/HackRF/**",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.getoffmyhack.waveSDR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "waveSDR/waveSDR-Bridging-Header.h";
