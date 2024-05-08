@@ -18,7 +18,7 @@ import IOKit.usb
 //
 //--------------------------------------------------------------------------
 
-protocol USBManagerDelegate: class {
+protocol USBManagerDelegate: AnyObject {
     func usbDeviceAdded(_   device: USBDevice)
     func usbDeviceRemoved(_ device: USBDevice)
 }
@@ -51,7 +51,7 @@ class USBManager {
     init() {
     
         // get the Master notificatin port for IO Kit
-        let notificationPort = IONotificationPortCreate(kIOMasterPortDefault)
+        let notificationPort = IONotificationPortCreate(kIOMainPortDefault)
         guard notificationPort != nil else {
             fatalError("Unable to get IONotificationPort")
             
