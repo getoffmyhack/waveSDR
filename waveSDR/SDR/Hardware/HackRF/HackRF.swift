@@ -19,7 +19,7 @@ final class HackRF: SDRDevice {
     //
     //------------------------------------------------------------
  
-    fileprivate static let _sampleRates:    [Int] = [960000, 2400000, 5760000, 10032000, 15600000, 19968000]
+    fileprivate static let _sampleRates:    [Int] = [8208000, 10032000, 15600000, 19968000]
     
     // TODO:
     fileprivate static let gainModeAuto:    Int32  = 0
@@ -99,7 +99,7 @@ final class HackRF: SDRDevice {
     
     private var _isConfigured:          Bool    = false
     
-    private var _sampleRate:            Int     = 2400000 {
+    private var _sampleRate:            Int     = 0 {
         didSet {
             if(self.isOpen() == true) {
                 let rate = UInt32(self._sampleRate)
@@ -540,7 +540,7 @@ final class HackRF: SDRDevice {
         super.init()
 
         self.usbDevice      = device
-//        _sampleRate = Int(HackRF._sampleRates.max()!)
+        _sampleRate = Int(HackRF._sampleRates.max()!)
         
         print("HackRF: initing:    <\(self.usbName)>")
 
