@@ -2,6 +2,12 @@
 
 A macOS native desktop Software Defined Radio application using the RTL-SDR USB device.
 
+<> Jun 2026 <>
+
+Not sure if anybody is still following this project as I have left it on the back burner, so to speak, for way to long.  I plan on jumping back in and adding features.  The first feature I am working on is adding support for the HackRF One SDR radio.
+
+![HackRF](hackrf.png)
+
 <> Mar 2020<>
 
 Back from a bit of a hiatus in development on waveSDR, but before I start adding features to waveSDR, I plan on finishing my port of librtlsdr to a native macOS Swift framework.  Follow the progress here: [RTLSDR.Swift](https://github.com/getoffmyhack/RTLSDR.Swift) 
