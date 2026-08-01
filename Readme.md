@@ -2,6 +2,12 @@
 
 A macOS native desktop Software Defined Radio application using the RTL-SDR USB device.
 
+<>Aug 2026<>
+
+So.... as it turns out, there have been some significant changes to some of Apple's APIs that are used in waveSDR and when doing a simple build / run from Sequoia, it does not work as it used to and seems to constantly crash from one of my calls into DispatchQueue.  I am going through the code and API to find out what I am doing incorrectly and will hopefully have a fully working build sometime soon.
+
+At the same time, I am currently developing a hardware (MCU) independent driver for a HopeRF transceiver module that uses FSK modulation.  As soon as I get my driver in a stable state, I plan on implementing a FSK decoder such that I can debug my wireless transmisions / protocols.   
+
 <> Jun 2026 <>
 
 Not sure if anybody is still following this project as I have left it on the back burner, so to speak, for way to long.  I plan on jumping back in and adding features.  The first feature I am working on is adding support for the HackRF One SDR radio.

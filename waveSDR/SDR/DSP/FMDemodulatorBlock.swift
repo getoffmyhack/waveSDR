@@ -64,7 +64,7 @@ class FMDemodulatorBlock: RadioBlock {
             let I	= samples.real[idx]
             let Q	= samples.imag[idx]
             
-            let num = ( (I * lastQ) - (Q * lastI) )
+            let num = ( (Q * lastI) - (I * lastQ) )
             //        -----------------------------
             let den = (     (I * I) + (Q * Q)     ) + 0.0000000001 // add epsilon to avoid division by zero
             
